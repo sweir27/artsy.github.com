@@ -4,7 +4,7 @@
   <title><![CDATA[Artsy Engineering]]></title>
   <link href="http://artsy.github.io/atom.xml" rel="self"/>
   <link href="http://artsy.github.io/"/>
-  <updated>2014-03-12T10:52:51-04:00</updated>
+  <updated>2014-03-17T18:11:54+00:00</updated>
   <id>http://artsy.github.io/</id>
   <author>
     <name><![CDATA[Artsy]]></name>
@@ -14,9 +14,102 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Detecting trends using Forgetsy]]></title>
+    <link href="http://artsy.github.io/blog/2014/03/17/detecting-trends-with-forgetsy/"/>
+    <updated>2014-03-17T11:32:00+00:00</updated>
+    <id>http://artsy.github.io/blog/2014/03/17/detecting-trends-with-forgetsy</id>
+    <content type="html"><![CDATA[<p><img src="http://artsy.github.io/images/2014-03-17-detecting-trends-with-forgetsy/monolith.jpg" alt="Armory Trending Screen" /></p>
+
+<p>As part of our partnership with <a href="https://www.thearmoryshow.com/">The New York Armory Show</a> this year, we installed a number of terminals throughout the fair. These screens used our own real-time data to display an ever shifting set of trending artworks, artists, and booths, to the attendees.</p>
+
+<p>Out of this work, we&#8217;ve open-sourced <a href="https://github.com/cavvia/forgetsy">Forgetsy</a>, a lightweight Ruby trending library. Put simply, Forgetsy implements data structures that forget. Loosely based on Bit.ly&#8217;s <a href="http://word.bitly.com/post/41284219720/forget-table">Forget Table</a> concept, Forgetsy uses decaying counters to track temporal trends in categorical distributions.</p>
+
+<!-- more -->
+
+
+<h2>Anatomy of a Trend</h2>
+
+<p>To clarify the term &#8216;trend&#8217;, let&#8217;s take this graph of cumulative artist searches over time as an example.</p>
+
+<p><img src="http://artsy.github.io/images/2014-03-17-detecting-trends-with-forgetsy/searches.png" alt="Artist Search Graphs" /></p>
+
+<p>On the left-hand side, we see a steepening gradient (denoted by the dashed lines) for Banksy during his residency in New York (Oct 2013), but in contrast a linear rise in searches for Warhol over the same period. We define a &#8216;trend&#8217; as this rise in the <em>rate</em> of observations of a particular event over a time period, which we&#8217;ll call τ.</p>
+
+<p>In Forgetsy, trends are encapsulated by a construct named <em>delta</em>. A <em>delta</em> consists of two sets of counters, each of which implements <a href="https://en.wikipedia.org/wiki/Exponential_decay">exponential decay</a> of the following form.</p>
+
+<p><img src="http://latex.codecogs.com/gif.latex?X_t_1%3DX_t_0%5Ctimes%7Be%5E%7B-%5Clambda%5Ctimes%7Bt%7D%7D%7D" alt="Exponential Decay" /></p>
+
+<p>Where the inverse of the decay rate (λ) is the lifetime of an observation in the set, τ. By normalising one set by a set with half the decay rate (or double the lifetime), we obtain a trending score for each category in a distribution. This score expresses the change in the rate of observations of a category over the lifetime of the set, as a proportion in the range [0,1].</p>
+
+<p>Forgetsy removes the need for manually sliding time windows or explicitly maintaining rolling counts, as observations naturally decay away over time. It&#8217;s designed for heavy writes and sparse reads, as it implements decay at read time. Each set is implemented as a <a href="http://redis.io/">redis</a> sorted set, and keys are scrubbed when a count is decayed to near zero, providing storage efficiency.</p>
+
+<p>As a result, Forgetsy handles distributions with up to around 10<sup>6</sup> active categories, receiving hundreds of writes per second, without much fuss.</p>
+
+<h2>Usage</h2>
+
+<p>Take a social network in which users can follow each other. You want to track trending users. You construct a delta with a one week lifetime, to capture trends in your follows data over one week periods:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="n">follows_delta</span> <span class="o">=</span> <span class="ss">Forgetsy</span><span class="p">:</span><span class="ss">:Delta</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s1">&#39;user_follows&#39;</span><span class="p">,</span> <span class="ss">t</span><span class="p">:</span> <span class="mi">1</span><span class="o">.</span><span class="n">week</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The delta consists of two sets of counters indexed by category identifiers. In this example, the identifiers will be user ids. One set decays over the mean lifetime specified by τ, and another set decays over double the lifetime.</p>
+
+<p>You can now add observations to the delta, in the form of follow events. Each time a user follows another, you increment the followed user id. You can also do this retrospectively:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="n">follows_delta</span><span class="o">.</span><span class="n">incr</span><span class="p">(</span><span class="s1">&#39;UserFoo&#39;</span><span class="p">,</span> <span class="ss">date</span><span class="p">:</span> <span class="mi">2</span><span class="o">.</span><span class="n">weeks</span><span class="o">.</span><span class="n">ago</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">follows_delta</span><span class="o">.</span><span class="n">incr</span><span class="p">(</span><span class="s1">&#39;UserBar&#39;</span><span class="p">,</span> <span class="ss">date</span><span class="p">:</span> <span class="mi">10</span><span class="o">.</span><span class="n">days</span><span class="o">.</span><span class="n">ago</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">follows_delta</span><span class="o">.</span><span class="n">incr</span><span class="p">(</span><span class="s1">&#39;UserBar&#39;</span><span class="p">,</span> <span class="ss">date</span><span class="p">:</span> <span class="mi">1</span><span class="o">.</span><span class="n">week</span><span class="o">.</span><span class="n">ago</span><span class="p">)</span>
+</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Providing an explicit date is useful if you are processing data asynchronously. You can also use the <code>incr_by</code> option to increment a counter in batches. You can now consult your follows delta to find your top trending users:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="nb">puts</span> <span class="n">follows_delta</span><span class="o">.</span><span class="n">fetch</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Will print:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="p">{</span> <span class="s1">&#39;UserFoo&#39;</span> <span class="o">=&gt;</span> <span class="mi">0</span><span class="o">.</span><span class="mi">789</span><span class="p">,</span> <span class="s1">&#39;UserBar&#39;</span> <span class="o">=&gt;</span> <span class="mi">0</span><span class="o">.</span><span class="mi">367</span> <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Each user is given a dimensionless score in the range [0,1] corresponding to the normalised follows delta over the time period. This expresses the proportion of follows gained by the user over the last week compared to double that lifetime.</p>
+
+<p>Optionally fetch the top <em>n</em> users, or an individual user&#8217;s trending score:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="n">follows_delta</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="ss">n</span><span class="p">:</span> <span class="mi">20</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">follows_delta</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="ss">bin</span><span class="p">:</span> <span class="s1">&#39;UserFoo&#39;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>For more information on usage, check out the <a href="https://github.com/cavvia/forgetsy">github project</a> page.</p>
+
+<h2>In the Wild</h2>
+
+<p>In practice, we use linear, weighted combinations of deltas to produce trending scores for any given domain, such as artists. Forgetsy doesn&#8217;t provide a server, but we send events to an rpc service that updates the deltas in a streamed manner. These events might include artist follows, artwork favorites, auction lot sales or individual page views.</p>
+
+<p>One requirement we have is lifetime flexibility. Forgetsy lets us stipulate the trending period τ on a delta by delta basis. This allows us to lower the lifetime significantly in a fair context, in which we track trends over just a few hours, contrasted with a general art market context, in which we&#8217;re interested in trends over weeks and months.</p>
+
+<p>In summary, the delta structures provided by Forgetsy provide you with a simple, scalable, transparent base for a trending algorithm that can be tuned to suit the specific dynamics of the domain in question.</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Isolating Spurious and Nondeterministic Tests]]></title>
     <link href="http://artsy.github.io/blog/2014/01/30/isolating-spurious-and-nondeterministic-tests/"/>
-    <updated>2014-01-30T14:42:00-05:00</updated>
+    <updated>2014-01-30T14:42:00+00:00</updated>
     <id>http://artsy.github.io/blog/2014/01/30/isolating-spurious-and-nondeterministic-tests</id>
     <content type="html"><![CDATA[<p>Testing is a critical part of our workflow at <a href="https://artsy.net">Artsy</a>. It gives us confidence to make regular, aggressive enhancements. But anyone who has worked with a large, complex test suite has struggled with occasional failures that are difficult to reproduce or fix.</p>
 
@@ -83,7 +176,7 @@ script:
   <entry>
     <title type="html"><![CDATA[Rendering on the Server and Client in Node.js]]></title>
     <link href="http://artsy.github.io/blog/2013/11/30/rendering-on-the-server-and-client-in-node-dot-js/"/>
-    <updated>2013-11-30T22:38:00-05:00</updated>
+    <updated>2013-11-30T22:38:00+00:00</updated>
     <id>http://artsy.github.io/blog/2013/11/30/rendering-on-the-server-and-client-in-node-dot-js</id>
     <content type="html"><![CDATA[<p><img src="http://artsy.github.io/images/2013-12-18-rendering-on-the-server-and-client-in-node-dot-js/isomorphic.png" alt="Diagram of Shared Server/Client Architecture" /></p>
 
@@ -328,7 +421,7 @@ script:
   <entry>
     <title type="html"><![CDATA[Upgrading to Mongoid 4.x]]></title>
     <link href="http://artsy.github.io/blog/2013/11/07/upgrading-to-mongoid4/"/>
-    <updated>2013-11-07T12:34:00-05:00</updated>
+    <updated>2013-11-07T12:34:00+00:00</updated>
     <id>http://artsy.github.io/blog/2013/11/07/upgrading-to-mongoid4</id>
     <content type="html"><![CDATA[<p>I recently went through an exercise of upgrading one of Artsy&#8217;s largest web projects to the current HEAD of Mongoid 4.x. This is going to be a major release with numerous changes and I wanted to flush out bugs before the final version of the ODM is released. All Mongoid changes currently live on <a href="https://github.com/mongoid/mongoid">master</a>.</p>
 
@@ -585,7 +678,7 @@ script:
   <entry>
     <title type="html"><![CDATA[Introduction to AWS OpsWorks]]></title>
     <link href="http://artsy.github.io/blog/2013/08/27/introduction-to-aws-opsworks/"/>
-    <updated>2013-08-27T12:31:00-04:00</updated>
+    <updated>2013-08-27T12:31:00+01:00</updated>
     <id>http://artsy.github.io/blog/2013/08/27/introduction-to-aws-opsworks</id>
     <content type="html"><![CDATA[<p>OpsWorks is a new service from Amazon that promises to provide high-level tools to manage your EC2-based deployment. From <a href="http://aws.typepad.com/aws/2013/02/aws-opsworks-flexible-application-management-in-the-cloud.html">the announcement</a>:</p>
 
@@ -747,7 +840,7 @@ script:
   <entry>
     <title type="html"><![CDATA[Normalizing GMail E-Mail Addresses with CanonicalEmails]]></title>
     <link href="http://artsy.github.io/blog/2013/06/23/normalizing-gmail-email-addresses-with-canonical-emails/"/>
-    <updated>2013-06-23T12:21:00-04:00</updated>
+    <updated>2013-06-23T12:21:00+01:00</updated>
     <id>http://artsy.github.io/blog/2013/06/23/normalizing-gmail-email-addresses-with-canonical-emails</id>
     <content type="html"><![CDATA[<p>A whopping 49% of Artsy users have &#8220;gmail.com&#8221; email addresses. The next domain name, &#8220;hotmail.com&#8221;, doesn&#8217;t even come close, with only 6%.</p>
 
@@ -939,7 +1032,7 @@ script:
   <entry>
     <title type="html"><![CDATA[Adding API Docs with Grape and Swagger]]></title>
     <link href="http://artsy.github.io/blog/2013/06/21/adding-api-documentation-with-grape-swagger/"/>
-    <updated>2013-06-21T12:21:00-04:00</updated>
+    <updated>2013-06-21T12:21:00+01:00</updated>
     <id>http://artsy.github.io/blog/2013/06/21/adding-api-documentation-with-grape-swagger</id>
     <content type="html"><![CDATA[<p>The Artsy website, Partner CMS, mobile tools, and all our hackathon experiments are built on top of a core API. We&#8217;ve put a lot of effort into documenting it internally. But developers don&#8217;t want to have to grok through code. With <a href="https://github.com/intridea/grape">Grape</a> and <a href="https://developers.helloreverb.com/swagger">Swagger</a>, adding an API explorer and exposing the API documentation has never been easier.</p>
 
@@ -1088,7 +1181,7 @@ script:
   <entry>
     <title type="html"><![CDATA[Writing Headless Backbone Tests With Node.js]]></title>
     <link href="http://artsy.github.io/blog/2013/06/14/writing-headless-backbone-tests-with-node-dot-js/"/>
-    <updated>2013-06-14T17:48:00-04:00</updated>
+    <updated>2013-06-14T17:48:00+01:00</updated>
     <id>http://artsy.github.io/blog/2013/06/14/writing-headless-backbone-tests-with-node-dot-js</id>
     <content type="html"><![CDATA[<h2>TL;DR</h2>
 
@@ -1521,7 +1614,7 @@ script:
   <entry>
     <title type="html"><![CDATA[Bootstrapping JSON Data with Rails and Backbone.js]]></title>
     <link href="http://artsy.github.io/blog/2013/04/13/bootstrapping-json-data-with-rails-and-backbone-js/"/>
-    <updated>2013-04-13T12:21:00-04:00</updated>
+    <updated>2013-04-13T12:21:00+01:00</updated>
     <id>http://artsy.github.io/blog/2013/04/13/bootstrapping-json-data-with-rails-and-backbone-js</id>
     <content type="html"><![CDATA[<p>The <a href="http://artsy.net">artsy.net website</a> is a Backbone.js application that talks to a server-side RESTful Grape API sitting on top of a Rails app which serves minimal HTML markup. The latter includes such things as a page title, along with links to JavaScript and stylesheet packages. A page loads, scripts run, data is fetched from the API. The result is merged into a HAMLJS template and rendered client-side.</p>
 
@@ -1646,7 +1739,7 @@ script:
   <entry>
     <title type="html"><![CDATA[ARAnalytics - Analytics for iOS Apps]]></title>
     <link href="http://artsy.github.io/blog/2013/04/10/aranalytics/"/>
-    <updated>2013-04-10T17:23:00-04:00</updated>
+    <updated>2013-04-10T17:23:00+01:00</updated>
     <id>http://artsy.github.io/blog/2013/04/10/aranalytics</id>
     <content type="html"><![CDATA[<p>In both my <a href="http://orta.github.com">personal apps</a> and Artsy Folio, I&#8217;m always after a deeper understanding of how people use the app. There&#8217;s three ways to do this: ask users, watch users and track usage. I&#8217;d like to talk about the third of these.</p>
 
@@ -1677,7 +1770,7 @@ script:
   <entry>
     <title type="html"><![CDATA[An Easter Egg for Curl]]></title>
     <link href="http://artsy.github.io/blog/2013/04/01/an-easter-egg-for-curl/"/>
-    <updated>2013-04-01T12:21:00-04:00</updated>
+    <updated>2013-04-01T12:21:00+01:00</updated>
     <id>http://artsy.github.io/blog/2013/04/01/an-easter-egg-for-curl</id>
     <content type="html"><![CDATA[<p>Let&#8217;s implement an Easter egg that requires <a href="http://curl.haxx.se/">curl</a> and is HTTP-compliant.</p>
 
@@ -1886,7 +1979,7 @@ script:
   <entry>
     <title type="html"><![CDATA[Musical Chairs]]></title>
     <link href="http://artsy.github.io/blog/2013/03/29/musical-chairs/"/>
-    <updated>2013-03-29T16:38:00-04:00</updated>
+    <updated>2013-03-29T16:38:00+00:00</updated>
     <id>http://artsy.github.io/blog/2013/03/29/musical-chairs</id>
     <content type="html"><![CDATA[<p> At Artsy we make Artsy Folio. Folio is an awesome portfolio app that shows our gallery and museum partners their artworks in one place, allows them to easily get information about their inventory and to send works by email to their contacts.</p>
 
@@ -1910,7 +2003,7 @@ script:
   <entry>
     <title type="html"><![CDATA[The Impact of Heroku's Routing Mesh and Random Routing]]></title>
     <link href="http://artsy.github.io/blog/2013/02/17/impact-of-heroku-routing-mesh-and-random-routing/"/>
-    <updated>2013-02-17T12:21:00-05:00</updated>
+    <updated>2013-02-17T12:21:00+00:00</updated>
     <id>http://artsy.github.io/blog/2013/02/17/impact-of-heroku-routing-mesh-and-random-routing</id>
     <content type="html"><![CDATA[<p>The <a href="http://rapgenius.com/James-somers-herokus-ugly-secret-lyrics">Heroku&#8217;s Ugly Secret</a> blog post went viral last week. I <a href="http://code.dblock.org/in-defense-of-heroku">wrote</a> in defense of Heroku, which has now responded with an official <a href="https://blog.heroku.com/archives/2013/2/16/routing_performance_update/">Routing Performance Update</a>.</p>
 
@@ -2043,7 +2136,7 @@ script:
   <entry>
     <title type="html"><![CDATA[Infinite Scroll with MongoDB]]></title>
     <link href="http://artsy.github.io/blog/2013/02/15/infinite-scroll-with-mongodb/"/>
-    <updated>2013-02-15T21:21:00-05:00</updated>
+    <updated>2013-02-15T21:21:00+00:00</updated>
     <id>http://artsy.github.io/blog/2013/02/15/infinite-scroll-with-mongodb</id>
     <content type="html"><![CDATA[<p>An infinite scroll can be a beautiful and functional way to present feed data. You can see ours on the <a href="http://artsy.net/">homepage of artsy.net</a>. It works by fetching a few items from the API, then fetching some more items as the user scrolls down the feed. Each API call returns the items along with a &#8220;cursor&#8221;, which marks the position of the last item retrieved. Subsequent API calls include the cursor in the query string and the iteration resumes from there.</p>
 
@@ -2216,7 +2309,7 @@ script:
   <entry>
     <title type="html"><![CDATA[Data Corruption and Concurrent Updates to Embedded Objects with MongoDB]]></title>
     <link href="http://artsy.github.io/blog/2013/02/09/data-corruption-and-concurrent-updates-to-embedded-objects-with-mongoid/"/>
-    <updated>2013-02-09T21:21:00-05:00</updated>
+    <updated>2013-02-09T21:21:00+00:00</updated>
     <id>http://artsy.github.io/blog/2013/02/09/data-corruption-and-concurrent-updates-to-embedded-objects-with-mongoid</id>
     <content type="html"><![CDATA[<p>We use <a href="http://www.mongodb.org/">MongoDB</a> at Artsy as our primary data store via the <a href="http://mongoid.org/">Mongoid ODM</a>. Eventually, we started noticing data corruption inside embedded objects at an alarming rate of 2-3 records a day. The number of occurrences increased rapidly with load as our user growth accelerated.</p>
 
@@ -2584,7 +2677,7 @@ script:
   <entry>
     <title type="html"><![CDATA[Master the Heroku CLI with Heroku Commander]]></title>
     <link href="http://artsy.github.io/blog/2013/02/01/master-heroku-command-line-with-heroku-commander/"/>
-    <updated>2013-02-01T21:21:00-05:00</updated>
+    <updated>2013-02-01T21:21:00+00:00</updated>
     <id>http://artsy.github.io/blog/2013/02/01/master-heroku-command-line-with-heroku-commander</id>
     <content type="html"><![CDATA[<p><img src="http://artsy.github.io/images/2013-02-01-master-heroku-command-line-with-heroku-commander/heroku-commander.png"></p>
 
@@ -2677,7 +2770,7 @@ script:
   <entry>
     <title type="html"><![CDATA[Create MongoDB Command-Lines from Mongoid Configuration]]></title>
     <link href="http://artsy.github.io/blog/2013/01/31/create-mongodb-command-lines-with-mongo/"/>
-    <updated>2013-01-31T21:21:00-05:00</updated>
+    <updated>2013-01-31T21:21:00+00:00</updated>
     <id>http://artsy.github.io/blog/2013/01/31/create-mongodb-command-lines-with-mongo</id>
     <content type="html"><![CDATA[<p>We use MongoDB as our primary store and have built a healthy amount of automation around various database instances and operational environments. For example, we backup databases to S3 using <code>mongodump</code>, mirror data between instances with <code>mongorestore</code> and often need to open a MongoDB shell with <code>mongo</code> to examine data at the lowest level.</p>
 
@@ -2802,7 +2895,7 @@ script:
   <entry>
     <title type="html"><![CDATA[Improving Performance of Mongoid-Cached-Json]]></title>
     <link href="http://artsy.github.io/blog/2013/01/20/improving-performance-of-mongoid-cached-json/"/>
-    <updated>2013-01-20T21:21:00-05:00</updated>
+    <updated>2013-01-20T21:21:00+00:00</updated>
     <id>http://artsy.github.io/blog/2013/01/20/improving-performance-of-mongoid-cached-json</id>
     <content type="html"><![CDATA[<p>Last year, we have open-sourced and made extensive use of two Ruby libraries in our API: <a href="https://github.com/dblock/mongoid-cached-json">mongoid-cached-json</a> and <a href="https://github.com/artsy/garner">garner</a>. Both transform the procedural nightmare of caching and JSON generation into a declarative and easily manageable DSL. It was worth the investment, since our service spends half of its time generating JSON and reading from and writing to Memcached.</p>
 
@@ -2846,7 +2939,7 @@ script:
   <entry>
     <title type="html"><![CDATA[Debugging Bundler Issues on Heroku]]></title>
     <link href="http://artsy.github.io/blog/2013/01/15/debugging-bundler-issues-with-heroku/"/>
-    <updated>2013-01-15T21:21:00-05:00</updated>
+    <updated>2013-01-15T21:21:00+00:00</updated>
     <id>http://artsy.github.io/blog/2013/01/15/debugging-bundler-issues-with-heroku</id>
     <content type="html"><![CDATA[<p>A few days ago we have started seeing the Heroku deployments of one of our applications randomly hang during <code>bundle install</code>. The problem worsened with time and we were not able to do a deployment for days.</p>
 
@@ -3012,7 +3105,7 @@ script:
   <entry>
     <title type="html"><![CDATA[Beat Heroku's 60 Seconds Application Boot Timeout with a Proxy]]></title>
     <link href="http://artsy.github.io/blog/2012/12/13/beat-heroku-60-seconds-application-boot-timeout-with-a-proxy/"/>
-    <updated>2012-12-13T21:21:00-05:00</updated>
+    <updated>2012-12-13T21:21:00+00:00</updated>
     <id>http://artsy.github.io/blog/2012/12/13/beat-heroku-60-seconds-application-boot-timeout-with-a-proxy</id>
     <content type="html"><![CDATA[<p><img src="http://artsy.github.io/images/2012-12-13-beat-heroku-60-seconds-application-boot-timeout-with-a-proxy/heroku-logo-light-234x60.png"></p>
 
@@ -3062,107 +3155,6 @@ script:
 
 
 <p>You can read more about how we use Heroku at <a href="http://success.heroku.com/artsy">http://success.heroku.com/artsy</a>.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Measuring Performance in Grape APIs with NewRelic RPM]]></title>
-    <link href="http://artsy.github.io/blog/2012/11/29/measuring-performance-in-grape-apis-with-new-relic/"/>
-    <updated>2012-11-29T21:21:00-05:00</updated>
-    <id>http://artsy.github.io/blog/2012/11/29/measuring-performance-in-grape-apis-with-new-relic</id>
-    <content type="html"><![CDATA[<p>Knowing how well your API performs in real time is essential to any successful project. That&#8217;s because you can&#8217;t fix what you can&#8217;t measure.</p>
-
-<p>We use and heavily contribute to <a href="http://github.com/intridea/grape">Grape</a>, a Ruby API DSL. Grape is a Rack middleware and we have been reporting API performance data to <a href="http://newrelic.com/">NewRelic</a> with code from <a href="http://code.dblock.org/new-relic-performance-instrumentation-with-grape-api">my older blog post</a>.</p>
-
-<p>It&#8217;s time to improve the reporting implementation and address performance monitoring in both development and production environments. Here&#8217;s what a single API request breakdown is going to look like.</p>
-
-<p><img src="http://artsy.github.io/images/2012-11-29-measuring-performance-in-grape-apis-with-new-relic/transaction-detail.png"></p>
-
-<!-- more -->
-
-
-<h2>NewRelic RPM</h2>
-
-<p>The first step is to add the <code>newrelic_rpm</code> gem to Gemfile, which implements the actual realtime performance reporting to NewRelic. We also use <a href="https://github.com/mongoid/mongoid">Mongoid</a> and the <a href="https://github.com/mongoid/moped">Moped</a> MongoDB Ruby driver, which can be instrumented with <code>newrelic_moped</code>.</p>
-
-<figure class='code'><figcaption><span>Gemfile</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">gem</span> <span class="s2">&quot;newrelic_moped&quot;</span><span class="p">,</span> <span class="s2">&quot;0.0.3&quot;</span>
-</span><span class='line'><span class="n">gem</span> <span class="s2">&quot;newrelic_rpm&quot;</span><span class="p">,</span> <span class="s2">&quot;3.3.3&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>You will need <code>config/newrelic.yml</code> in your application. Ours can be found in <a href="https://gist.github.com/4170458">this gist</a> and works well both locally and on Heroku.</p>
-
-<h2>Instrumenting Grape</h2>
-
-<p>In the past we used <a href="https://gist.github.com/1233422">NewRelic::Agent::Instrumentation::API</a>, which works for any generic Rack middleware. This would report all API calls to NewRelic, but would treat requests to <em>/api/artist/andy-warhol</em> and <em>/api/artist/wassily-kandinsky</em> as unrelated. That is because the instrumenter is a Rack middleware that wraps Grape requests <em>before</em> they reach Grape. The only information available is the request URL, and not the actual API route that is going to be matched when the request is processed.</p>
-
-<p>We want both requests to <em>/api/artist/andy-warhol</em> and <em>/api/artist/wassily-kandinsky</em> to be treated as <em>/api/artist/:id</em>. Lets insert a middleware inside Grape itself, once the URL has been matched to a route.</p>
-
-<figure class='code'><figcaption><span>api.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">API</span> <span class="o">&lt;&lt;</span> <span class="ss">Grape</span><span class="p">:</span><span class="ss">:API</span>
-</span><span class='line'>  <span class="n">use</span> <span class="no">ApiNewRelicInstrumenter</span>
-</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>The new instrumenter has access to the current API endpoint via <code>env['api.endpoint']</code> and reports data via NewRelic&#8217;s <code>ControllerInstrumentation</code>.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">ApiNewRelicInstrumenter</span> <span class="o">&lt;</span> <span class="ss">Grape</span><span class="p">:</span><span class="ss">:Middleware</span><span class="o">::</span><span class="no">Base</span>
-</span><span class='line'>  <span class="kp">include</span> <span class="ss">NewRelic</span><span class="p">:</span><span class="ss">:Agent</span><span class="o">::</span><span class="ss">Instrumentation</span><span class="p">:</span><span class="ss">:ControllerInstrumentation</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">trace_options</span> <span class="o">=</span> <span class="p">{</span>
-</span><span class='line'>      <span class="ss">category</span><span class="p">:</span> <span class="ss">:rack</span><span class="p">,</span>
-</span><span class='line'>      <span class="ss">path</span><span class="p">:</span> <span class="n">env</span><span class="o">[</span><span class="s1">&#39;api.endpoint&#39;</span><span class="o">].</span><span class="n">routes</span><span class="o">.</span><span class="n">first</span><span class="o">.</span><span class="n">route_path</span><span class="p">,</span>
-</span><span class='line'>      <span class="ss">request</span><span class="p">:</span> <span class="n">request</span><span class="p">,</span>
-</span><span class='line'>      <span class="o">.</span><span class="n">.</span><span class="o">.</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="n">perform_action_with_newrelic_trace</span><span class="p">(</span><span class="n">trace_options</span><span class="p">)</span> <span class="k">do</span>
-</span><span class='line'>      <span class="k">yield</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>The complete code for <code>ApiNewRelicInstrumenter</code> can be found in <a href="https://gist.github.com/4170469">this gist</a>. It supports enabling and disabling performance reporting by setting <code>NEW_RELIC_ID</code> and works around NewRelic&#8217;s method name limitations (these cannot contain slashes).</p>
-
-<h2>Development Environment</h2>
-
-<p>You can now see NewRelic performance data in development mode, too. If you mount Grape inside Rails run <code>NEW_RELIC_ID=foo rails s</code>. Navigate to <em>http://localhost:3000/newrelic</em> to see your local traces.</p>
-
-<p><img src="http://artsy.github.io/images/2012-11-29-measuring-performance-in-grape-apis-with-new-relic/developer-mode.png"></p>
-
-<p>Drill into an individual request to find several detailed breakdowns of how time was spent, including specific MongoDB queries (under &#8220;SQL&#8221;, naturally).</p>
-
-<p><img src="http://artsy.github.io/images/2012-11-29-measuring-performance-in-grape-apis-with-new-relic/sql-detail.png"></p>
-
-<p>NewRelic is a commercial product, but you can run development mode for free! Note that enabling this will triple your local Rails boot time: we enable development mode by setting <code>development_mode: &lt;%= !!ENV['NEW_RELIC_ID'] %&gt;</code> in <a href="https://gist.github.com/4170458">newrelic.rpm</a>.</p>
 ]]></content>
   </entry>
   
