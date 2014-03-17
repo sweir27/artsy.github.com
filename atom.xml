@@ -4,7 +4,7 @@
   <title><![CDATA[Artsy Engineering]]></title>
   <link href="http://artsy.github.io/atom.xml" rel="self"/>
   <link href="http://artsy.github.io/"/>
-  <updated>2014-03-17T18:11:54+00:00</updated>
+  <updated>2014-03-17T16:20:55-04:00</updated>
   <id>http://artsy.github.io/</id>
   <author>
     <name><![CDATA[Artsy]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Detecting trends using Forgetsy]]></title>
     <link href="http://artsy.github.io/blog/2014/03/17/detecting-trends-with-forgetsy/"/>
-    <updated>2014-03-17T11:32:00+00:00</updated>
+    <updated>2014-03-17T11:32:00-04:00</updated>
     <id>http://artsy.github.io/blog/2014/03/17/detecting-trends-with-forgetsy</id>
     <content type="html"><![CDATA[<p><img src="http://artsy.github.io/images/2014-03-17-detecting-trends-with-forgetsy/monolith.jpg" alt="Armory Trending Screen" /></p>
 
@@ -109,7 +109,7 @@
   <entry>
     <title type="html"><![CDATA[Isolating Spurious and Nondeterministic Tests]]></title>
     <link href="http://artsy.github.io/blog/2014/01/30/isolating-spurious-and-nondeterministic-tests/"/>
-    <updated>2014-01-30T14:42:00+00:00</updated>
+    <updated>2014-01-30T14:42:00-05:00</updated>
     <id>http://artsy.github.io/blog/2014/01/30/isolating-spurious-and-nondeterministic-tests</id>
     <content type="html"><![CDATA[<p>Testing is a critical part of our workflow at <a href="https://artsy.net">Artsy</a>. It gives us confidence to make regular, aggressive enhancements. But anyone who has worked with a large, complex test suite has struggled with occasional failures that are difficult to reproduce or fix.</p>
 
@@ -176,7 +176,7 @@ script:
   <entry>
     <title type="html"><![CDATA[Rendering on the Server and Client in Node.js]]></title>
     <link href="http://artsy.github.io/blog/2013/11/30/rendering-on-the-server-and-client-in-node-dot-js/"/>
-    <updated>2013-11-30T22:38:00+00:00</updated>
+    <updated>2013-11-30T22:38:00-05:00</updated>
     <id>http://artsy.github.io/blog/2013/11/30/rendering-on-the-server-and-client-in-node-dot-js</id>
     <content type="html"><![CDATA[<p><img src="http://artsy.github.io/images/2013-12-18-rendering-on-the-server-and-client-in-node-dot-js/isomorphic.png" alt="Diagram of Shared Server/Client Architecture" /></p>
 
@@ -421,7 +421,7 @@ script:
   <entry>
     <title type="html"><![CDATA[Upgrading to Mongoid 4.x]]></title>
     <link href="http://artsy.github.io/blog/2013/11/07/upgrading-to-mongoid4/"/>
-    <updated>2013-11-07T12:34:00+00:00</updated>
+    <updated>2013-11-07T12:34:00-05:00</updated>
     <id>http://artsy.github.io/blog/2013/11/07/upgrading-to-mongoid4</id>
     <content type="html"><![CDATA[<p>I recently went through an exercise of upgrading one of Artsy&#8217;s largest web projects to the current HEAD of Mongoid 4.x. This is going to be a major release with numerous changes and I wanted to flush out bugs before the final version of the ODM is released. All Mongoid changes currently live on <a href="https://github.com/mongoid/mongoid">master</a>.</p>
 
@@ -678,7 +678,7 @@ script:
   <entry>
     <title type="html"><![CDATA[Introduction to AWS OpsWorks]]></title>
     <link href="http://artsy.github.io/blog/2013/08/27/introduction-to-aws-opsworks/"/>
-    <updated>2013-08-27T12:31:00+01:00</updated>
+    <updated>2013-08-27T12:31:00-04:00</updated>
     <id>http://artsy.github.io/blog/2013/08/27/introduction-to-aws-opsworks</id>
     <content type="html"><![CDATA[<p>OpsWorks is a new service from Amazon that promises to provide high-level tools to manage your EC2-based deployment. From <a href="http://aws.typepad.com/aws/2013/02/aws-opsworks-flexible-application-management-in-the-cloud.html">the announcement</a>:</p>
 
@@ -840,7 +840,7 @@ script:
   <entry>
     <title type="html"><![CDATA[Normalizing GMail E-Mail Addresses with CanonicalEmails]]></title>
     <link href="http://artsy.github.io/blog/2013/06/23/normalizing-gmail-email-addresses-with-canonical-emails/"/>
-    <updated>2013-06-23T12:21:00+01:00</updated>
+    <updated>2013-06-23T12:21:00-04:00</updated>
     <id>http://artsy.github.io/blog/2013/06/23/normalizing-gmail-email-addresses-with-canonical-emails</id>
     <content type="html"><![CDATA[<p>A whopping 49% of Artsy users have &#8220;gmail.com&#8221; email addresses. The next domain name, &#8220;hotmail.com&#8221;, doesn&#8217;t even come close, with only 6%.</p>
 
@@ -1032,7 +1032,7 @@ script:
   <entry>
     <title type="html"><![CDATA[Adding API Docs with Grape and Swagger]]></title>
     <link href="http://artsy.github.io/blog/2013/06/21/adding-api-documentation-with-grape-swagger/"/>
-    <updated>2013-06-21T12:21:00+01:00</updated>
+    <updated>2013-06-21T12:21:00-04:00</updated>
     <id>http://artsy.github.io/blog/2013/06/21/adding-api-documentation-with-grape-swagger</id>
     <content type="html"><![CDATA[<p>The Artsy website, Partner CMS, mobile tools, and all our hackathon experiments are built on top of a core API. We&#8217;ve put a lot of effort into documenting it internally. But developers don&#8217;t want to have to grok through code. With <a href="https://github.com/intridea/grape">Grape</a> and <a href="https://developers.helloreverb.com/swagger">Swagger</a>, adding an API explorer and exposing the API documentation has never been easier.</p>
 
@@ -1181,7 +1181,7 @@ script:
   <entry>
     <title type="html"><![CDATA[Writing Headless Backbone Tests With Node.js]]></title>
     <link href="http://artsy.github.io/blog/2013/06/14/writing-headless-backbone-tests-with-node-dot-js/"/>
-    <updated>2013-06-14T17:48:00+01:00</updated>
+    <updated>2013-06-14T17:48:00-04:00</updated>
     <id>http://artsy.github.io/blog/2013/06/14/writing-headless-backbone-tests-with-node-dot-js</id>
     <content type="html"><![CDATA[<h2>TL;DR</h2>
 
@@ -1614,7 +1614,7 @@ script:
   <entry>
     <title type="html"><![CDATA[Bootstrapping JSON Data with Rails and Backbone.js]]></title>
     <link href="http://artsy.github.io/blog/2013/04/13/bootstrapping-json-data-with-rails-and-backbone-js/"/>
-    <updated>2013-04-13T12:21:00+01:00</updated>
+    <updated>2013-04-13T12:21:00-04:00</updated>
     <id>http://artsy.github.io/blog/2013/04/13/bootstrapping-json-data-with-rails-and-backbone-js</id>
     <content type="html"><![CDATA[<p>The <a href="http://artsy.net">artsy.net website</a> is a Backbone.js application that talks to a server-side RESTful Grape API sitting on top of a Rails app which serves minimal HTML markup. The latter includes such things as a page title, along with links to JavaScript and stylesheet packages. A page loads, scripts run, data is fetched from the API. The result is merged into a HAMLJS template and rendered client-side.</p>
 
@@ -1739,7 +1739,7 @@ script:
   <entry>
     <title type="html"><![CDATA[ARAnalytics - Analytics for iOS Apps]]></title>
     <link href="http://artsy.github.io/blog/2013/04/10/aranalytics/"/>
-    <updated>2013-04-10T17:23:00+01:00</updated>
+    <updated>2013-04-10T17:23:00-04:00</updated>
     <id>http://artsy.github.io/blog/2013/04/10/aranalytics</id>
     <content type="html"><![CDATA[<p>In both my <a href="http://orta.github.com">personal apps</a> and Artsy Folio, I&#8217;m always after a deeper understanding of how people use the app. There&#8217;s three ways to do this: ask users, watch users and track usage. I&#8217;d like to talk about the third of these.</p>
 
@@ -1770,7 +1770,7 @@ script:
   <entry>
     <title type="html"><![CDATA[An Easter Egg for Curl]]></title>
     <link href="http://artsy.github.io/blog/2013/04/01/an-easter-egg-for-curl/"/>
-    <updated>2013-04-01T12:21:00+01:00</updated>
+    <updated>2013-04-01T12:21:00-04:00</updated>
     <id>http://artsy.github.io/blog/2013/04/01/an-easter-egg-for-curl</id>
     <content type="html"><![CDATA[<p>Let&#8217;s implement an Easter egg that requires <a href="http://curl.haxx.se/">curl</a> and is HTTP-compliant.</p>
 
@@ -1979,7 +1979,7 @@ script:
   <entry>
     <title type="html"><![CDATA[Musical Chairs]]></title>
     <link href="http://artsy.github.io/blog/2013/03/29/musical-chairs/"/>
-    <updated>2013-03-29T16:38:00+00:00</updated>
+    <updated>2013-03-29T16:38:00-04:00</updated>
     <id>http://artsy.github.io/blog/2013/03/29/musical-chairs</id>
     <content type="html"><![CDATA[<p> At Artsy we make Artsy Folio. Folio is an awesome portfolio app that shows our gallery and museum partners their artworks in one place, allows them to easily get information about their inventory and to send works by email to their contacts.</p>
 
@@ -2003,7 +2003,7 @@ script:
   <entry>
     <title type="html"><![CDATA[The Impact of Heroku's Routing Mesh and Random Routing]]></title>
     <link href="http://artsy.github.io/blog/2013/02/17/impact-of-heroku-routing-mesh-and-random-routing/"/>
-    <updated>2013-02-17T12:21:00+00:00</updated>
+    <updated>2013-02-17T12:21:00-05:00</updated>
     <id>http://artsy.github.io/blog/2013/02/17/impact-of-heroku-routing-mesh-and-random-routing</id>
     <content type="html"><![CDATA[<p>The <a href="http://rapgenius.com/James-somers-herokus-ugly-secret-lyrics">Heroku&#8217;s Ugly Secret</a> blog post went viral last week. I <a href="http://code.dblock.org/in-defense-of-heroku">wrote</a> in defense of Heroku, which has now responded with an official <a href="https://blog.heroku.com/archives/2013/2/16/routing_performance_update/">Routing Performance Update</a>.</p>
 
@@ -2136,7 +2136,7 @@ script:
   <entry>
     <title type="html"><![CDATA[Infinite Scroll with MongoDB]]></title>
     <link href="http://artsy.github.io/blog/2013/02/15/infinite-scroll-with-mongodb/"/>
-    <updated>2013-02-15T21:21:00+00:00</updated>
+    <updated>2013-02-15T21:21:00-05:00</updated>
     <id>http://artsy.github.io/blog/2013/02/15/infinite-scroll-with-mongodb</id>
     <content type="html"><![CDATA[<p>An infinite scroll can be a beautiful and functional way to present feed data. You can see ours on the <a href="http://artsy.net/">homepage of artsy.net</a>. It works by fetching a few items from the API, then fetching some more items as the user scrolls down the feed. Each API call returns the items along with a &#8220;cursor&#8221;, which marks the position of the last item retrieved. Subsequent API calls include the cursor in the query string and the iteration resumes from there.</p>
 
@@ -2309,7 +2309,7 @@ script:
   <entry>
     <title type="html"><![CDATA[Data Corruption and Concurrent Updates to Embedded Objects with MongoDB]]></title>
     <link href="http://artsy.github.io/blog/2013/02/09/data-corruption-and-concurrent-updates-to-embedded-objects-with-mongoid/"/>
-    <updated>2013-02-09T21:21:00+00:00</updated>
+    <updated>2013-02-09T21:21:00-05:00</updated>
     <id>http://artsy.github.io/blog/2013/02/09/data-corruption-and-concurrent-updates-to-embedded-objects-with-mongoid</id>
     <content type="html"><![CDATA[<p>We use <a href="http://www.mongodb.org/">MongoDB</a> at Artsy as our primary data store via the <a href="http://mongoid.org/">Mongoid ODM</a>. Eventually, we started noticing data corruption inside embedded objects at an alarming rate of 2-3 records a day. The number of occurrences increased rapidly with load as our user growth accelerated.</p>
 
@@ -2677,7 +2677,7 @@ script:
   <entry>
     <title type="html"><![CDATA[Master the Heroku CLI with Heroku Commander]]></title>
     <link href="http://artsy.github.io/blog/2013/02/01/master-heroku-command-line-with-heroku-commander/"/>
-    <updated>2013-02-01T21:21:00+00:00</updated>
+    <updated>2013-02-01T21:21:00-05:00</updated>
     <id>http://artsy.github.io/blog/2013/02/01/master-heroku-command-line-with-heroku-commander</id>
     <content type="html"><![CDATA[<p><img src="http://artsy.github.io/images/2013-02-01-master-heroku-command-line-with-heroku-commander/heroku-commander.png"></p>
 
@@ -2770,7 +2770,7 @@ script:
   <entry>
     <title type="html"><![CDATA[Create MongoDB Command-Lines from Mongoid Configuration]]></title>
     <link href="http://artsy.github.io/blog/2013/01/31/create-mongodb-command-lines-with-mongo/"/>
-    <updated>2013-01-31T21:21:00+00:00</updated>
+    <updated>2013-01-31T21:21:00-05:00</updated>
     <id>http://artsy.github.io/blog/2013/01/31/create-mongodb-command-lines-with-mongo</id>
     <content type="html"><![CDATA[<p>We use MongoDB as our primary store and have built a healthy amount of automation around various database instances and operational environments. For example, we backup databases to S3 using <code>mongodump</code>, mirror data between instances with <code>mongorestore</code> and often need to open a MongoDB shell with <code>mongo</code> to examine data at the lowest level.</p>
 
@@ -2895,7 +2895,7 @@ script:
   <entry>
     <title type="html"><![CDATA[Improving Performance of Mongoid-Cached-Json]]></title>
     <link href="http://artsy.github.io/blog/2013/01/20/improving-performance-of-mongoid-cached-json/"/>
-    <updated>2013-01-20T21:21:00+00:00</updated>
+    <updated>2013-01-20T21:21:00-05:00</updated>
     <id>http://artsy.github.io/blog/2013/01/20/improving-performance-of-mongoid-cached-json</id>
     <content type="html"><![CDATA[<p>Last year, we have open-sourced and made extensive use of two Ruby libraries in our API: <a href="https://github.com/dblock/mongoid-cached-json">mongoid-cached-json</a> and <a href="https://github.com/artsy/garner">garner</a>. Both transform the procedural nightmare of caching and JSON generation into a declarative and easily manageable DSL. It was worth the investment, since our service spends half of its time generating JSON and reading from and writing to Memcached.</p>
 
@@ -2939,7 +2939,7 @@ script:
   <entry>
     <title type="html"><![CDATA[Debugging Bundler Issues on Heroku]]></title>
     <link href="http://artsy.github.io/blog/2013/01/15/debugging-bundler-issues-with-heroku/"/>
-    <updated>2013-01-15T21:21:00+00:00</updated>
+    <updated>2013-01-15T21:21:00-05:00</updated>
     <id>http://artsy.github.io/blog/2013/01/15/debugging-bundler-issues-with-heroku</id>
     <content type="html"><![CDATA[<p>A few days ago we have started seeing the Heroku deployments of one of our applications randomly hang during <code>bundle install</code>. The problem worsened with time and we were not able to do a deployment for days.</p>
 
@@ -3105,7 +3105,7 @@ script:
   <entry>
     <title type="html"><![CDATA[Beat Heroku's 60 Seconds Application Boot Timeout with a Proxy]]></title>
     <link href="http://artsy.github.io/blog/2012/12/13/beat-heroku-60-seconds-application-boot-timeout-with-a-proxy/"/>
-    <updated>2012-12-13T21:21:00+00:00</updated>
+    <updated>2012-12-13T21:21:00-05:00</updated>
     <id>http://artsy.github.io/blog/2012/12/13/beat-heroku-60-seconds-application-boot-timeout-with-a-proxy</id>
     <content type="html"><![CDATA[<p><img src="http://artsy.github.io/images/2012-12-13-beat-heroku-60-seconds-application-boot-timeout-with-a-proxy/heroku-logo-light-234x60.png"></p>
 

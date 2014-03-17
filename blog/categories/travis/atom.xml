@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Travis | Artsy Engineering]]></title>
   <link href="http://artsy.github.io/blog/categories/travis/atom.xml" rel="self"/>
   <link href="http://artsy.github.io/"/>
-  <updated>2014-03-17T18:12:04+00:00</updated>
+  <updated>2014-03-17T16:20:55-04:00</updated>
   <id>http://artsy.github.io/</id>
   <author>
     <name><![CDATA[Artsy]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Isolating Spurious and Nondeterministic Tests]]></title>
     <link href="http://artsy.github.io/blog/2014/01/30/isolating-spurious-and-nondeterministic-tests/"/>
-    <updated>2014-01-30T14:42:00+00:00</updated>
+    <updated>2014-01-30T14:42:00-05:00</updated>
     <id>http://artsy.github.io/blog/2014/01/30/isolating-spurious-and-nondeterministic-tests</id>
     <content type="html"><![CDATA[<p>Testing is a critical part of our workflow at <a href="https://artsy.net">Artsy</a>. It gives us confidence to make regular, aggressive enhancements. But anyone who has worked with a large, complex test suite has struggled with occasional failures that are difficult to reproduce or fix.</p>
 
