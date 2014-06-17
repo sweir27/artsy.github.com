@@ -13,19 +13,17 @@ blog-url: http://orta.github.io
 
 I'm the kind of guy who thinks better tooling means better outcomes. But when good tooling isn't available, it's time to build it yourself. It's this attitude that lead to my work on [CocoaDocs.org](http://cocoadocs.org), and then to [CocoaPods.org](http://cocoapods.org) & its documentation.
 
-We've been trying to apply this to testing, and in order to pull this off I've had to extend Xcode to show off the results of failing tests in a more visual way. I built [Snapshots for Xcode](https://github.com/orta/snapshots).  Let's go through the process of building an Xcode plugin so you can do this too. Screw stability.
+We've been trying to apply this to testing, and in order to pull this off I've had to extend Xcode to show off the results of failing tests in a more visual way. To that end, I've extended Xcode to show the results of failing [view tests](https://github.com/facebook/ios-snapshot-test-case) in a more visual way by building [Snapshots for Xcode](https://github.com/orta/snapshots).  Let's go through the process of building an Xcode plugin so you can do this too. Screw stability.
 
 <!-- more -->
 
-Lets start of with some Xcode inception, the nicest way to start working on Xcode plugins is to install [Alcatraz](http://alcatraz.io):
+Lets start of with some Xcode inception. The nicest way to start working on Xcode plugins is to install [Alcatraz](http://alcatraz.io) the Xcode plugin package manager:
 
 ```
 curl -fsSL https://raw.github.com/supermarin/Alcatraz/master/Scripts/install.sh | sh
 ```
 
-From Alcatraz, at a minimum, you're going to want to have [XcodeExplorer](https://github.com/edwardaux/XcodeExplorer) installed to dig through notifications and the view heriarchy, and then [Delisa Mason](http://delisa.me)'s [Xcode 5 Plugin](https://github.com/kattrali/Xcode5-Plugin-Template) template.
-
-Now you can create a new project and pick "Xcode 5 Plugin" this will do a bunch of the boring work around getting set up on a project, though it misses one bit that to me is essential, setting the Scheme Target, so go to the Scheme editor and make it open Xcode.
+From Alcatraz you should have [XcodeExplorer](https://github.com/edwardaux/XcodeExplorer) installed. This lets you dig through internal notifications and the Xcode view heriarchy for debugging. Then you'll want [Delisa Mason](http://delisa.me)'s [Xcode 5 Plugin](https://github.com/kattrali/Xcode5-Plugin-Template) template which also comes from Alcatraz. Now you can create a new project and pick _"Xcode 5 Plugin"_ this will do a bunch of the boring work around getting set up on a project, though it misses one bit that to me is essential, setting the Scheme Target, so go to the Scheme editor and make it open Xcode.
 
 ![Go set you target dangit](/images/2014-06-17-building-the-xcode-plugin-snapshots/scheme.png)
 
