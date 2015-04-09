@@ -9,7 +9,7 @@
   <meta name="author" content="Artsy">
 
   
-  <meta name="description" content="Email can be one of the most powerful ways to engage with your users, and can serve a multitude of purposes. It can be used as a way to highlight &hellip;">
+  <meta name="description" content="We recently picked up a Rails application that was a few features away from completion. This application allows our Genome Team to classify multiple &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -28,6 +28,12 @@
   <!--[if IE 8]>
 <link href="/stylesheets/custom/ie_font.css" type="text/css">
 <![endif]-->
+
+<!--- MathJax Configuration -->
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
   
   <script type="text/javascript">
     var _gaq = _gaq || [];
@@ -46,28 +52,30 @@
 
 
 <body>
-  
+
   <a href="/">
     <h1 id="lrg-mark">
       <span>Artsy</span>
     </h1>
   </a>
-  
+
   <header id="banner"><hgroup>
   <div id="header">
-    <h2>Inspiration from the engineering team at <a href="http://artsy.net">Artsy</a> — A new way to discover fine art.</h2>
+    <h2>Inspiration from the engineering team at <a href="https://artsy.net">Artsy</a> — Discover, Research, and Collect the World's Best Art Online.</h2>
   </div>
 </hgroup>
 
 </header>
-  
+
   <div id="main">
-    <div id="mobile_search">
-      <form action="http://google.com/search" method="get">
-        <input type="hidden" name="q" value="site:artsy.github.io" />
-        <input class="search" type="text" name="q" results="0" placeholder="Search" />
-      </form>
-    </div>
+    
+      <div id="mobile_search">
+        <form action="https://www.google.com/cse" method="get">
+          <input type="hidden" value="010245880960712892902:tnjd4ryb3ci" name="cx" />
+          <input class="search" type="text" name="q" results="0" placeholder="Search" />
+        </form>
+      </div>
+    
     <div id="content">
       <div class="blog-index">
   
@@ -77,17 +85,17 @@
       
   <header>
     
-    <a href="/blog/2014/03/17/some-tips-for-email-layout-and-responsiveness/">
+    <a href="/blog/2015/04/08/creating-a-dynamic-single-page-app-for-our-genome-team-using-react/">
       <div class="date">
 
 
 
 
   
-<time datetime="2014-03-17T12:36:00-04:00" pubdate>03/17/14</time></div>
+<time datetime="2015-04-08T11:30:00-04:00" pubdate>04/08/15</time></div>
     
     
-      <h1 class="entry-title">Some Tips for Email Layout and Responsiveness</h1>
+      <h1 class="entry-title">Trying Out React</h1>
 
     
     </a>
@@ -99,15 +107,19 @@
   </header>
 
 
-  <div class="entry-content"><p><img src="/images/2014-03-17-some-tips-for-email-layout-and-responsiveness/analytics.png" alt="Example of Analytics Email" /></p>
+  <div class="entry-content"><p>We recently picked up a Rails application that was a few features away from completion. This application allows our <a href="https://www.artsy.net/about/the-art-genome-project">Genome Team</a> to classify multiple artworks based on visual and art historical characteristics. These characteristics, or &#8220;genes&#8221;, can be added, removed, and changed for any of the artworks on the panel.</p>
 
-<p>Email can be one of the most powerful ways to engage with your users, and can serve a multitude of purposes. It can be used as a way to highlight selected content (weekly/monthly newsletters, &#8216;year in review&#8217;, etc.), provide a service to users (analytics breakdown of visits to your profile/favorites page), or re-engage with users (new feature announcements, etc.). Here at Artsy we use all of these kinds of emails and have found them to be a very valuable asset. However, best practices for template layout and CSS (keeping in mind the variety of devices and screen sizes that your users have) are quite different from, and very far behind, the current HTML5 standards and practices for making beautiful web pages. In this article, I&#8217;d like to present some techniques I&#8217;ve successfully used at Artsy to create emails that look good on your browser or mobile device, in some of the most popular email clients out there.</p>
+<p><img src="http://cl.ly/image/3T2o2m2m3C1w/Screen%20Shot%202015-04-08%20at%2010.50.02%20AM.png" alt="screenshot" /></p>
+
+<p>Our genomers are masters of efficiency, and over the years we have worked closely with them to tailor a dynamic interface to their specific workflow.</p>
+
+<p>When we started working on the app, the back-end was organized, modular, and interfaced seamlessly with the Artsy API, but there were still a few front-end features we needed to implement before it could be used by the Genome Team. The app did not use a front-end framework, and as our features scaled it was difficult to keep track of UI state with pure CoffeeScript and global event listeners. Eventually, we decided to stop trying to patch our leaky roof and build a new one.</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/2014/03/17/some-tips-for-email-layout-and-responsiveness/">Read on &rarr;</a>
+      <a rel="full-article" href="/blog/2015/04/08/creating-a-dynamic-single-page-app-for-our-genome-team-using-react/">Read on &rarr;</a>
     </footer>
   
 
@@ -119,17 +131,17 @@
       
   <header>
     
-    <a href="/blog/2014/03/17/detecting-trends-with-forgetsy/">
+    <a href="/blog/2015/03/23/artsy-technology-stack-2015/">
       <div class="date">
 
 
 
 
   
-<time datetime="2014-03-17T11:32:00-04:00" pubdate>03/17/14</time></div>
+<time datetime="2015-03-23T00:00:00-04:00" pubdate>03/23/15</time></div>
     
     
-      <h1 class="entry-title">Detecting Trends Using Forgetsy</h1>
+      <h1 class="entry-title">Artsy&#8217;s Technology Stack, 2015</h1>
 
     
     </a>
@@ -141,17 +153,25 @@
   </header>
 
 
-  <div class="entry-content"><p><img src="/images/2014-03-17-detecting-trends-with-forgetsy/monolith.jpg" alt="Armory Trending Screen" /></p>
+  <div class="entry-content"><p>Artsy has now grown past 100 team members and our Engineering organization is now 20 strong. For a brief overview of what the company has accomplished in the last two years, check out our <a href="http://2013.artsy.net">2013</a> and <a href="http://2014.artsy.net">2014</a> reviews.</p>
 
-<p>As part of our partnership with <a href="https://www.thearmoryshow.com/">The New York Armory Show</a> this year, we installed a number of terminals throughout the fair. These screens used our own real-time data to display an ever shifting set of trending artworks, artists, and booths, to the attendees.</p>
+<p>This is a good opportunity to describe our updated technology stack. Last time <a href="/blog/2012/10/10/artsy-technology-stack">we did this</a> was when Artsy launched publicly in 2012.</p>
 
-<p>Out of this work, we&#8217;ve open-sourced <a href="https://github.com/cavvia/forgetsy">Forgetsy</a>, a lightweight Ruby trending library. Put simply, Forgetsy implements data structures that forget. Loosely based on Bit.ly&#8217;s <a href="http://word.bitly.com/post/41284219720/forget-table">Forget Table</a> concept, Forgetsy uses decaying counters to track temporal trends in categorical distributions.</p>
+<center><img src='/images/2015-03-23-artsy-technology-stack-2015/stats.png'></center>
+
+
+<p>Three years ago Artsy was a classic <a href="http://rubyonrails.org">Ruby-on-Rails</a> monolith with a handful of adjacent processes and tools. We&#8217;ve since broken it up into many independent services, and continue to heavily be a Ruby and JavaScript shop, using Rails where appropriate, with native code on mobile devices and some JVM-based experiments in micro-services.</p>
+
+<center><img src='/images/2015-03-23-artsy-technology-stack-2015/languages.png'></center>
+
+
+
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/2014/03/17/detecting-trends-with-forgetsy/">Read on &rarr;</a>
+      <a rel="full-article" href="/blog/2015/03/23/artsy-technology-stack-2015/">Read on &rarr;</a>
     </footer>
   
 
@@ -163,17 +183,17 @@
       
   <header>
     
-    <a href="/blog/2014/01/30/isolating-spurious-and-nondeterministic-tests/">
+    <a href="/blog/2015/01/21/cocoapods-keys-and-CI/">
       <div class="date">
 
 
 
 
   
-<time datetime="2014-01-30T14:42:00-05:00" pubdate>01/30/14</time></div>
+<time datetime="2015-01-21T16:43:00-05:00" pubdate>01/21/15</time></div>
     
     
-      <h1 class="entry-title">Isolating Spurious and Nondeterministic Tests</h1>
+      <h1 class="entry-title">CocoaPods-Keys and CI</h1>
 
     
     </a>
@@ -185,21 +205,15 @@
   </header>
 
 
-  <div class="entry-content"><p>Testing is a critical part of our workflow at <a href="https://artsy.net">Artsy</a>. It gives us confidence to make regular, aggressive enhancements. But anyone who has worked with a large, complex test suite has struggled with occasional failures that are difficult to reproduce or fix.</p>
+  <div class="entry-content"><p>We built CocoaPods-Keys as a way to remove API keys and secrets from our source code. We use it to open up our code to the pubic, without leaking private details. One of the cool things about doing it this way was that we could all use different API keys stashed away in each developers Keychain.</p>
 
-<p>These failures might be due to slight timing differences or lack of proper isolation between tests. Integration tests are particularly thorny, since problems can originate not only in application code, but in the browser, testing tools (e.g., <a href="http://docs.seleniumhq.org/">Selenium</a>), database, network, or external APIs and dependencies.</p>
-
-<h2>The Quarantine</h2>
-
-<p>We&#8217;ve been <a href="http://artsy.github.io/blog/2012/05/15/how-to-organize-over-3000-rspec-specs-and-retry-test-failures/">automatically retrying failed tests</a>, with some success. However, these problems tend to get worse. (If you have 10 tests that each have a 1% chance of failing, roughly 1 in 10 builds will fail. If you have 50, 4 in 10 builds will fail.)</p>
-
-<p>Martin Fowler offers the most compelling thoughts on this topic in <a href="http://martinfowler.com/articles/nonDeterminism.html">Eradicating Non-Determinism in Tests</a>. (Read it, really.) He suggests quarantining problematic tests in a separate suite, so they don&#8217;t block the build pipeline.</p>
+<p>To ensure we could run CI on our apps we came up with two different ways to use keys on CI. This post explains them both.</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/2014/01/30/isolating-spurious-and-nondeterministic-tests/">Read on &rarr;</a>
+      <a rel="full-article" href="/blog/2015/01/21/cocoapods-keys-and-CI/">Read on &rarr;</a>
     </footer>
   
 
@@ -211,17 +225,17 @@
       
   <header>
     
-    <a href="/blog/2013/11/30/rendering-on-the-server-and-client-in-node-dot-js/">
+    <a href="/blog/2015/01/04/cocoapods-and-frameworks/">
       <div class="date">
 
 
 
 
   
-<time datetime="2013-11-30T22:38:00-05:00" pubdate>11/30/13</time></div>
+<time datetime="2015-01-04T16:43:00-05:00" pubdate>01/04/15</time></div>
     
     
-      <h1 class="entry-title">Rendering on the Server and Client in Node.js</h1>
+      <h1 class="entry-title">CocoaPods and Frameworks</h1>
 
     
     </a>
@@ -233,19 +247,13 @@
   </header>
 
 
-  <div class="entry-content"><p><img src="/images/2013-12-18-rendering-on-the-server-and-client-in-node-dot-js/isomorphic.png" alt="Diagram of Shared Server/Client Architecture" /></p>
-
-<p>At Artsy we&#8217;ve been building <a href="http://nodejs.org/">Node.js</a> applications that share code and rendering between the server and browser. We&#8217;ve seen many benefits from this &#8211; pages load faster, we can optimize SEO, developers are more productive, and JavaScript coding is just an overall better experience.</p>
-
-<p>Today we&#8217;re happy to announce <a href="http://ezeljs.com/">Ezel</a>, our open source boilerplate we use to bootstrap our Node projects and the <a href="https://github.com/artsy/benv">various</a> <a href="https://github.com/artsy/backbone-super-sync">node</a> <a href="https://github.com/artsy/sharify">modules</a> that built up to it.</p>
-
-<p>In his article, <a href="http://nerds.airbnb.com/isomorphic-JavaScript-future-web-apps/"><em>Isomorphic JavaScript: The Future of Web Apps</em></a>, Spike Brehm from AirBnB describes this growing trend well and we&#8217;re excited to be a part of it. In this article I&#8217;ll tell Artsy&#8217;s story of moving from a single monolithic application to modular <a href="http://backbonejs.org/">Backbone</a> apps that run in Node and the browser and consume our external API.</p>
+  <div class="entry-content"><p>As I mentioned in my <a href="https://artsy.github.io/blog/2014/11/13/eidolon-retrospective/">retrospective on Eidolon</a>, Artsy iOS codebases are often used as testbeds for new CocoaPods features. With Eidolon, we had the opportunity to try out CocoaPods&#8217; support for frameworks and Swift. This post is a look back at the month of using dependencies as dynamic frameworks instead of static libraries.</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/2013/11/30/rendering-on-the-server-and-client-in-node-dot-js/">Read on &rarr;</a>
+      <a rel="full-article" href="/blog/2015/01/04/cocoapods-and-frameworks/">Read on &rarr;</a>
     </footer>
   
 
@@ -257,17 +265,17 @@
       
   <header>
     
-    <a href="/blog/2013/11/07/upgrading-to-mongoid4/">
+    <a href="/blog/2014/11/19/how-to-write-great-outage-post-mortems/">
       <div class="date">
 
 
 
 
   
-<time datetime="2013-11-07T12:34:00-05:00" pubdate>11/07/13</time></div>
+<time datetime="2014-11-19T12:21:00-05:00" pubdate>11/19/14</time></div>
     
     
-      <h1 class="entry-title">Upgrading to Mongoid 4.x</h1>
+      <h1 class="entry-title">How to Write Great Outage Post-Mortems</h1>
 
     
     </a>
@@ -279,20 +287,19 @@
   </header>
 
 
-  <div class="entry-content"><p>I recently went through an exercise of upgrading one of Artsy&#8217;s largest web projects to the current HEAD of Mongoid 4.x. This is going to be a major release with numerous changes and I wanted to flush out bugs before the final version of the ODM is released. All Mongoid changes currently live on <a href="https://github.com/mongoid/mongoid">master</a>.</p>
+  <div class="entry-content"><p>The website is finally back up after crashing hard for 4 hours straight.</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">gem</span> <span class="s1">&#39;mongoid&#39;</span><span class="p">,</span> <span class="ss">github</span><span class="p">:</span> <span class="s1">&#39;mongoid/mongoid&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
+<p>Recently AWS decided to <a href="http://aws.amazon.com/blogs/aws/ec2-maintenance-update">reboot a few of your servers for a critical update</a>. It didn&#8217;t seem like it was going to be a big deal, except that the schedule was only accommodating if you were in the Pacific Northwest. The first reboot took out a secondary replica of our MongoDB database. Unfortunately <a href="https://github.com/mongoid/moped/issues/321">the driver handled that poorly</a> and spent the first 400ms of every subsequent HTTP request trying to reconnect to the missing instance. That server came back up, but failed to find its storage volumes because of a human mistake in a past migration and the alerts were mistakenly silenced by someone monitoring the system. A few hours later the primary was being stepped down and rebooted, sending the driver into panic over <a href="https://github.com/mongoid/moped/issues/323">another bug</a>. The site went down.</p>
 
+<p>None of this was obvious while it was happening as the rate of automated alerts grew. Engineers communicated to the team that they are actively focusing on bringing the systems back up. This helped to fend off a large amount of instant messages, e-mails, texts and phone calls from various people on the team that were in the middle of demoing something to a very important prospective customer on the other side of the planet. It was also the middle of the night in New York.</p>
 
-<p>In the process I&#8217;ve worked on making a few gems compatible with Mongoid 4 and learned a couple of things that should help you make this process smooth for your own applications.</p>
+<p>Now that all the systems are back up, lets write a detailed outage post-mortem.</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/2013/11/07/upgrading-to-mongoid4/">Read on &rarr;</a>
+      <a rel="full-article" href="/blog/2014/11/19/how-to-write-great-outage-post-mortems/">Read on &rarr;</a>
     </footer>
   
 
@@ -304,17 +311,17 @@
       
   <header>
     
-    <a href="/blog/2013/08/27/introduction-to-aws-opsworks/">
+    <a href="/blog/2014/11/18/debugging-our-hardware-problem/">
       <div class="date">
 
 
 
 
   
-<time datetime="2013-08-27T12:31:00-04:00" pubdate>08/27/13</time></div>
+<time datetime="2014-11-18T08:33:00-05:00" pubdate>11/18/14</time></div>
     
     
-      <h1 class="entry-title">Introduction to AWS OpsWorks</h1>
+      <h1 class="entry-title">Close to the Metal: Debugging Our Hardware Problem</h1>
 
     
     </a>
@@ -326,21 +333,13 @@
   </header>
 
 
-  <div class="entry-content"><p>OpsWorks is a new service from Amazon that promises to provide high-level tools to manage your EC2-based deployment. From <a href="http://aws.typepad.com/aws/2013/02/aws-opsworks-flexible-application-management-in-the-cloud.html">the announcement</a>:</p>
-
-<blockquote><p>AWS OpsWorks features an integrated management experience for the entire application lifecycle including resource provisioning, configuration management, application deployment, monitoring, and access control. It will work with applications of any level of complexity and is independent of any particular architectural pattern.</p></blockquote>
-
-<p>After scratching our heads about exactly what that meant, we tried it anyway. If you&#8217;ve been straining at the limits of your Platform as a Service (PaaS) provider, or just wishing for more automation for your EC2 deployment, you may want to try it out too.</p>
-
-<p>Artsy has been experimenting with OpsWorks for a few months now and recently adopted it for the production <a href="http://artsy.net">artsy.net</a> site. We&#8217;re excited to share what we&#8217;ve learned in the process.</p>
-
-<p><img class="screenshot" src="/images/2013-08-27-introduction-to-aws-opsworks/opsworks.png" title="[OpsWorks overview]" ></p>
+  <div class="entry-content"><p>For the past few months, Artsy’s mobile team has been working on <a href="https://github.com/artsy/eidolon">Eidolon</a>, a bidding kiosk for Artsy’s auctions platform. While we’ve written a <a href="http://artsy.github.io/blog/2014/11/13/eidolon-retrospective/">retrospective</a> on the process of making Eidolon from the software side of things, we didn’t really touch on how our software is being used.</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/2013/08/27/introduction-to-aws-opsworks/">Read on &rarr;</a>
+      <a rel="full-article" href="/blog/2014/11/18/debugging-our-hardware-problem/">Read on &rarr;</a>
     </footer>
   
 
@@ -352,17 +351,17 @@
       
   <header>
     
-    <a href="/blog/2013/06/23/normalizing-gmail-email-addresses-with-canonical-emails/">
+    <a href="/blog/2014/11/13/eidolon-retrospective/">
       <div class="date">
 
 
 
 
   
-<time datetime="2013-06-23T12:21:00-04:00" pubdate>06/23/13</time></div>
+<time datetime="2014-11-13T10:00:00-05:00" pubdate>11/13/14</time></div>
     
     
-      <h1 class="entry-title">Normalizing GMail E-Mail Addresses With CanonicalEmails</h1>
+      <h1 class="entry-title">Developing a Bidding Kiosk for iOS in Swift</h1>
 
     
     </a>
@@ -374,19 +373,15 @@
   </header>
 
 
-  <div class="entry-content"><p>A whopping 49% of Artsy users have &#8220;gmail.com&#8221; email addresses. The next domain name, &#8220;hotmail.com&#8221;, doesn&#8217;t even come close, with only 6%.</p>
+  <div class="entry-content"><p>In the Summer of 2014, we began developing a bidding kiosk for the Artsy auctions platform (code-named <a href="https://github.com/artsy/eidolon">Eidolon</a>). Typically, the iOS team here at Artsy worked on two main apps: a <a href="http://iphone.artsy.net">consumer-facing iPhone app</a> and an iPad app used by art galleries. For Eidolon, we followed <a href="https://artsy.github.io/blog/2012/01/29/how-art-dot-sy-uses-github-to-build-art-dot-sy/">Artsy’s standard practices</a> for building our software and use GitHub issues as our canonical source for bug reports and feature requests. Many of the components used in our apps are <a href="https://github.com/artsy">open source</a>, but the codebases themselves remain in private repositories.</p>
 
-<p><img src="/images/2013-06-23-normalizing-gmail-email-addresses-with-canonical-emails/artsy-email-domains.png" /></p>
-
-<p>GMail addresses ignore periods and are case-insensitive. For example, &#8220;Donald.Duck@gmail.com&#8221; and &#8220;donaldduck@gmail.com&#8221; are the same account. You can log-in to GMail with both. Users often register with the former and try to log-in to Artsy with the latter. With so many GMail users, expect a dozen support emails per day.</p>
-
-<p>The solution is to normalize these emails into a canonical form.</p>
+<p>Initial planning for Eidolon began over the Summer. Our designer <a href="http://twitter.com/katarinabatina">Katarina</a> had the main features sketched out. I was scheduled to work on it at first, with <a href="http://twitter.com/orta">Orta</a> and <a href="http://twitter.com/1aurabrown">Laura</a> joining me near the end of the project. We had a rough scope: the app would be able to list artworks at an auction and allow prospective bidders to learn more about these artworks. The user would be able to register to bid and place bids using the Kiosk, including credit card processing for identity-checking.</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/2013/06/23/normalizing-gmail-email-addresses-with-canonical-emails/">Read on &rarr;</a>
+      <a rel="full-article" href="/blog/2014/11/13/eidolon-retrospective/">Read on &rarr;</a>
     </footer>
   
 
@@ -398,17 +393,17 @@
       
   <header>
     
-    <a href="/blog/2013/06/21/adding-api-documentation-with-grape-swagger/">
+    <a href="/blog/2014/10/23/how-we-customized-google-site-search-at-artsy/">
       <div class="date">
 
 
 
 
   
-<time datetime="2013-06-21T12:21:00-04:00" pubdate>06/21/13</time></div>
+<time datetime="2014-10-23T14:47:00-04:00" pubdate>10/23/14</time></div>
     
     
-      <h1 class="entry-title">Adding API Docs With Grape and Swagger</h1>
+      <h1 class="entry-title">How We Customized Google Site Search at Artsy</h1>
 
     
     </a>
@@ -420,15 +415,15 @@
   </header>
 
 
-  <div class="entry-content"><p>The Artsy website, Partner CMS, mobile tools, and all our hackathon experiments are built on top of a core API. We&#8217;ve put a lot of effort into documenting it internally. But developers don&#8217;t want to have to grok through code. With <a href="https://github.com/intridea/grape">Grape</a> and <a href="https://developers.helloreverb.com/swagger">Swagger</a>, adding an API explorer and exposing the API documentation has never been easier.</p>
+  <div class="entry-content"><p>This post is about how, in a week, we switched from Solr to <a href="https://support.google.com/customsearch/answer/72326?hl=en">Google Site Search</a> and customized it into a fast, <a href="https://artsy.net/search?q=banksy">beautiful search service</a>. Search is a difficult problem &#8211; a really difficult problem. For small companies and startups, the common solution to search is to launch a custom search service based on <a href="http://lucene.apache.org/solr/">Solr</a> or <a href="http://www.elasticsearch.org/">Elastic Search</a>. While these services are very appropriate for private data, we think Google Site Search should be considered in addition to these services for a public website. It is often not considered because users search on a dedicated site with different intent than they search Google. We found that while this may be true, it is not necessarily a good reason to roll your own search service for your public site.</p>
 
-<p><img src="/images/2013-06-21-adding-api-documentation-with-grape-swagger/swagger-ui.png" /></p>
+<p><img src="/images/2014-10-23-how-we-customized-google-site-search-at-artsy/photography-site-search.jpg" alt="Search for photography on artsy" /></p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/2013/06/21/adding-api-documentation-with-grape-swagger/">Read on &rarr;</a>
+      <a rel="full-article" href="/blog/2014/10/23/how-we-customized-google-site-search-at-artsy/">Read on &rarr;</a>
     </footer>
   
 
@@ -440,17 +435,17 @@
       
   <header>
     
-    <a href="/blog/2013/06/14/writing-headless-backbone-tests-with-node-dot-js/">
+    <a href="/blog/2014/09/24/launching-a-security-bug-bounty-program-at-artsy/">
       <div class="date">
 
 
 
 
   
-<time datetime="2013-06-14T17:48:00-04:00" pubdate>06/14/13</time></div>
+<time datetime="2014-09-24T12:21:00-04:00" pubdate>09/24/14</time></div>
     
     
-      <h1 class="entry-title">Writing Headless Backbone Tests With Node.js</h1>
+      <h1 class="entry-title">Launching a Security Bug Bounty Program at Artsy</h1>
 
     
     </a>
@@ -462,23 +457,15 @@
   </header>
 
 
-  <div class="entry-content"><h2>TL;DR</h2>
+  <div class="entry-content"><p>Many established companies have bug bounty programs, including a recently publicized <a href="http://www.forbes.com/sites/kashmirhill/2014/09/10/bug-bounty-programs">Twitter Bug Bounty</a>. Some use services, such as <a href="https://hackerone.com">HackerOne</a> or <a href="https://bugcrowd.com">BugCrowd</a>. In early September 2014 we quietly launched <a href="https://artsy.net/security">our own Security Bug Bounty</a>. Since then we have fixed 14 issues reported by 15 security researchers and paid $750 in bounty. In the process we have learned a ton and wanted to share some things that would have probably done a little bit differently, knowing what we know now.</p>
 
-<p>Write fast, headless, tests for Backbone using Node.js. See this project as an example  <a href="https://github.com/craigspaeth/backbone-headless-testing">https://github.com/craigspaeth/backbone-headless-testing</a>.</p>
-
-<h2>A Brief History</h2>
-
-<p>Artsy is mostly a thick client <a href="http://backbonejs.org/">Backbone</a> app that sits on <a href="http://rubyonrails.org/">Rails</a> and largely depends on <a href="http://jnicklas.github.io/capybara/">Capybara</a> (<a href="http://docs.seleniumhq.org/">Selenium</a> backed bot that clicks around Firefox) for testing it&#8217;s javascript. This leads to some seriously brittle and slow integration tests. <a href="http://artsy.github.io/blog/2012/02/03/reliably-testing-asynchronous-ui-w-slash-rspec-and-capybara/">Despite being able to wrangle Capybara</a> to do most of our client-side testing, we knew there must be a better way.</p>
-
-<p>When building a CMS app for our gallery partners to manage their Artsy inventory, we built a new Backbone app on top of <a href="http://nodejs.org/">node.js</a>. The result was a headless test suite that runs around 60 times faster.</p>
-
-<p>Let&#8217;s take a look at how it&#8217;s done.</p>
+<p>In this post I will focus on both technical and non-technical takeaways, and will provide an extensive list of vulnerabilities that should have been dealt with before launching our bug bounty.</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/2013/06/14/writing-headless-backbone-tests-with-node-dot-js/">Read on &rarr;</a>
+      <a rel="full-article" href="/blog/2014/09/24/launching-a-security-bug-bounty-program-at-artsy/">Read on &rarr;</a>
     </footer>
   
 
@@ -490,17 +477,17 @@
       
   <header>
     
-    <a href="/blog/2013/04/13/bootstrapping-json-data-with-rails-and-backbone-js/">
+    <a href="/blog/2014/09/24/using-pattern-recognition-to-automatically-crop-framed-art/">
       <div class="date">
 
 
 
 
   
-<time datetime="2013-04-13T12:21:00-04:00" pubdate>04/13/13</time></div>
+<time datetime="2014-09-24T10:28:00-04:00" pubdate>09/24/14</time></div>
     
     
-      <h1 class="entry-title">Bootstrapping JSON Data With Rails and Backbone.js</h1>
+      <h1 class="entry-title">Using Pattern Recognition to Automatically Crop Framed Art</h1>
 
     
     </a>
@@ -512,19 +499,17 @@
   </header>
 
 
-  <div class="entry-content"><p>The <a href="http://artsy.net">artsy.net website</a> is a Backbone.js application that talks to a server-side RESTful Grape API sitting on top of a Rails app which serves minimal HTML markup. The latter includes such things as a page title, along with links to JavaScript and stylesheet packages. A page loads, scripts run, data is fetched from the API. The result is merged into a HAMLJS template and rendered client-side.</p>
+  <div class="entry-content"><h2>Introduction</h2>
 
-<p>Building this kind of one-page apps allows for clean separation between the presentation and API layers. The downside is that it will slow page render times - fetching data after page load means waiting for an AJAX request to complete before displaying anything.</p>
+<p>The <a href="https://artsy.net/imamuseum">Indianapolis Museum of Art</a> (IMA) recently shared thousands of high-resolution images from its permanent collection with Artsy, including 5,000 images that were in an un-cropped state. These images contain color swatches, frames, and diverse backgrounds, as shown below. The clutter in these images made them inappropriate to display to end users, and invited an approach to automatically crop the images. This post explores some fully automated techniques to locate the piece of art within each photo. If you&#8217;re eager to jump straight to the code that worked best, you&#8217;ll find the implementation of the &#8216;Rectangular Contour Search&#8217; section <a href="https://gist.github.com/ilyakava/b2dbca43991d6c668dbb">here</a>.</p>
 
-<p>There&#8217;re many solutions to this problem, all involving some kind of server-side rendering. You could, for example, share views and JavaScript between client and server. This would be a major paradigm shift for a large application like ours and not something we could possibly maneuver in a short amount of time.</p>
-
-<p>Without changing the entire architecture of the system, how can we bootstrap JSON data server-side and avoid the data roundtrip on every page load?</p>
+<p><img src="http://f.cl.ly/items/2C0e2X1G1R1i1z1Y0M1B/banner.png" alt="All of these images are open access. For reference, the accession numbers/names. 45-115.tif 45-9-v01.tif 54-4.tif 76-166-1-12b.tif 14-57.tif" /></p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/2013/04/13/bootstrapping-json-data-with-rails-and-backbone-js/">Read on &rarr;</a>
+      <a rel="full-article" href="/blog/2014/09/24/using-pattern-recognition-to-automatically-crop-framed-art/">Read on &rarr;</a>
     </footer>
   
 
@@ -548,7 +533,8 @@
   <ul>
     <li> <a href="/about">About Us</a></li>
     <li> <a href="/open-source">Artsy Open-Source</a></li>
-    <li> <a href="http://artsy.net/job/developer">Join the Artsy Engineering Team</a></li>
+    <li> <a href="https://developers.artsy.net">Artsy Public API</a></li>
+    <li> <a href="https://artsy.net/job/developer">Join the Artsy Engineering Team</a></li>
   </ul>
 </section>
 <section id="recent_posts_section">
@@ -556,42 +542,45 @@
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2014/03/17/some-tips-for-email-layout-and-responsiveness/">Some Tips for Email Layout and Responsiveness</a>
+        <a href="/blog/2015/04/08/creating-a-dynamic-single-page-app-for-our-genome-team-using-react/">Trying out React</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2014/03/17/detecting-trends-with-forgetsy/">Detecting trends using Forgetsy</a>
+        <a href="/blog/2015/03/23/artsy-technology-stack-2015/">Artsy's Technology Stack, 2015</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2014/01/30/isolating-spurious-and-nondeterministic-tests/">Isolating Spurious and Nondeterministic Tests</a>
+        <a href="/blog/2015/01/21/cocoapods-keys-and-CI/">CocoaPods-Keys and CI</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2013/11/30/rendering-on-the-server-and-client-in-node-dot-js/">Rendering on the Server and Client in Node.js</a>
+        <a href="/blog/2015/01/04/cocoapods-and-frameworks/">CocoaPods and Frameworks</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2013/11/07/upgrading-to-mongoid4/">Upgrading to Mongoid 4.x</a>
+        <a href="/blog/2014/11/19/how-to-write-great-outage-post-mortems/">How to Write Great Outage Post-Mortems</a>
       </li>
     
   </ul>
   <a class="archive_link" href="/blog/archives">Blog Archive</a>
 </section>
+
 <section>
   <h1>Search</h1>
-  <form action="http://google.com/search" method="get">
-    <input type="hidden" name="q" value="site:artsy.github.io" />
+  <form action="https://www.google.com/cse" method="get">
+    <input type="hidden" value="010245880960712892902:tnjd4ryb3ci" name="cx" />
     <input class="search" type="text" name="q" results="0" />
   </form>
 </section>
+
+
   
 
 
     </div>
   </div>
   <footer id="main_footer"><p>
-  Copyright &copy; 2014 - Artsy -
+  Copyright &copy; 2015 - Artsy -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

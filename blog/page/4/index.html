@@ -9,7 +9,7 @@
   <meta name="author" content="Artsy">
 
   
-  <meta name="description" content="A mean bug made it into our production environment. It wasn&#8217;t caught by our extensive test suite and caused thousands of emails to be sent to a &hellip;">
+  <meta name="description" content="I recently went through an exercise of upgrading one of Artsy&#8217;s largest web projects to the current HEAD of Mongoid 4.x. This is going to be a &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -28,6 +28,12 @@
   <!--[if IE 8]>
 <link href="/stylesheets/custom/ie_font.css" type="text/css">
 <![endif]-->
+
+<!--- MathJax Configuration -->
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
   
   <script type="text/javascript">
     var _gaq = _gaq || [];
@@ -46,28 +52,30 @@
 
 
 <body>
-  
+
   <a href="/">
     <h1 id="lrg-mark">
       <span>Artsy</span>
     </h1>
   </a>
-  
+
   <header id="banner"><hgroup>
   <div id="header">
-    <h2>Inspiration from the engineering team at <a href="http://artsy.net">Artsy</a> — A new way to discover fine art.</h2>
+    <h2>Inspiration from the engineering team at <a href="https://artsy.net">Artsy</a> — Discover, Research, and Collect the World's Best Art Online.</h2>
   </div>
 </hgroup>
 
 </header>
-  
+
   <div id="main">
-    <div id="mobile_search">
-      <form action="http://google.com/search" method="get">
-        <input type="hidden" name="q" value="site:artsy.github.io" />
-        <input class="search" type="text" name="q" results="0" placeholder="Search" />
-      </form>
-    </div>
+    
+      <div id="mobile_search">
+        <form action="https://www.google.com/cse" method="get">
+          <input type="hidden" value="010245880960712892902:tnjd4ryb3ci" name="cx" />
+          <input class="search" type="text" name="q" results="0" placeholder="Search" />
+        </form>
+      </div>
+    
     <div id="content">
       <div class="blog-index">
   
@@ -77,17 +85,17 @@
       
   <header>
     
-    <a href="/blog/2012/08/16/testing-with-delayed-jobs/">
+    <a href="/blog/2013/11/07/upgrading-to-mongoid4/">
       <div class="date">
 
 
 
 
   
-<time datetime="2012-08-16T21:21:00-04:00" pubdate>08/16/12</time></div>
+<time datetime="2013-11-07T12:34:00-05:00" pubdate>11/07/13</time></div>
     
     
-      <h1 class="entry-title">Testing With Delayed Jobs</h1>
+      <h1 class="entry-title">Upgrading to Mongoid 4.x</h1>
 
     
     </a>
@@ -99,227 +107,20 @@
   </header>
 
 
-  <div class="entry-content"><p>A mean bug made it into our production environment. It wasn&#8217;t caught by our extensive test suite and caused thousands of emails to be sent to a handful of people. The root cause was an unfortunate combination of <a href="https://github.com/plataformatec/devise">Devise</a>, <a href="https://github.com/collectiveidea/delayed_job">DelayedJob</a> and, of course, our own code. It was an easy fix, but nobody ever wants this to happen again.</p>
-
-<p>tl;dr DelayedJob says it&#8217;s possible to set <code>Delayed::Worker.delay_jobs = false</code> for your tests. Don&#8217;t do it.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/08/16/testing-with-delayed-jobs/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-    <a href="/blog/2012/08/14/on-objective-c-code-standards/">
-      <div class="date">
-
-
-
-
-  
-<time datetime="2012-08-14T14:23:00-04:00" pubdate>08/14/12</time></div>
-    
-    
-      <h1 class="entry-title">On Our Objective-C Code Standards</h1>
-
-    
-    </a>
-    
-      <p class="meta">
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>With the release of Xcode 4.4 I&#8217;ve taken a look back at our existing code standards and tried to come up with something that is cleaner and more elegant. Here are a few of the ideas I&#8217;ve been using to modernize the codebase.</p>
-
-<h3>Remove private method declarations and use class extensions to add ivars.</h3>
-
-<p>First to get chopped by the deletion button are private method declarations. After Xcode 4.2 came out we took to using the class extension feature to add private method declarations at the top of implementation files. This was a nice way of keeping private methods out of the header files. Now that the compiler will check for pre-existing method signatures within the same object there&#8217;s no need to define their interfaces.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/08/14/on-objective-c-code-standards/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-    <a href="/blog/2012/07/10/on-demand-jenkins-slaves-with-amazon-ec2/">
-      <div class="date">
-
-
-
-
-  
-<time datetime="2012-07-10T13:30:00-04:00" pubdate>07/10/12</time></div>
-    
-    
-      <h1 class="entry-title">On-Demand Jenkins Slaves With Amazon EC2</h1>
-
-    
-    </a>
-    
-      <p class="meta">
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>The <a href="http://artsy.net">Artsy</a> team faithfully uses <a href="http://jenkins-ci.org">Jenkins</a> for continuous integration. <a href="http://artsy.github.com/blog/2012/05/27/using-jenkins-for-ruby-and-ruby-on-rails-teams/">As we&#8217;ve described before</a>, our Jenkins master and 8 slaves run on Linode. This arrangement has at least a few drawbacks:</p>
-
-<ul>
-<li>Our Linode servers are manually configured. They require frequent maintenance, and inconsistencies lead to surprising build failures.</li>
-<li>The fixed set of slaves don&#8217;t match the pattern of our build jobs: jobs get backed up during the day, but servers are mostly unused overnight and on weekends.</li>
-</ul>
-
-
-<p>The <a href="https://wiki.jenkins-ci.org/display/JENKINS/Amazon+EC2+Plugin">Amazon EC2 Plugin</a> allowed us to replace those slaves with a totally scripted environment. Now, slaves are spun up in the cloud whenever build jobs need them.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/07/10/on-demand-jenkins-slaves-with-amazon-ec2/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-    <a href="/blog/2012/07/05/spend-time-with-your-site/">
-      <div class="date">
-
-
-
-
-  
-<time datetime="2012-07-05T10:51:00-04:00" pubdate>07/05/12</time></div>
-    
-    
-      <h1 class="entry-title">Spend Time With Your Site</h1>
-
-    
-    </a>
-    
-      <p class="meta">
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Empathy with end users is critical when developing consumer-facing software. Many go <a href="http://innonate.com/2011/03/09/hackers-the-canon-of-consumer-facing-products/">even</a> <a href="http://www.uie.com/articles/self_design/">further</a> and argue that you should <em>be</em> your own user to effectively deliver the best experience.</p>
-
-<blockquote><p><em>I&#8217;d encourage anyone starting a startup to become one of its users, however unnatural it seems.</em></p>
-
-<p>&mdash; Paul Graham <a href="http://paulgraham.com/organic.html">Organic Startup Ideas</a></p></blockquote>
-
-<p>In practice, though, this can be difficult:</p>
-
-<ul>
-<li>As a developer, you&#8217;re just not representative of the intended audience.</li>
-<li>You&#8217;re [appropriately] focused on the product&#8217;s next iteration, while your audience is occupied with the current state.</li>
-<li>You spend countless hours focused on product details&mdash;of course it&#8217;s a challenge to empathize with a casual visitor&#8217;s first impression.</li>
-</ul>
-
-
-<h2>Keeping it Real</h2>
-
-<p>We&#8217;ve tried some best practices to overcome these tendencies. User feedback is emailed to everyone in the company. Engineers share customer support responsibilities. But one simple tool has been surprisingly useful: we stole a page from the agile development handbook and built an <a href="http://alistair.cockburn.us/Information+radiator">information radiator</a>. Like a <a href="http://en.wikipedia.org/wiki/Kanban_board">kanban board</a>, news ticker, or <a href="https://demo.geckoboard.com/dashboard/B6782E562794C2F2/">analytics wall board</a>, our information radiator gives us an ambient awareness of end users&#8217; experiences. How?</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/07/05/spend-time-with-your-site/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-    <a href="/blog/2012/06/25/replacing-hashbang-routes-with-pushstate/">
-      <div class="date">
-
-
-
-
-  
-<time datetime="2012-06-25T11:35:00-04:00" pubdate>06/25/12</time></div>
-    
-    
-      <h1 class="entry-title">Replacing #! Routes With PushState Using Backbone.js</h1>
-
-    
-    </a>
-    
-      <p class="meta">
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><blockquote><p>The only constant is change, continuing change, inevitable change, that is the dominant factor in society
-[and web apps!] today. No sensible decision can be made any longer without taking into account not only
-the world as it is, but the world as it will be.</p>
-
-<p>&ndash; Isaac Asimov</p></blockquote>
-
-<h2>R.I.P #!</h2>
-
-<p>It did not take us long to discover we shared the concerns of Twitter&#8217;s
-<a href="http://danwebb.net/2011/5/28/it-is-about-the-hashbangs">Dan Webb on hashbang routes</a>,
-but it was almost a year before we were able to remove them from Artsy. Here&#8217;s how it went down.</p>
-
-<p>Artsy relies on the <a href="http://documentcloud.github.com/backbone/">Backbone.js</a> framework for our client application
-which offers a solid pushState routing scheme. This includes a seamless hashtag fallback for
-<a href="http://caniuse.com/#feat=history">browsers that don&#8217;t support the HTML5 History API</a> (looking at you IE 9).</p>
-
-<p>The pushState routing is optional, but <em>&#8220;the world as it should be&#8221;</em> suggests we say &#8220;Yes!&#8221; (or true) to pushState.</p>
+  <div class="entry-content"><p>I recently went through an exercise of upgrading one of Artsy&#8217;s largest web projects to the current HEAD of Mongoid 4.x. This is going to be a major release with numerous changes and I wanted to flush out bugs before the final version of the ODM is released. All Mongoid changes currently live on <a href="https://github.com/mongoid/mongoid">master</a>.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="nx">Backbone</span><span class="p">.</span><span class="nx">history</span><span class="p">.</span><span class="nx">start</span><span class="p">({</span> <span class="nv">pushState: </span><span class="kc">true</span> <span class="p">})</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">gem</span> <span class="s1">&#39;mongoid&#39;</span><span class="p">,</span> <span class="ss">github</span><span class="p">:</span> <span class="s1">&#39;mongoid/mongoid&#39;</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-
+<p>In the process I&#8217;ve worked on making a few gems compatible with Mongoid 4 and learned a couple of things that should help you make this process smooth for your own applications.</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/2012/06/25/replacing-hashbang-routes-with-pushstate/">Read on &rarr;</a>
+      <a rel="full-article" href="/blog/2013/11/07/upgrading-to-mongoid4/">Read on &rarr;</a>
     </footer>
   
 
@@ -331,17 +132,17 @@ which offers a solid pushState routing scheme. This includes a seamless hashtag 
       
   <header>
     
-    <a href="/blog/2012/05/30/restful-api-caching-with-garner/">
+    <a href="/blog/2013/08/27/introduction-to-aws-opsworks/">
       <div class="date">
 
 
 
 
   
-<time datetime="2012-05-30T21:21:00-04:00" pubdate>05/30/12</time></div>
+<time datetime="2013-08-27T12:31:00-04:00" pubdate>08/27/13</time></div>
     
     
-      <h1 class="entry-title">RESTful API Caching With Garner</h1>
+      <h1 class="entry-title">Introduction to AWS OpsWorks</h1>
 
     
     </a>
@@ -353,17 +154,21 @@ which offers a solid pushState routing scheme. This includes a seamless hashtag 
   </header>
 
 
-  <div class="entry-content"><p>Implementing server-side RESTful API caching is hard. In a straightforward API all the expiry decisions can be made automatically based on the URL, but most real world APIs that add requirements around object relationships or user authorization make caching particularly challenging.</p>
+  <div class="entry-content"><p>OpsWorks is a new service from Amazon that promises to provide high-level tools to manage your EC2-based deployment. From <a href="http://aws.typepad.com/aws/2013/02/aws-opsworks-flexible-application-management-in-the-cloud.html">the announcement</a>:</p>
 
-<p>At <a href="http://goruco.com/">GoRuCo</a> we open-sourced <a href="http://github.com/artsy/garner">Garner</a>, a cache implementation of the concepts described in this post. To &#8220;garner&#8221; means to gather data from various sources and to make it readily available in one place, kind-of like a cache! Garner works today with the <a href="http://github.com/intridea/grape">Grape API framework</a> and the <a href="http://github.com/mongoid/mongoid">Mongoid ODM</a>. We encourage you to fork the project, extend our library to other systems and contribute your code back, if you find it useful.</p>
+<blockquote><p>AWS OpsWorks features an integrated management experience for the entire application lifecycle including resource provisioning, configuration management, application deployment, monitoring, and access control. It will work with applications of any level of complexity and is independent of any particular architectural pattern.</p></blockquote>
 
-<p>Garner implements the Artsy API caching cookbook that has been tried by fire in production.</p>
+<p>After scratching our heads about exactly what that meant, we tried it anyway. If you&#8217;ve been straining at the limits of your Platform as a Service (PaaS) provider, or just wishing for more automation for your EC2 deployment, you may want to try it out too.</p>
+
+<p>Artsy has been experimenting with OpsWorks for a few months now and recently adopted it for the production <a href="http://artsy.net">artsy.net</a> site. We&#8217;re excited to share what we&#8217;ve learned in the process.</p>
+
+<p><img class="screenshot" src="/images/2013-08-27-introduction-to-aws-opsworks/opsworks.png" title="[OpsWorks overview]" ></p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/2012/05/30/restful-api-caching-with-garner/">Read on &rarr;</a>
+      <a rel="full-article" href="/blog/2013/08/27/introduction-to-aws-opsworks/">Read on &rarr;</a>
     </footer>
   
 
@@ -375,17 +180,17 @@ which offers a solid pushState routing scheme. This includes a seamless hashtag 
       
   <header>
     
-    <a href="/blog/2012/05/27/using-jenkins-for-ruby-and-ruby-on-rails-teams/">
+    <a href="/blog/2013/06/23/normalizing-gmail-email-addresses-with-canonical-emails/">
       <div class="date">
 
 
 
 
   
-<time datetime="2012-05-27T08:15:00-04:00" pubdate>05/27/12</time></div>
+<time datetime="2013-06-23T12:21:00-04:00" pubdate>06/23/13</time></div>
     
     
-      <h1 class="entry-title">Using Jenkins for Ruby and Ruby-on-Rails Teams</h1>
+      <h1 class="entry-title">Normalizing GMail E-Mail Addresses With CanonicalEmails</h1>
 
     
     </a>
@@ -397,17 +202,19 @@ which offers a solid pushState routing scheme. This includes a seamless hashtag 
   </header>
 
 
-  <div class="entry-content"><p>The <a href="http://jenkins-ci.org">Jenkins CI</a> project has grown tremendously in the past few months. There&#8217;re now hundreds of plugins and an amazing engaged community. Artsy is a happy user and proud contributor to this effort with the essential <a href="https://wiki.jenkins-ci.org/display/JENKINS/AnsiColor+Plugin">jenkins-ansicolor plugin</a>, eliminating boring console output since 2011.</p>
+  <div class="entry-content"><p>A whopping 49% of Artsy users have &#8220;gmail.com&#8221; email addresses. The next domain name, &#8220;hotmail.com&#8221;, doesn&#8217;t even come close, with only 6%.</p>
 
-<p>We are a continuous integration, deployment and devops shop and have been using Jenkins for over a year now. We&#8217;ve shared our experience at the <a href="http://www.cloudbees.com/juc2012.cb">Jenkins User Conference 2012</a> in <a href="http://www.slideshare.net/dblockdotorg/graduating-to-jenkins-ci-for-rubyonrails-teams">a presentation</a>. This blog post is an overview of how to get started with Jenkins for Ruby(-on-Rails) teams.</p>
+<p><img src="/images/2013-06-23-normalizing-gmail-email-addresses-with-canonical-emails/artsy-email-domains.png" /></p>
 
-<p><img src="/images/2012-05-27-using-jenkins-for-ruby-on-rails-teams/jenkins.png" title="[Artsy Jenkins CI]" ></p>
+<p>GMail addresses ignore periods and are case-insensitive. For example, &#8220;Donald.Duck@gmail.com&#8221; and &#8220;donaldduck@gmail.com&#8221; are the same account. You can log-in to GMail with both. Users often register with the former and try to log-in to Artsy with the latter. With so many GMail users, expect a dozen support emails per day.</p>
+
+<p>The solution is to normalize these emails into a canonical form.</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/2012/05/27/using-jenkins-for-ruby-and-ruby-on-rails-teams/">Read on &rarr;</a>
+      <a rel="full-article" href="/blog/2013/06/23/normalizing-gmail-email-addresses-with-canonical-emails/">Read on &rarr;</a>
     </footer>
   
 
@@ -419,17 +226,17 @@ which offers a solid pushState routing scheme. This includes a seamless hashtag 
       
   <header>
     
-    <a href="/blog/2012/05/16/generating-automatic-plain-text-mime-parts-with-rails-actionmailer/">
+    <a href="/blog/2013/06/21/adding-api-documentation-with-grape-swagger/">
       <div class="date">
 
 
 
 
   
-<time datetime="2012-05-16T20:52:00-04:00" pubdate>05/16/12</time></div>
+<time datetime="2013-06-21T12:21:00-04:00" pubdate>06/21/13</time></div>
     
     
-      <h1 class="entry-title">Generating Automatic Plain Text MIME Parts With Rails ActionMailer</h1>
+      <h1 class="entry-title">Adding API Docs With Grape and Swagger</h1>
 
     
     </a>
@@ -441,17 +248,15 @@ which offers a solid pushState routing scheme. This includes a seamless hashtag 
   </header>
 
 
-  <div class="entry-content"><p>E-mail is one of the most important ways to engage your users. And every time you touch a user&#8217;s inbox, it reflects on your brand. But getting email right has become increasing difficult due to the complexities introduced by the thousands of web-based, desktop and mobile mail clients. Email formatting is like the &#8220;Hunger Games&#8221; where the major players include online services such as GMail, Yahoo, Hotmail or AOL, desktop clients such as Outlook and a myriad mobile devices ranging from iPhone and Android to Blackberry.</p>
+  <div class="entry-content"><p>The Artsy website, Partner CMS, mobile tools, and all our hackathon experiments are built on top of a core API. We&#8217;ve put a lot of effort into documenting it internally. But developers don&#8217;t want to have to grok through code. With <a href="https://github.com/intridea/grape">Grape</a> and <a href="https://developers.helloreverb.com/swagger">Swagger</a>, adding an API explorer and exposing the API documentation has never been easier.</p>
 
-<p>To deal with this landscape, the MIME standard allows systems to send e-mail with multiple parts: <code>plain/text</code> for business-efficient devices such as the Blackberry, and <code>text/html</code> for web-based e-mail readers, such as GMail. Furthermore, <code>ActionMailer</code> supports multiple template formats: create an <code>.html.haml</code> template along with a <code>.txt.haml</code> template to generate both. We also know that <code>text/plain</code> email helps deliverability, but we believe a disproportionately small amount of text e-mails are actually read - the vast majority of devices are capable of parsing some HTML.</p>
-
-<p>Is it possible to avoid having to maintain two separate templates without sacrificing deliverability? How can we inject a <code>text/plain</code> part into HTML e-mail that is both useful and &#8220;free&#8221;?</p>
+<p><img src="/images/2013-06-21-adding-api-documentation-with-grape-swagger/swagger-ui.png" /></p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/2012/05/16/generating-automatic-plain-text-mime-parts-with-rails-actionmailer/">Read on &rarr;</a>
+      <a rel="full-article" href="/blog/2013/06/21/adding-api-documentation-with-grape-swagger/">Read on &rarr;</a>
     </footer>
   
 
@@ -463,17 +268,17 @@ which offers a solid pushState routing scheme. This includes a seamless hashtag 
       
   <header>
     
-    <a href="/blog/2012/05/15/how-to-organize-over-3000-rspec-specs-and-retry-test-failures/">
+    <a href="/blog/2013/06/14/writing-headless-backbone-tests-with-node-dot-js/">
       <div class="date">
 
 
 
 
   
-<time datetime="2012-05-15T12:00:00-04:00" pubdate>05/15/12</time></div>
+<time datetime="2013-06-14T17:48:00-04:00" pubdate>06/14/13</time></div>
     
     
-      <h1 class="entry-title">How to Organize Over 3000 RSpec Specs and Retry Test Failures</h1>
+      <h1 class="entry-title">Writing Headless Backbone Tests With Node.js</h1>
 
     
     </a>
@@ -485,28 +290,195 @@ which offers a solid pushState routing scheme. This includes a seamless hashtag 
   </header>
 
 
-  <div class="entry-content"><p>Having over three thousand RSpec tests in a single project has become difficult to manage. We chose to organize these into suites, somewhat mimicking our directory structure. And while we succeeded at making our Capybara integration tests more reliable (see <a href="/blog/2012/02/03/reliably-testing-asynchronous-ui-w-slash-rspec-and-capybara/">Reliably Testing Asynchronous UI with RSpec and Capybara</a>), they continue relying on finicky timeouts. To avoid too many false positives we&#8217;ve put together a system to retry failed tests. We know that a spec that fails twice in a row is definitely not a fluke!</p>
+  <div class="entry-content"><h2>TL;DR</h2>
 
-<p>Create a new Rake file in <code>lib/tasks/test_suites.rake</code> and declare an array of test suites.</p>
+<p>Write fast, headless, tests for Backbone using Node.js. See this project as an example  <a href="https://github.com/craigspaeth/backbone-headless-testing">https://github.com/craigspaeth/backbone-headless-testing</a>.</p>
 
-<figure class='code'><figcaption><span>lib/tasks/test_suites.rake</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<h2>A Brief History</h2>
+
+<p>Artsy is mostly a thick client <a href="http://backbonejs.org/">Backbone</a> app that sits on <a href="http://rubyonrails.org/">Rails</a> and largely depends on <a href="http://jnicklas.github.io/capybara/">Capybara</a> (<a href="http://docs.seleniumhq.org/">Selenium</a> backed bot that clicks around Firefox) for testing it&#8217;s javascript. This leads to some seriously brittle and slow integration tests. <a href="http://artsy.github.io/blog/2012/02/03/reliably-testing-asynchronous-ui-w-slash-rspec-and-capybara/">Despite being able to wrangle Capybara</a> to do most of our client-side testing, we knew there must be a better way.</p>
+
+<p>When building a CMS app for our gallery partners to manage their Artsy inventory, we built a new Backbone app on top of <a href="http://nodejs.org/">node.js</a>. The result was a headless test suite that runs around 60 times faster.</p>
+
+<p>Let&#8217;s take a look at how it&#8217;s done.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/06/14/writing-headless-backbone-tests-with-node-dot-js/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+    <a href="/blog/2013/04/13/bootstrapping-json-data-with-rails-and-backbone-js/">
+      <div class="date">
+
+
+
+
+  
+<time datetime="2013-04-13T12:21:00-04:00" pubdate>04/13/13</time></div>
+    
+    
+      <h1 class="entry-title">Bootstrapping JSON Data With Rails and Backbone.js</h1>
+
+    
+    </a>
+    
+      <p class="meta">
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>The <a href="http://artsy.net">artsy.net website</a> is a Backbone.js application that talks to a server-side RESTful Grape API sitting on top of a Rails app which serves minimal HTML markup. The latter includes such things as a page title, along with links to JavaScript and stylesheet packages. A page loads, scripts run, data is fetched from the API. The result is merged into a HAMLJS template and rendered client-side.</p>
+
+<p>Building this kind of one-page apps allows for clean separation between the presentation and API layers. The downside is that it will slow page render times - fetching data after page load means waiting for an AJAX request to complete before displaying anything.</p>
+
+<p>There&#8217;re many solutions to this problem, all involving some kind of server-side rendering. You could, for example, share views and JavaScript between client and server. This would be a major paradigm shift for a large application like ours and not something we could possibly maneuver in a short amount of time.</p>
+
+<p>Without changing the entire architecture of the system, how can we bootstrap JSON data server-side and avoid the data roundtrip on every page load?</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/04/13/bootstrapping-json-data-with-rails-and-backbone-js/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+    <a href="/blog/2013/04/10/aranalytics/">
+      <div class="date">
+
+
+
+
+  
+<time datetime="2013-04-10T17:23:00-04:00" pubdate>04/10/13</time></div>
+    
+    
+      <h1 class="entry-title">ARAnalytics - Analytics for iOS Apps</h1>
+
+    
+    </a>
+    
+      <p class="meta">
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>In both my <a href="http://orta.github.com">personal apps</a> and Artsy Folio, I&#8217;m always after a deeper understanding of how people use the app. There&#8217;s three ways to do this: ask users, watch users and track usage. I&#8217;d like to talk about the third of these.</p>
+
+<p>We&#8217;ve experimented with quite a lot of analytics tools for the Artsy website, and it seemed fitting to do the same for our mobile app. We wanted the freedom to change the analytics tool without having to change the code, and so <a href="http://github.com/orta/ARAnalytics">ARAnalytics</a> was born.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/04/10/aranalytics/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+    <a href="/blog/2013/04/01/an-easter-egg-for-curl/">
+      <div class="date">
+
+
+
+
+  
+<time datetime="2013-04-01T12:21:00-04:00" pubdate>04/01/13</time></div>
+    
+    
+      <h1 class="entry-title">An Easter Egg for Curl</h1>
+
+    
+    </a>
+    
+      <p class="meta">
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Let&#8217;s implement an Easter egg that requires <a href="http://curl.haxx.se/">curl</a> and is HTTP-compliant.</p>
+
+<p>We accept access tokens on our API endpoints. These can come from an <code>access_token</code> query string parameter.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="no">SPEC_SUITES</span> <span class="o">=</span> <span class="o">[</span>
-</span><span class='line'>    <span class="p">{</span> <span class="ss">:id</span> <span class="o">=&gt;</span> <span class="ss">:models</span><span class="p">,</span> <span class="ss">:pattern</span> <span class="o">=&gt;</span> <span class="s2">&quot;spec/models/**/*_spec.rb&quot;</span> <span class="p">},</span>
-</span><span class='line'>    <span class="p">{</span> <span class="ss">:id</span> <span class="o">=&gt;</span> <span class="ss">:controllers</span><span class="p">,</span> <span class="ss">:pattern</span> <span class="o">=&gt;</span> <span class="s2">&quot;spec/controllers/**/*_spec.rb&quot;</span> <span class="p">},</span>
-</span><span class='line'>    <span class="p">{</span> <span class="ss">:id</span> <span class="o">=&gt;</span> <span class="ss">:views</span><span class="p">,</span> <span class="ss">:pattern</span> <span class="o">=&gt;</span> <span class="s2">&quot;spec/views/**/*_spec.rb&quot;</span> <span class="p">}</span>
-</span><span class='line'>  <span class="o">]</span>
-</span></code></pre></td></tr></table></div></figure>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>curl https://api.artsy.net/api/v1/system/up?access_token=invalid -v
+</span><span class='line'>
+</span><span class='line'>&lt; HTTP/1.1 401 Unauthorized
+</span><span class='line'>&lt; Content-Type: application/json
+</span><span class='line'>&lt; Content-Length: 24
+</span><span class='line'>
+</span><span class='line'>{ "error" : "Unauthorized" }</span></code></pre></td></tr></table></div></figure>
 
+
+<p>So far, so good. Now try this:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>curl https://api.artsy.net/api/v1/system/up?access_token=10013 -v
+</span><span class='line'>
+</span><span class='line'>&lt; HTTP/1.1 401 Broadway
+</span><span class='line'>&lt; Content-Type: application/json
+</span><span class='line'>&lt; Content-Length: 76
+</span><span class='line'>
+</span><span class='line'>{ "error" : "Inspiration from the Engineering team at http://artsy.github.com" }</span></code></pre></td></tr></table></div></figure>
+
+
+<p>What?! <strong>401 Broadway</strong>? See, our office address is <em>401 Broadway, 10013, New York, NY</em>. We just tried to add a more developer-friendly way to find us in the New York grid. And here&#8217;s the view from our 25th floor office - that&#8217;s SOHO right below us and the Empire State Building a bit North.</p>
+
+<p><img src="/images/2013-04-01-an-easter-egg-for-curl/artsy-office-view.jpg" /></p>
+
+<p>Photo by <a href="https://github.com/zamiang">@zamiang</a>.</p>
+
+<p>Easter egg implementation follows.</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/2012/05/15/how-to-organize-over-3000-rspec-specs-and-retry-test-failures/">Read on &rarr;</a>
+      <a rel="full-article" href="/blog/2013/04/01/an-easter-egg-for-curl/">Read on &rarr;</a>
     </footer>
   
 
@@ -518,17 +490,17 @@ which offers a solid pushState routing scheme. This includes a seamless hashtag 
       
   <header>
     
-    <a href="/blog/2012/05/11/on-making-it-personal--in-iOS-with-searchbars/">
+    <a href="/blog/2013/03/29/musical-chairs/">
       <div class="date">
 
 
 
 
   
-<time datetime="2012-05-11T20:52:00-04:00" pubdate>05/11/12</time></div>
+<time datetime="2013-03-29T16:38:00-04:00" pubdate>03/29/13</time></div>
     
     
-      <h1 class="entry-title">On Making It Personal in iOS With Searchbars</h1>
+      <h1 class="entry-title">Musical Chairs</h1>
 
     
     </a>
@@ -540,19 +512,67 @@ which offers a solid pushState routing scheme. This includes a seamless hashtag 
   </header>
 
 
-  <div class="entry-content"><p>We make Folio, a pretty kick-ass iPad app that we give away to our partners to showcase their inventory at art fairs. Whilst making it we tried to ensure that all of the application fits in with the <a href="http://artsy.net">Artsy</a> website aesthetic, and recently the last natively styled control fell to our mighty code hammers. That was the <code>UISearchBar</code>.</p>
+  <div class="entry-content"><p> At Artsy we make Artsy Folio. Folio is an awesome portfolio app that shows our gallery and museum partners their artworks in one place, allows them to easily get information about their inventory and to send works by email to their contacts.</p>
 
-<p><img src="http://ortastuff.s3.amazonaws.com/images/custom_searchbar_example.jpg" alt="Screenshot of Artsy Folio" /></p>
+<p>Folio has to deal with large multi-gigabyte syncs in order to operate offline. That makes for a great user experience, but for the developer working on the sync, it&#8217;s not as pleasant. Combined with our use of Core Data, the app’s maturity, and dealing with data store migrations, things can get hairy. We needed a tool that could freeze and restore app data at will, obviating the need for constant syncing and resyncing.</p>
 
-<p>When displaying only search results in a table it makes a lot of sense to use Apple&#8217;s <code>UISearchDisplayController</code> as it handles a lot of edge cases for you. However the downside is that you lose some control over how the views interact.</p>
-
-<p>The search bar was the only native control that actually made it into the version 1 release. This was mainly due to it requiring a bit of black magic in order to get it to work the way we wanted. So lets go through the code and rip it to pieces.</p>
+<p>That&#8217;s why I built <a href="https://github.com/orta/chairs">chairs</a>&#8230;</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/2012/05/11/on-making-it-personal--in-iOS-with-searchbars/">Read on &rarr;</a>
+      <a rel="full-article" href="/blog/2013/03/29/musical-chairs/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+    <a href="/blog/2013/02/17/impact-of-heroku-routing-mesh-and-random-routing/">
+      <div class="date">
+
+
+
+
+  
+<time datetime="2013-02-17T12:21:00-05:00" pubdate>02/17/13</time></div>
+    
+    
+      <h1 class="entry-title">The Impact of Heroku&#8217;s Routing Mesh and Random Routing</h1>
+
+    
+    </a>
+    
+      <p class="meta">
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>The <a href="http://rapgenius.com/James-somers-herokus-ugly-secret-lyrics">Heroku&#8217;s Ugly Secret</a> blog post went viral last week. I <a href="http://code.dblock.org/in-defense-of-heroku">wrote</a> in defense of Heroku, which has now responded with an official <a href="https://blog.heroku.com/archives/2013/2/16/routing_performance_update/">Routing Performance Update</a>.</p>
+
+<p>Random request queuing has been discussed in the past in <a href="http://tiwatson.com/blog/2011-2-17-heroku-no-longer-using-a-global-request-queue">Tim Watson&#8217;s post</a> based on a <a href="https://groups.google.com/forum/?fromgroups=#!msg/heroku/8eOosLC5nrw/Xy2j7GapebIJ">response</a> by Heroku&#8217;s Adam Wiggins. While the documentation may not have been accurate or even somewhat misleading, we, at Artsy, understood the strategy and the limitations of the routing mesh for quite sometime. Therefore, we have been making continuous efforts to improve our application&#8217;s performance and reduce the negative impact of random routing inside the routing mesh over the past few months.</p>
+
+<p>One thing we didn&#8217;t do, was to measure the actual wait time inside a dyno. In restrospect, it seems obvious that we should have. In this post we&#8217;ll describe a middleware to do so. This is entirely based on the work of <a href="https://gist.github.com/daveyeu/4960893">David Yeu</a>, <a href="https://gist.github.com/jasonrclark/d82a1ea7695daac0b9ee">Jason R Clark</a> and RG&#8217;s own <a href="https://gist.github.com/a-warner/f5db30857ed3423cea79">Andrew Warner</a>.</p>
+
+<p>With this code in place, here&#8217;s a 12 hour graph of our website&#8217;s API performance. The dyno wait time for our application, in green, averaged 61.1ms for a total of 301ms average per request, which is 1/5th of the total request time. It&#8217;s certainly a lot, but we do spend a lot more time in our own code.</p>
+
+<p><img src="/images/2013-02-17-impact-of-heroku-routing-mesh-and-random-routing/newrelic-12-hours.png"></p>
+
+<p>Note that the single peak on the right of the graph corresponds to a dyno auto-scale job. We double the number of dynos with early morning traffic, which causes new dynos to boot up and accumulate requests before they are &#8220;warm&#8221; enough to process requests at their normal rate.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/02/17/impact-of-heroku-routing-mesh-and-random-routing/">Read on &rarr;</a>
     </footer>
   
 
@@ -578,7 +598,8 @@ which offers a solid pushState routing scheme. This includes a seamless hashtag 
   <ul>
     <li> <a href="/about">About Us</a></li>
     <li> <a href="/open-source">Artsy Open-Source</a></li>
-    <li> <a href="http://artsy.net/job/developer">Join the Artsy Engineering Team</a></li>
+    <li> <a href="https://developers.artsy.net">Artsy Public API</a></li>
+    <li> <a href="https://artsy.net/job/developer">Join the Artsy Engineering Team</a></li>
   </ul>
 </section>
 <section id="recent_posts_section">
@@ -586,42 +607,45 @@ which offers a solid pushState routing scheme. This includes a seamless hashtag 
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2014/03/17/some-tips-for-email-layout-and-responsiveness/">Some Tips for Email Layout and Responsiveness</a>
+        <a href="/blog/2015/04/08/creating-a-dynamic-single-page-app-for-our-genome-team-using-react/">Trying out React</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2014/03/17/detecting-trends-with-forgetsy/">Detecting trends using Forgetsy</a>
+        <a href="/blog/2015/03/23/artsy-technology-stack-2015/">Artsy's Technology Stack, 2015</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2014/01/30/isolating-spurious-and-nondeterministic-tests/">Isolating Spurious and Nondeterministic Tests</a>
+        <a href="/blog/2015/01/21/cocoapods-keys-and-CI/">CocoaPods-Keys and CI</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2013/11/30/rendering-on-the-server-and-client-in-node-dot-js/">Rendering on the Server and Client in Node.js</a>
+        <a href="/blog/2015/01/04/cocoapods-and-frameworks/">CocoaPods and Frameworks</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2013/11/07/upgrading-to-mongoid4/">Upgrading to Mongoid 4.x</a>
+        <a href="/blog/2014/11/19/how-to-write-great-outage-post-mortems/">How to Write Great Outage Post-Mortems</a>
       </li>
     
   </ul>
   <a class="archive_link" href="/blog/archives">Blog Archive</a>
 </section>
+
 <section>
   <h1>Search</h1>
-  <form action="http://google.com/search" method="get">
-    <input type="hidden" name="q" value="site:artsy.github.io" />
+  <form action="https://www.google.com/cse" method="get">
+    <input type="hidden" value="010245880960712892902:tnjd4ryb3ci" name="cx" />
     <input class="search" type="text" name="q" results="0" />
   </form>
 </section>
+
+
   
 
 
     </div>
   </div>
   <footer id="main_footer"><p>
-  Copyright &copy; 2014 - Artsy -
+  Copyright &copy; 2015 - Artsy -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

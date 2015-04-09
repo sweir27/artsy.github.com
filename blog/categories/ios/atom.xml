@@ -4,7 +4,7 @@
   <title><![CDATA[Category: iOS | Artsy Engineering]]></title>
   <link href="http://artsy.github.io/blog/categories/ios/atom.xml" rel="self"/>
   <link href="http://artsy.github.io/"/>
-  <updated>2014-03-18T08:28:09-04:00</updated>
+  <updated>2015-04-09T13:01:06-04:00</updated>
   <id>http://artsy.github.io/</id>
   <author>
     <name><![CDATA[Artsy]]></name>
@@ -14,240 +14,437 @@
 
   
   <entry>
-    <title type="html"><![CDATA[ARAnalytics - Analytics for iOS Apps]]></title>
-    <link href="http://artsy.github.io/blog/2013/04/10/aranalytics/"/>
-    <updated>2013-04-10T17:23:00-04:00</updated>
-    <id>http://artsy.github.io/blog/2013/04/10/aranalytics</id>
-    <content type="html"><![CDATA[<p>In both my <a href="http://orta.github.com">personal apps</a> and Artsy Folio, I'm always after a deeper understanding of how people use the app. There's three ways to do this: ask users, watch users and track usage. I'd like to talk about the third of these.</p>
+    <title type="html"><![CDATA[CocoaPods-Keys and CI]]></title>
+    <link href="http://artsy.github.io/blog/2015/01/21/cocoapods-keys-and-CI/"/>
+    <updated>2015-01-21T16:43:00-05:00</updated>
+    <id>http://artsy.github.io/blog/2015/01/21/cocoapods-keys-and-CI</id>
+    <content type="html"><![CDATA[<p>We built CocoaPods-Keys as a way to remove API keys and secrets from our source code. We use it to open up our code to the pubic, without leaking private details. One of the cool things about doing it this way was that we could all use different API keys stashed away in each developers Keychain.</p>
 
-<p>We've experimented with quite a lot of analytics tools for the Artsy website, and it seemed fitting to do the same for our mobile app. We wanted the freedom to change the analytics tool without having to change the code, and so <a href="http://github.com/orta/ARAnalytics">ARAnalytics</a> was born.</p>
+<p>To ensure we could run CI on our apps we came up with two different ways to use keys on CI. This post explains them both.</p>
 
 <!-- more -->
 
 
-<p>ARAnalytics is the adaption of <a href="https://github.com/jkrall/analytical">Analytical</a> and  <a href="http://segmentio.github.com/analytics.js/">Analytics.js</a> to iOS. By using <a href="http://cocoapods.org">Cocoapods</a> it became possible to set up the entire analytics stack with only a few lines of code in your <code>Podfile</code>.</p>
+<h2>The easy way.</h2>
+
+<p>Depending on your use-case, you may not need to use the keys at all in your testing. This works really well if you're using stubbed network requests. So if you have a keys definition in your <a href="https://github.com/artsy/eidolon/blob/9a918108e717a68a45709345f38d55e0eeb1f8b3/Podfile#L4-L21">Podfile</a> like this:</p>
 
 <p><code>ruby
-  pod "ARAnalytics/Crashlytics"
-  pod "ARAnalytics/Mixpanel"
-</code></p>
-
-<p>The list of supported libraries is pretty vast ( <em>TestFlight, Mixpanel, Localytics, Flurry, Google Analytics, KISSMetrics, Countly, Crittercism, Bugsnag and Crashlytics</em> ) and the API for <code>ARAnalytics</code> tries to bridge any gaps it can find in the implementations.</p>
-
-<p><code>ARAnalytics</code> simplifies the API to two main parts of tracking; user details and events. User details are things like your internal ID for a user, and custom properties like your app's preferences, whilst events are temporal actions that are triggered based off user actions.</p>
-
-<p>There is another tool worth mentioning and that is <a href="http://cocoadocs.org/dosets/Analytics/0.0.5/">Analytics</a> which is a new port of Analytics.js which does a similar <em>simple API to different analytics providers</em> but works by offloading the work to the server. I think there are advantages and disadvantages to both of these approaches, but I think one or the other should cover nearly all use cases!</p>
-
-<p>ARAnalytics is available on Github at <a href="http://github.com/orta/ARAnalytics">orta/ARAnalytics</a> and documented on <a href="http://cocoadocs.org/docsets/ARAnalytics/1.2/">Cocoadocs</a> (which Artsy proudly sponsors!)</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Musical Chairs]]></title>
-    <link href="http://artsy.github.io/blog/2013/03/29/musical-chairs/"/>
-    <updated>2013-03-29T16:38:00-04:00</updated>
-    <id>http://artsy.github.io/blog/2013/03/29/musical-chairs</id>
-    <content type="html"><![CDATA[<p> At Artsy we make Artsy Folio. Folio is an awesome portfolio app that shows our gallery and museum partners their artworks in one place, allows them to easily get information about their inventory and to send works by email to their contacts.</p>
-
-<p>Folio has to deal with large multi-gigabyte syncs in order to operate offline. That makes for a great user experience, but for the developer working on the sync, it's not as pleasant. Combined with our use of Core Data, the app’s maturity, and dealing with data store migrations, things can get hairy. We needed a tool that could freeze and restore app data at will, obviating the need for constant syncing and resyncing.</p>
-
-<p>That's why I built <a href="https://github.com/orta/chairs">chairs</a>...</p>
-
-<!--more-->
-
-
-<p>Chairs is a gem you can install via <code>gem install chairs</code>. It allows you to stash and replace your current iOS simulator application state. It will grab everything related to the app ( including the current <code>NSUserDefaults</code>) and store it in a named subfolder in your current working directory. No black magic, just lots of copying files.</p>
-
-<p>The command line interface is based on git, so to bring in the current state you run <code>chairs pull [name]</code> and to replace the state you use <code>chairs push [name]</code>. The name is just a label so you can remember which version corresponds to that musical chair. You can get a list of these by doing <code>chairs list</code>, and delete them with <code>chairs rm [name]</code>.</p>
-
-<p>Besides the core functionality, chairs has a little bit of sugar to help you with related tasks. My personal favourite is <code>chairs open</code>; this will just open the folder of the most recently used app so you can go and have a snoop around. Amazing for making sure files are where they say they are or for opening your sqlite database in <a href="http://menial.co.uk/base/">Base</a>.</p>
-
-<p>So <code>gem install chairs</code> or check out the <a href="https://github.com/orta/chairs">README</a> for some more information.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[The perils of iOS user agent strings]]></title>
-    <link href="http://artsy.github.io/blog/2012/10/18/the-perils-of-ios-user-agent-sniffing/"/>
-    <updated>2012-10-18T15:19:00-04:00</updated>
-    <id>http://artsy.github.io/blog/2012/10/18/the-perils-of-ios-user-agent-sniffing</id>
-    <content type="html"><![CDATA[<p>There is a great deal of misinformation on the web about detecting an
-iPad or an iPhone in JavaScript. The
-<a href="http://stackoverflow.com/a/4617648">top answer on stackoverflow</a> -
-and many <a href="http://www.sitepoint.com/identify-apple-iphone-ipod-ipad-visitors/">blog posts</a> using <a href="http://www.askdavetaylor.com/detect_apple_iphone_user_web_site_server.html">this technique</a> - are all incorrect.</p>
-
-<p>The conventional wisdom is that iOS devices have a user agent for
-Safari and a user agent for the UIWebView. This assumption is
-incorrect as iOS apps can and do
-<a href="http://stackoverflow.com/a/8666438">customize their user agent</a>. The
-main offender here is Facebook, whose iOS app alone accounts for about
-1-3% of Artsy's daily traffic.</p>
-
-<p>Compare these user agent strings from iOS devices:
-```</p>
-
-<h1>iOS Safari</h1>
-
-<p>iPad: Mozilla/5.0 (iPad; CPU OS 5_1 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9B176 Safari/7534.48.3
-iPhone: Mozilla/5.0 (iPhone; CPU iPhone OS 5_0 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9A334 Safari/7534.48.3</p>
-
-<h1>UIWebView</h1>
-
-<p>iPad: Mozilla/5.0 (iPad; CPU OS 5_1 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Mobile/98176
-iPhone: Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_1 like Mac OS X; en-us) AppleWebKit/532.9 (KHTML, like Gecko) Mobile/8B117</p>
-
-<h1>Facebook UIWebView</h1>
-
-<p>iPad: Mozilla/5.0 (iPad; U; CPU iPhone OS 5_1_1 like Mac OS X; en_US) AppleWebKit (KHTML, like Gecko) Mobile [FBAN/FBForIPhone;FBAV/4.1.1;FBBV/4110.0;FBDV/iPad2,1;FBMD/iPad;FBSN/iPhone OS;FBSV/5.1.1;FBSS/1; FBCR/;FBID/tablet;FBLC/en_US;FBSF/1.0]
-iPhone: Mozilla/5.0 (iPhone; U; CPU iPhone OS 5_1_1 like Mac OS X; ru_RU) AppleWebKit (KHTML, like Gecko) Mobile [FBAN/FBForIPhone;FBAV/4.1;FBBV/4100.0;FBDV/iPhone3,1;FBMD/iPhone;FBSN/iPhone OS;FBSV/5.1.1;FBSS/2; tablet;FBLC/en_US]
-```</p>
-
-<!-- more -->
-
-
-<p>The old way to identify iPhone / iPad in JavaScript:
-<code>javascript
-IS_IPAD = navigator.userAgent.match(/iPad/i) != null;
-IS_IPHONE = navigator.userAgent.match(/iPhone/i) != null) || (navigator.userAgent.match(/iPod/i) != null);
-</code></p>
-
-<p>If you were to go with this approach for detecting iPhone and iPad,
-you would end up with IS_IPHONE <em>and</em> IS_IPAD both being true if a user
-comes from Facebook on an iPad. That could create some odd behavior!</p>
-
-<p>The correct way to identify iPhone / iPad in JavaScript:
-<code>javascript
-IS_IPAD = navigator.userAgent.match(/iPad/i) != null;
-IS_IPHONE = (navigator.userAgent.match(/iPhone/i) != null) || (navigator.userAgent.match(/iPod/i) != null);
-if (IS_IPAD) {
-  IS_IPHONE = false;
+plugin 'cocoapods-keys', {
+  :project =&gt; "Eidolon",
+  :target =&gt; "Kiosk",
+  :keys =&gt; [
+    "ArtsyAPIClientSecret",
+    "ArtsyAPIClientKey",
+  ]
 }
 </code></p>
 
-<p>We simply declare <code>IS_IPHONE</code> to be <code>false</code> on iPads to cover for the
-bizarre Facebook UIWebView iPad user agent. This is one example of how
-<em>user agent sniffing is unreliable</em>. The more iOS apps that customize
-their user agent, the more issues user agent sniffing will have. If
-you can avoid user agent sniffing (hint: CSS Media Queries), DO
-IT.</p>
+<p>Before the CI runs <code>pod install</code> you will want ensure you have already set the keys to be dummy data. So in either your <code>install:</code> or <code>before_install:</code> add commands like the following:</p>
+
+<pre><code>    bundle exec pod keys set ArtsyAPIClientSecret "-" Eidolon
+    bundle exec pod keys set ArtsyAPIClientKey "-"
+</code></pre>
+
+<p>This will set up the keys beforehand with the right target name.</p>
+
+<h2>The fully featured way</h2>
+
+<p>If you need to have full access to an API with secret keys, we recommend using the CI's private environment keys feature. You can see the technique being used here in Eidolon, starting on <a href="https://github.com/artsy/eidolon/blob/master/.travis.yml#L5">line 5</a> we declare a secure environment key <code>GITHUB_API_KEY</code> in that hash. Then it is used on <a href="https://github.com/artsy/eidolon/blob/aa8e8447f797c483ff72148d124d2930b58a42e7/.travis.yml#L8">line 8</a> to set up our <code>~/.netrc</code>.</p>
+
+<p>To get started on Travis CI you will need to install the travis gem, and go through the <a href="http://docs.travis-ci.com/user/environment-variables/">Environment Variables</a> section of their documentation. Notably the <a href="http://docs.travis-ci.com/user/environment-variables/#Secure-Variables">Secure Variables</a> section. In a gist, you run <code>travis encrypt ARTSYAPICLIENTSECRET=super_secret_yo</code> and it gives you the secure string.</p>
+
+<p>You can then use the new keys in your <code>before:</code> section:</p>
+
+<pre><code>    bundle exec pod keys set ArtsyAPIClientSecret $ARTSYAPICLIENTSECRET Eidolon
+    bundle exec pod keys set ArtsyAPIClientKey $ARTSYAPICLIENTKEY
+</code></pre>
+
+<p>That's a wrap. We don't use the second technique in any OSS repos, though there is talk of doing it on our <a href="https://github.com/artsy/Artsy_Authentication/">Artsy Authentication</a> pod. So if you're in my future 👋, maybe give that a look over as an example of the latter.</p>
 ]]></content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[On Grid Thumbnails]]></title>
-    <link href="http://artsy.github.io/blog/2012/09/13/on-grid-thumbnails/"/>
-    <updated>2012-09-13T16:40:00-04:00</updated>
-    <id>http://artsy.github.io/blog/2012/09/13/on-grid-thumbnails</id>
-    <content type="html"><![CDATA[<p><img src="http://artsy.github.io/images/2012-09-13-on-grid-thumbnails/grid.jpg"></p>
+    <title type="html"><![CDATA[CocoaPods and Frameworks]]></title>
+    <link href="http://artsy.github.io/blog/2015/01/04/cocoapods-and-frameworks/"/>
+    <updated>2015-01-04T16:43:00-05:00</updated>
+    <id>http://artsy.github.io/blog/2015/01/04/cocoapods-and-frameworks</id>
+    <content type="html"><![CDATA[<p>As I mentioned in my <a href="https://artsy.github.io/blog/2014/11/13/eidolon-retrospective/">retrospective on Eidolon</a>, Artsy iOS codebases are often used as testbeds for new CocoaPods features. With Eidolon, we had the opportunity to try out CocoaPods' support for frameworks and Swift. This post is a look back at the month of using dependencies as dynamic frameworks instead of static libraries.</p>
 
-<p>Artsy Folio, our free iPad app for Gallery Partners, had been in the App Store for a couple of weeks before the iPad with a Retina display was announced. This had been something we expected internally and felt the application would be ready. We had all our image assets available in <em>@2x</em> versions and an image pipeline that would take scaling into account. With that in mind, we changed our artwork grid view to show a double resolution image. Finally, once we were happy that it worked fine on the simulator, we sent the build off to Apple for review.</p>
-
-<p>The app passed review, and was Retina-ready before the actual release. But within hours of getting our hands on a real Retina iPad, we had to pull the app. This post will explain why, and what we did to work it out.</p>
-
-<!--more-->
+<!-- more -->
 
 
-<p>Scrolling the grid view was slow. Extremely slow. The reason why wasn't obvious initially, but thanks to digging around using <a href="http://developer.apple.com/library/mac/#documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/Introduction/Introduction.html">Instruments</a>, we saw that a great deal of time was spent in Apple's image processing libraries. This was a strong hint that the problem involved taking the file and getting it to the screen.</p>
+<p>Updating was pretty easy: we used a <code>Gemfile</code> and <code>bundler</code> to specify a pre-release version of CocoaPods, as well as pre-release versions of its dependencies. (Updating now is easy – just run <code>[sudo] gem install cocoapods --prerelease</code> to grab the latest beta.)</p>
 
-<p>In our naiveté, Folio was originally using <code>UIImage</code>'s <code>initWithContentsOfFile:</code> to load (without caching) a jpg from the file system. Once the file was loaded into memory, we displayed it onscreen in an <code>UIImageView.</code> This was fast enough to deal with our small thumbnails of <em>240x240</em> but the moment that you start asking it to pull 3 or 4 <em>480x480</em> jpg files off the filesystem, decompress them and then put them on the screen, you're not going to have a smooth scroll.</p>
+<p>After updating to CocoaPods, all of our existing code had to be migrated. Previously, we could import all the frameworks we used in the bridging header and they would be accessible to all of our Swift files. <a href="https://github.com/orta/eidolon/commit/abc359c55d4322d21d88349fbd044bf5b5f04725">This commit</a> is an example of having to add <code>import Moya</code> statements all throughout our Swift files that needed to access that library.</p>
 
-<p><img src="http://artsy.github.io/images/2012-09-13-on-grid-thumbnails/thumbnails.jpg"></p>
+<p>One by one, we created podspecs for libraries we were using. Then we would push the podspecs to a fork of that library. By specifying in our Podfile which repository CocoaPods should fetch the code from, we were able to use our own podspecs without bothering the library authors themselves. Some libraries did <a href="https://github.com/Quick/Quick/pull/197">accepted pull requests</a> to add the podspecs from us.</p>
 
-<p>As we knew that we were looking at an issue with getting images from a file, it made sense to start looking at ways to move image processing off the main thread. This Stack Overflow thread on <a href="http://stackoverflow.com/questions/1815476/cgimage-uiimage-lazily-loading-on-ui-thread-causes-stutter">UIImage lazy loading</a> proved to be an essential start to dealing with our issue. We needed a thread-safe way to get the contents of a file and to pass them through once the images had been decoded. What we needed was <a href="https://gist.github.com/3715588">initImmediateLoadWithContentsOfFile</a>, a thread-safe way to go from a filepath to a <code>UIImage</code>.</p>
+<p>The final step to update was getting our tests to pass. Up to this point, we had added all of our classes to both the app target <em>and</em> the test target. The helpful upshot of this is that all of the test were able to access the Swift classes without us having had declared those classes <code>public</code>. Swift classes are <code>internal</code> by default, so separating out the app code from the test target required <a href="https://github.com/orta/eidolon/pull/4">quite a few</a> tedious changes throughout our codebase.</p>
 
-<p>Now that we had a way to get an image that was safe to go on a background thread, we gave our grid an <code>NSOperationQueue</code> and created a method to kick off a <code>NSInvocationOperation</code> with our the cell we're looking at and the address it needs to load the thumbnail.</p>
+<p><img src="/images/2015-01-04-cocoapods-and-frameworks/levelup.gif" alt="Level up." /></p>
 
-<p>``` objc
-- (void)setImageAsyncAtPath:(NSString <em>)imageAddress forGridCell:(ARImageGridViewCell </em>)cell {
-    NSDictionary <em>operationOptions = @{@"address": imageAddress, @"cell": cell};
-    NSInvocationOperation </em>operation = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(asyncLoadImage:) object:operationOptions];</p>
+<p>Eidolon is pretty distinct among iOS applications: from day one, it was developed completely in the open. Developing this kind of app in the open posed some new challenges, including limiting access to fonts for which we have licenses to use but not to distribute. Orta <a href="http://artsy.github.io/blog/2014/06/20/artsys-first-closed-source-pod/">solved this problem</a> earlier this year by having two pods: one private, and one public, but with identical header files. When installing the dependencies, CocoaPods uses one pod or the other depending on a <a href="https://github.com/artsy/eidolon/blob/4ae52f166f2d1620f25a59f36e6a87915ba32705/Podfile#L31-L35">complex heuristic</a>. However, the names of the pods are used as names for the Swift modules generated from them. Since the pods have different names, the <code>import Artsy_UIFonts</code> statements won't make sense if someone only has access to the <code>Artsy_OSSUIFonts</code> module. Swift's lack of a preprocessor led to some <a href="https://github.com/artsy/eidolon/commit/57aa66681727cfed11239f9b5a62bb59fee35f1a">hacks</a>. However, CocoaPods now allows you to specify a module name for a pod, so we'll be fixing the issue <a href="https://github.com/artsy/Artsy-OSSUIFonts/issues/1">shortly</a>.</p>
 
-<pre><code>[_operationQueue addOperation:operation];
-</code></pre>
+<p>Of course, Swift still has some rough edges, too. Namely, we can't compile our app with compiler optimizations enabled – the compiler will segfault. It turns out that one of our dependencies was causing the segfault – probably just a Swift compiler bug, but we needed a workaround until it's fixed. I got more familiar with post-install hooks when I dipped my toes into Ruby to <a href="https://github.com/ashfurrow/cocoapods-chillax-swift">disable the optimization on specific pods</a>.</p>
 
-<p>}
-```</p>
+<p>Orta used the opportunity of using a prerelease version of CocoaPods to help define the new <code>plugin</code> syntax in the <a href="https://github.com/artsy/eidolon/commit/cdc8dde011e98878a7dde646d0da75c34c8fd5a9#diff-4a25b996826623c4a3a4910f47f10c30">Podfile</a>.</p>
 
-<p>When we had the simplest implementation of <code>asyncLoadImage</code> we found that scrolling would sometimes result in grid cells displaying the wrong image. It turned out that in the time it took to decode the jpg,  the cell had already been reused for a different artwork. This one totally caught us off guard!</p>
+<p>One issue that Marius covered in the <a href="http://blog.cocoapods.org/Pod-Authors-Guide-to-CocoaPods-Frameworks/">CocoaPods blog post</a> is that of bundles. Since a framework is a separate bundle from the app (as opposed to a static library, which is in the same bundle), code that relies on <code>[NSBundle mainBundle]</code> isn't going to behave correctly in a framework. An unexpected problem we encountered related to bundles was our use of custom fonts. For Eidolon, our fonts reside in a CocoaPod and, therefore, now in a framework. That means that the font files aren't in our app's bundle anymore and <code>UIFont</code>'s <code>fontWithName:</code> wasn't finding those font files, regardless our use of the <code>UIAppFonts</code> key in any info.plist file. Borrowing a <a href="https://github.com/CocoaPods-Fonts/OpenSans/blob/874e65bc21abe54284e195484d2259b2fe858680/UIFont%2BOpenSans.m#L18-L38">solution from OpenSans</a>, we were able to use CoreText to load the font manually.</p>
 
-<p>``` objc
-- (void)asyncLoadImage:(NSDictionary <em>)options {
-    @autoreleasepool {
-        NSString </em>address = options[@"address"];
-        ARImageGridViewCell *cell = options[@"cell"];</p>
+<p>Finally, we were done.</p>
 
-<pre><code>    // don't load if it's on a different cell
-    if ([cell.imagePath isEqualToString:address]) {
-        UIImage *thumbnail = [[UIImage alloc] initImmediateLoadWithContentsOfFile:address];
+<p><img src="/images/2015-01-04-cocoapods-and-frameworks/success.gif" alt="Finally finished." /></p>
 
-        // double check that during the decoding the cell's not been re-used
-        if ([cell.imagePath isEqualToString:address] &amp;&amp; thumbnail) {
-            [cell performSelectorOnMainThread:@selector(setImage:) withObject:thumbnail waitUntilDone:NO];
-        }
+<p>Adopting CocoaPods with support for frameworks early helped us identify features and bug fixes that we could ask the CocoaPods developers for. Now, there is still time to let the team know what awesome feature you'd like to see included, but you'll have to try the fancy new CocoaPods version in order to figure out what that feature is. Sure, CocoaPods 0.36 is still in beta, but since you're already using a pre-1.0 dependency mananger, you're probably cool with trying out awesome, cutting-edge stuff. Try the new release when you get a chance and <a href="https://github.com/CocoaPods/CocoaPods/issues/new">let the team know</a> if you have feedback.</p>
+
+<p>Our path to using CocoaPods with frameworks was bumpy, but we were the first ones to try. Today, the process is a lot easier.</p>
+
+<p>The CocoaPods team has a <a href="http://blog.cocoapods.org/Pod-Authors-Guide-to-CocoaPods-Frameworks/">wonderful guide</a> for library authors to adopt the new CocoaPods version, so we'll likely see lots of new pods from open source Swift code, just like we already have with Objective-C.</p>
+
+<p>A sincere thanks to <a href="http://twitter.com/mrackwitz">Marius</a> and everyone on the CocoaPods team for their dedicated work on the support for frameworks in CocoaPods.</p>
+
+<p><img src="/images/2015-01-04-cocoapods-and-frameworks/highfive.gif" alt="Great work, team." /></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Close to the Metal: Debugging Our Hardware Problem]]></title>
+    <link href="http://artsy.github.io/blog/2014/11/18/debugging-our-hardware-problem/"/>
+    <updated>2014-11-18T08:33:00-05:00</updated>
+    <id>http://artsy.github.io/blog/2014/11/18/debugging-our-hardware-problem</id>
+    <content type="html"><![CDATA[<p>For the past few months, Artsy’s mobile team has been working on <a href="https://github.com/artsy/eidolon">Eidolon</a>, a bidding kiosk for Artsy’s auctions platform. While we’ve written a <a href="http://artsy.github.io/blog/2014/11/13/eidolon-retrospective/">retrospective</a> on the process of making Eidolon from the software side of things, we didn’t really touch on how our software is being used.</p>
+
+<!-- more -->
+
+
+<p>For typical iOS applications, you create an archive with Xcode and send it to users via the Internet. Maybe it’s an App Store release that goes to Apple before being downloaded by your users. Maybe it’s a beta release that goes to <a href="http://hockeyapp.net/">Hockey</a> before being downloaded by your users. Maybe it’s an enterprise build that goes to your own servers before being downloaded by your users. In any case, there is one thing in common: your users download the software themselves and run it on their own devices.</p>
+
+<p>Eidolon is different. We develop the software and package it using enterprise distribution and use Hockey to download it to our own iPads. These iPads are managed by the Artsy auctions team at events; they are housed in these nifty little stands which hold the iPad in place and also allow room for the credit card readers.</p>
+
+<p><img src="/images/2014-11-18-debugging-our-hardware-problem/first_auction.jpg" alt="Eidolon at our first auction" /></p>
+
+<p>At our first auction, everything went great – no major glitches or crashes. Awesome!</p>
+
+<p>A few weeks later, on the morning of our second auction, things were no so great. We were having issues with our credit card processor, <a href="https://getcardflight.com">CardFlight</a> and spent a lot of time on the phone with them sorting out the problem. As a precaution, <a href="http://twitter.com/orta">Orta</a> pulled of an extraordinary feat of engineering to produce a manual card entry interface in a matter of hours. The card processing was working, but it would’ve been better to be safe than sorry.</p>
+
+<p>That evening, the auctions team was preparing, and they discovered a problem: <em>some</em> of the Kiosks were experiencing a new problem processing cards. That was strange because earlier that day, the first issue was affecting <em>all</em> kiosks. Because we had had problems earlier that day with CardFlight, we assumed that this new problem was also on their end. We didn’t have time to debug the problem, but the event itself went fine because we had that manual entry interface. However, we definitely needed to find the cause of the problem later.</p>
+
+<p>Orta tried over the next several days to diagnose the issue, but he couldn’t reproduce it at all. Different code, different build settings, different distribution methods – nothing could reproduce the problem.</p>
+
+<p><img src="/images/2014-11-18-debugging-our-hardware-problem/desk.jpg" alt="Debugging the issue" /></p>
+
+<p>Eventually, we decided that the issue must have resolved itself somehow and hopefully wouldn’t pop up again. We simply didn’t have time to keep trying to reproduce a phantom bug.</p>
+
+<p>Fast forward to last night at the <a href="https://artsy.net/feature/ici-benefit-auction-2014">third auction</a> facilitated with Eidolon. We get there, and some of the kiosks are exhibiting the same behaviour, even though our tests earlier in the day didn’t show the problem. We tried over and over again: disassembling a problematic kiosk, discovering it worked outside the housing, then reassembling it to see it no longer working. What could the problem be?</p>
+
+<p>Well, let’s take a look at the kiosks we used last night.</p>
+
+<p><img src="/images/2014-11-18-debugging-our-hardware-problem/housing.jpg" alt="Kiosk housing" /></p>
+
+<p>Notice anything different from our first auction kiosk?</p>
+
+<p>In between the first and second auctions, the white faceplates we had ordered arrived. The auctions team put them on the Kiosks for the second auction, which is when the problem first presented. When Orta tried to reproduce the problem, the iPads he used weren’t in the housings – they were just on his desk.</p>
+
+<p>It turned out that faceplate had some foam to provide resistance against the housing to prevent them from slipping apart. Take a look and see.</p>
+
+<p><img src="/images/2014-11-18-debugging-our-hardware-problem/disassembled.jpg" alt="Kiosk disassembled" /></p>
+
+<p>When the faceplate was slid onto the housing, the foam was catching on the rubber padding of the card reader (which plugs into the headphone jack of the iPad). Sliding the faceplate onto the housing was sometimes pushing the card reader a few millimetres out of the headphone jack, causing our problem.</p>
+
+<p><img src="/images/2014-11-18-debugging-our-hardware-problem/catching.jpg" alt="The problem" /></p>
+
+<p>The solution was simple: tear off the rubber padding from the card reader and cut off some foam from the faceplate.</p>
+
+<p><img src="/images/2014-11-18-debugging-our-hardware-problem/solution.jpg" alt="Our solution" /></p>
+
+<p>After that, the faceplate would slide on without issue and all of the kiosks worked fine. It took some time to disassemble all of the kiosks, but we got it working in time for the auction. Eidolon’s third performance was a success.</p>
+
+<p>As I said earlier, Eidolon is different from typical iOS applications – our experience writing typical apps left us ill-equipped to debug what turned out to be a hardware problem. We learnt that, when reproducing bugs that only happen in production, it’s crucial to reproduce the <em>physical</em> context that the bug is occurring in as closely as possible. We also learnt that jumping to the conclusion that CardFlight was responsible for our issues was, while a natural gut reaction, deserved closer scrutiny when later trying to reproduce the problem.</p>
+
+<p>Our auctions team was happy that we solved the phantom card-swiping problem and our users were none-the-wiser to the hurried use of Allen keys backstage to disassemble and reassmble kiosks. Eidolon, the software that we had poured so much time into, was almost defeated by a errant piece of foam. But we prevailed.</p>
+
+<div style="text-align:center;">
+<a href= "http://www.thebos.co/p/XUJNAY"><img src = "http://artsy.github.io/images/2014-11-18-debugging-our-hardware-problem/success.gif"></a>
+</div>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Developing a Bidding Kiosk for iOS in Swift]]></title>
+    <link href="http://artsy.github.io/blog/2014/11/13/eidolon-retrospective/"/>
+    <updated>2014-11-13T10:00:00-05:00</updated>
+    <id>http://artsy.github.io/blog/2014/11/13/eidolon-retrospective</id>
+    <content type="html"><![CDATA[<p>In the Summer of 2014, we began developing a bidding kiosk for the Artsy auctions platform (code-named <a href="https://github.com/artsy/eidolon">Eidolon</a>). Typically, the iOS team here at Artsy worked on two main apps: a <a href="http://iphone.artsy.net">consumer-facing iPhone app</a> and an iPad app used by art galleries. For Eidolon, we followed <a href="https://artsy.github.io/blog/2012/01/29/how-art-dot-sy-uses-github-to-build-art-dot-sy/">Artsy’s standard practices</a> for building our software and use GitHub issues as our canonical source for bug reports and feature requests. Many of the components used in our apps are <a href="https://github.com/artsy">open source</a>, but the codebases themselves remain in private repositories.</p>
+
+<p>Initial planning for Eidolon began over the Summer. Our designer <a href="http://twitter.com/katarinabatina">Katarina</a> had the main features sketched out. I was scheduled to work on it at first, with <a href="http://twitter.com/orta">Orta</a> and <a href="http://twitter.com/1aurabrown">Laura</a> joining me near the end of the project. We had a rough scope: the app would be able to list artworks at an auction and allow prospective bidders to learn more about these artworks. The user would be able to register to bid and place bids using the Kiosk, including credit card processing for identity-checking.</p>
+
+<!-- more -->
+
+
+<p><img src="/images/2014-11-12-eidolon-retrospective/listings.png" alt="Finished Eidolon App" /></p>
+
+<h2>An Idea</h2>
+
+<p>Orta and I met some friends over a weekend in Austria and, during our drive across the country, discussed the possibility of developing this new iOS app as a completely open source project. We were both excited about the prospect and had the support from <a href="http://twitter.com/dblockdotorg">dB</a> to make it open. There were just some technical issues that would have to be addressed to make the Kiosk app an open source reality. For example, how would we restrict access to the app’s API keys? Developing Eidolon in the open would let us share what we've learned, a value at Artsy, and also allow us to easily ask for help from the community.</p>
+
+<p>We were also together in San Francisco for Apple’s announcement of Swift. Following the announcement, there were lots of small pieces of source code published on the Internet that demonstrated some of Swift’s new features, but a large project didn't really exist to show how iOS apps written in Swift don’t have to be moulded by outdated Objective-C traditions.</p>
+
+<p>I wanted to write this app in Swift. After speaking with Orta, he said that as long as we could meet the deadlines, that would be okay. (Since this app uses enterprise distribution instead of the App Store, using beta versions of Xcode wouldn’t be a problem.)</p>
+
+<p>More than just an app written in Swift, I wanted to build this app with functional reactive programming principles in mind. We would be using ReactiveCocoa any place that it made sense. While I had begun using it in our consumer iPhone app, it was mostly replacements of KVO code. This would be a fully “functionally reactive” app, a first for Orta and Laura.</p>
+
+<p>So to summarize: our team embarked on a brand new project, developed in the open, using a new and incomplete language, built using a non-standard approach to functional programming, and using beta versions of Xcode. It was ambitious, but we were excited by the prospect of learning new things. I believed then, and do now, that Swift is the future of iOS development, and we love to be on the cutting edge (Artsy’s iOS apps are often testbeds for new CocoaPods features). There’s also an incredible demand for sample code written in Swift, so having a complete codebase written in Swift early in the language’s lifetime would be a significant contribution to the open source community.</p>
+
+<h2>Getting Started</h2>
+
+<p>The first steps were trivial. We examined our existing approach to iOS development and decided what techniques would be appropriate to use on this new project. Then, we identified tools that we needed to use those techniques. In some cases, existing tools needed to be modified to suit our needs. In other cases, the tools didn’t exist at all and we had to invent them.</p>
+
+<p>Shortly after Swift’s announcement, <a href="http://twitter.com/modocache">Brian Gesiak</a> began work on <a href="https://github.com/Quick/Quick">Quick</a> and <a href="https://github.com/Quick/Nimble">Nimble</a>, a Swift-based testing framework and matchers framework, respectively. We would be able to continue using rspec-like syntax for our unit tests – awesome.</p>
+
+<p>We use continuous integration on our other iOS projects and wanted to do the same for Eidolon. However, our usual CI provider, <a href="https://travis-ci.org">Travis</a>, has historically not supported beta versions of Xcode – our only choice for CI would be Jenkins. With a basic Swift Xcode project in hand, Orta set up Jenkins on a Mac Mini in the Artsy office. This didn’t meet our needs for a few reasons. Primarily, getting the build to work from a command line was difficult with Swift and Xcode 6 – Orta spent quite some time getting it configured. However, we all sorely missed some of the great integrations that Travis provides, particularly with GitHub. During development, we technically did have continuous integration, but it wasn’t leveraged to nearly the degree that it could or should have been.</p>
+
+<p>A large portion of our tests on our other iOS apps rely on <a href="https://github.com/facebook/ios-snapshot-test-case">snapshot tests</a> and we use a <a href="https://github.com/dblock/ios-snapshot-test-case-expecta">set of Expecta matchers for Specta</a> that DB wrote. However, we weren’t using Specta for Eidolon and the matchers we were using wouldn’t work, so I <a href="https://github.com/AshFurrow/Nimble-Snapshots">wrote some new ones</a>. This was great from my perspective, since I didn’t really understand how the under-the-hood of a unit testing framework worked until I wrote the new matchers. It’s been fun and educational to see Quick and Nimble grow as projects. As an early adopter, the Artsy iOS team has been able to provide feedback on its development. This has hopefully helped Quick and Nimble grow in ways that benefitted from real-world use, but by contributing to the project, it also helped us get features we needed faster (you can insert either a “quick” or “swift” pun here as you wish).</p>
+
+<p><img src="/images/2014-11-12-eidolon-retrospective/polaroid.gif" alt="*click*" /></p>
+
+<p>As I neared the beginning of development work on Eidolon, Orta and I discussed how we would want our networking layer to operate. One our our <a href="https://github.com/artsy/eidolon/issues/9">first GitHub issues</a> enumerated the desired features of our new network layer. In summary:</p>
+
+<ul>
+<li>Make it easy to run the app offline</li>
+<li>Treat stubs as a first class citizens</li>
+<li>Allow tests to state that only networking request X is allowed during this test run</li>
+<li>Keep track of current requests and don't support dupes</li>
+</ul>
+
+
+<p>These features grew mainly out of frustrations with our ad hoc approach to network testing on our other projects: some tests would rely on stubbed models with populated data while other tests would rely on <a href="https://github.com/AliSoftware/OHHTTPStubs">stubbed network responses</a>.</p>
+
+<p>The result of these conversations was <a href="https://github.com/AshFurrow/Moya">Moya</a>, a networking library that takes advantage of some really cool features in Swift. With some <a href="http://chris.eidhof.nl/posts/typesafe-url-routes-in-swift.html">help from Chris Eidhof</a>, we were able to write a functional-esque network abstraction library on top of <a href="https://github.com/Alamofire/Alamofire">Alamofire</a> that provided compile-time checking for API endpoints. I even wrote an optional ReactiveCocoa-based interface for Moya. This interface does not accept callback closures; instead, it returns a <em>signal</em> that represents the network request. Following <a href="https://github.com/ReactiveCocoa/ReactiveCocoa/blob/4403d84348b30f5ffa05dfcd6317b14e0efecc62/Documentation/FrameworkOverview.md#connections">ReactiveCocoa best-practices</a>, this signal is <em>cold</em>, meaning that until someone subscribes to it (that is, registers their interest in the network request), the request is not fetched. We were even able to write a check for duplicate, in-flight requests and return existing signals.</p>
+
+<p>Combined with the optional ReactiveCocoa extensions, Moya succeeded in addressing all of our needs for Eidolon’s network layer. Additionally, as each project matured, the needs of a full app informed the design and development of Moya.</p>
+
+<p>One final component that had to be addressed before main development could get underway was the issue of API keys. We wanted to have our app accessible to anyone who was interested in it, but limit access to our API keys. Keeping keys secure when they are stored near source code is closely related to the problem of keeping keys secure once an app is compiled. To <a href="http://www.quora.com/How-were-the-Twitter-iPhone-and-Android-OAuth-keys-leaked">quote John Adams</a>, a member of the Twitter Security Team:</p>
+
+<blockquote><p>Putting this in the context of, "should you be storing keys in software", is more appropriate. Many companies do this. It's never a good idea.</p></blockquote>
+
+<p>Over the course of a few weeks, Orta solicited some help from CocoaPods contributor <a href="http://twitter.com/segiddins">Samuel Giddins</a> to create <a href="https://github.com/orta/cocoapods-keys">cocoapods-keys</a>. This project is a <a href="http://cocoapods.org">CocoaPods</a> plugin that stores the <em>names</em> of the keys you want to use in a plaintext file in your <code>~/.cocoapods</code> directory. The <em>values</em> of the keys with matching names are stored securely in your OS X keychain. Whenever you run <code>pod install</code>, this plugin generates an obfuscated <code>char</code> array with all of your applications keys mixed up with some other random data. The keys are only un-scrambled at runtime, and the file is ignored by git. Every developer on our team has their own API keys that are stored in their OS X keychains, far away from any git repository. While using this technique by no means guarantees the security of your API keys (a dedicated hacker with a debugger attached to your running app would still be able to retrieve your keys), it’s better than nothing.</p>
+
+<p>We began main work on the project. Orta and I divided the app into two pieces: auction listings and bid fulfillment. We created two separate storyboards that would each encapsulate one of these app components. Orta took fulfillment and I took listings – over the course of Eidolon’s development, we had very few merge conflicts.</p>
+
+<p>We used <a href="https://github.com/paulsamuels/SBConstants">SBConstants</a> to have compile-time safety when referring to storyboard identifiers and we used Swift’s operator overloading to make using these constants <a href="https://github.com/artsy/eidolon/blob/a96763b7ccee9cd35c30079ff4044779d30e999a/Kiosk/App/UIStoryboardSegueExtensions.swift">really easy</a>. For example:</p>
+
+<pre><code>override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    if segue == .LoadAdminWebViewController {
+        // code goes here
     }
 }
 </code></pre>
 
-<p>}
-```</p>
+<p>A component that I had not developed before was an admin panel that Orta made. This panel is accessible via a hard-to-accidentally-invoke gesture within the app and is protected by a password to prevent users from accidentally accessing it. The admin panel lets you change core behaviours of the app without recompiling it. For example, the panel is used to change between production and staging.</p>
 
-<p>This meant we could have our UI thread dealing with scrolling, whilst <a href="https://developer.apple.com/technologies/mac/core.html">Grand Central Dispatch</a> would deal with ensuring the image processing was done asynchronously and as fast as possible.However, this still wasn't enough. We were finding if you scrolled fast enough, you could still see images pop in after the grid cell was visible. For this, we actually went back to the beginning, and made our image pipeline create a <em>120x120</em> thumbnail for each artwork that we use <code>initImmediateLoadWithContentsOfFile</code> to load on the UI thread. This is fast enough to smoothly scroll, and is replaced by the higher resolution image practically instantly.</p>
+<p><img src="/images/2014-11-12-eidolon-retrospective/admin.png" alt="Admin Panel" /></p>
 
-<p><img src="http://artsy.github.io/images/2012-09-13-on-grid-thumbnails/hover-thumbnails.jpg"></p>
+<p>Speaking of production and staging, to prevent developers from accidentally placing bids on production and to prevent live users from inadvertently using the staging servers, Orta made a simple badge that would let you know if you were on staging. If you were running in the simulator, it would also alert you if you were running on production. This was great, but wouldn’t prevent someone from accidentally placing bids on the production server while testing on a device. <a href="https://github.com/artsy/eidolon/blob/9181be833459307bb749df2264b3d339b371ee59/Kiosk/Auction%20Listings/ListingsViewController.swift#L157-L169">Our solution</a> was to check your current wifi network name. If it looks like you’re at the Artsy offices, then the production flag is shown, even on a device.</p>
 
-<p>The rest of the story is pretty straightforward. We wrapped all this up within a few days and got out a version of Folio for the Retina iPad, I ended up doing a talk about the issues involved in doing this in <a href="http://lsx.co/lsxcafe/">Leeds LSxCafé</a>, and you got a blog post out of it.</p>
+<p>So we’ve got the scaffolding for a great app and it was time to really begin development. Using ReactiveCocoa, we were able to make our <a href="http://artsy.github.io/blog/2014/09/22/transparent-prerequisite-network-requests/">XApp authentication transparent</a>. Functional reactive programming had other great benefits, like <a href="https://github.com/artsy/eidolon/blob/9181be833459307bb749df2264b3d339b371ee59/Kiosk/Auction%20Listings/ListingsViewController.swift#L87-L137">scheduling automated refreshes</a> of auction listings. We may have <a href="https://github.com/artsy/eidolon/blob/9181be833459307bb749df2264b3d339b371ee59/Kiosk/Auction%20Listings/ListingsViewController.swift#L48-L68">gone overboard</a> in one instance (cleaning that up is on my todo list), but ReactiveCocoa has made modelling complex behaviour of Eidolon relatively easy.</p>
+
+<p>Of course, learning how to ReactiveCocoa is no easy feat. At this point, Orta and Laura were both working on Eidolon. There were many conversations in our Slack chatroom about how to approach problem-solving the ReactiveCocoa way and, with some time, they both became proficient at creating and manipulating signals. Sweet.</p>
+
+<p>I’ve often been asked by people who want to use ReactiveCocoa about how to get their team up to speed; until recently, I didn’t have an answer. Now that I’ve done it, I can say that the most important thing is that you realize that you’re going to be responsible for this decision. If another developer needs help using ReactiveCocoa, you’ll be the one that helps them, so take that into consideration when scheduling your work. There were also several occasions where I didn’t know the answers to the questions Orta and Laura had, but the ReactiveCocoa community was there to support us.</p>
+
+<p><img src="/images/2014-11-12-eidolon-retrospective/clap.gif" alt="Finished Eidolon App" /></p>
+
+<p>So what about Swift? I mean, there are other apps out there for iOS 8 and other apps that use ReactiveCocoa – how did we find Swift?</p>
+
+<p>Well, at first it was great. We took our own approach to it, trying out new language features that were unavailable to us in Objective-C. We even did away with the usual comment header that Xcode includes in newly created files – what is that even for?</p>
+
+<p>Progress was slow at first, but Orta and I (Laura was not yet on the project) assumed that was due to our unfamiliarity with the language. Eventually, we became relatively proficient, but our progress was still really slow. Why?</p>
+
+<p>However ready you think the Swift language is (and however much you believe <a href="http://www.apple.com/swift/">Apple’s PR</a> about the language), the reality is that the tools necessary to use Swift are far from ready. During the Xcode 6 betas, we stayed up-to-date in the hopes that newer versions of Xcode would fix our problems. However, after the GMs were released, it became apparent that these problems would just be a reality of working in Swift.</p>
+
+<p>What kind of problems? Certainly there were Xcode crashes, but those were mostly fixed by beta 5. Building the app with enterprise distribution certificates cost us a few days of headaches, sure. And we still can’t compile the app with compiler optimizations without causing a segfault. But what really became the bane of our existence were SourceKit crashes.</p>
+
+<p><img src="/images/2014-11-12-eidolon-retrospective/crash.gif" alt="SourceKit Crash" /></p>
+
+<p>When SourceKit crashes, you temporarily lose autocomplete, syntax highlighting, and the behaviour of the text editor’s shortcut keys changes dramatically. The larger your project, the more often SourceKit crashes. These crashes can last anywhere from a split second to ten seconds or more and can be alleviated using an array of cargo-cult techniques such as:</p>
+
+<ul>
+<li>deleting your derived data folder</li>
+<li>restarting Xcode</li>
+<li>restarting your computer</li>
+<li>restarting the project from scratch using Objective-C</li>
+</ul>
+
+
+<p>It’s really too bad. I’ve been asking for a <a href="http://ashfurrow.com/blog/we-need-to-replace-objective-c/">replacement to Objective-C</a> for a while and, when Swift was announced, I was ecstatic. However, based on our experience using Swift in a full production app, it is our conclusion that Swift is not yet ready for use in production apps unless you are willing to take on unknown risks and delays. As much as I <em>want</em> to like Swift, I can’t make the recommendation that you should use it, even if that’s what I’d like to say. I think that Steve Streza put it best:</p>
+
+<blockquote class="twitter-tweet" lang="en"><p>Objective-C in the streets, Swift in the sheets.</p>&mdash; Steve Streza (@SteveStreza) <a href="https://twitter.com/SteveStreza/status/474069822808915968">June 4, 2014</a></blockquote>
+
+
+<p> <script async src="http://artsy.github.io//platform.twitter.com/widgets.js" charset="utf-8"></script></p>
+
+<p>As we neared our deadline, we realized that we probably weren’t going to make it. This was despite Katarina dropping some features from the “must-have” list. Orta sent out an email to the auctions team letting them know the bad news and we looked at alternatives; none of them suited us. Through some late nights and weekends, and a lot of coffee and tea, the three of us were able to complete the project with only a few hours to spare. It was a herculean effort and I’m incredibly proud to have worked with Orta and Laura to make it a success.</p>
+
+<p>The launch went fairly smoothly, with Orta on-site to assist if necessary. The auction attendees found the software easy to use – one even said that the app made bidding “too easy”, which we are incredibly proud of.</p>
+
+<p><img src="/images/2014-11-12-eidolon-retrospective/launch.jpg" alt="Finished Eidolon App" /></p>
+
+<p>However, this successful launch came at a cost. It was only through some very long hours and a disregard for code longevity that we were able to complete the project on time. Ignoring unit tests was fine at the time, but we now have significant technical debt that we’ll be spending the next few weeks repaying.</p>
+
+<h2>Lessons Learned</h2>
+
+<p>It is completely possible to write an open source iOS application, though we did have to create some tools to help us along the way. These tools are now available for everyone to use, so you should consider opening your next project from the start. We’ve adopted an “open by default” approach where we only keep things closed when we have to, like with our fonts which have restrictive licenses. If your next app isn’t a core part of what makes you you, consider having a conversation about the pros and cons of making it open source.</p>
+
+<p>ReactiveCocoa is <em>really</em> great at networking. It forced us to use some good abstractions that we might have otherwise cut corners on. Orta describes complex signal mapping to be “too magic.” For example, you can probably figure out what the following line of code does:</p>
+
+<pre><code>RAC(self, "artworks") &lt;~ XAppRequest(.Artworks(auctionID)).filterSuccessfulStatusCodes().mapJSON().catch { (error) -&gt; RACSignal! in
+    println("Error: \(error)")
+    return RACSignal.empty()
+}
+</code></pre>
+
+<p>Grab some artworks with the auction ID, filter out non-successful status codes, turn the data into JSON, and if anything goes wrong with any of that, log the error and ignore the results. Then bind the result of that operation to the <code>artworks</code> property of <code>self</code>. Nice and easy.</p>
+
+<p>We discovered, as I mentioned earlier, that Swift just isn’t ready for primetime yet. I want it to be, but it was probably a mistake to write the app in Swift. By our projections, it took us about four times longer than we had anticipated to complete the project (in terms of person-hours worked). A lot of that is admittedly due to our own faulty estimates, but a lot more of it is attributable to Swift’s immaturity. In future projects, we’re going to be more mindful about estimation.</p>
+
+<h2>So What Now?</h2>
+
+<p>Swift isn’t ready yet, but we already have an app written in Swift, so what do we do? We could rewrite the whole app in Objective-C, but that would represent a substantial effort with very little reward, considering that the tools surrounding Swift are expected to improve over the coming months and years. We could shift away from Swift, writing all new code in Objective-C, but a lot of the app relies on existing Swift idioms, like Moya’s compile-time safety of API endpoint checking.</p>
+
+<p>So we’re pretty much stuck with Swift, as much as you can be “stuck” with a totally <em>awesome</em> language that just needs some more time to have a mature ecosystem of tools. Swift does, after all, address most of my concerns with Objective-C. It has a lot of features that made developing Eidolon a joy. I’m impressed with what Apple’s made so far, but I’m eagerly waiting for Xcode 6.2 and beyond.</p>
+
+<p>On our other iOS projects, we’ll stick with Objective-C for now, but we’re starting to have conversations around what would be necessary to move to developing those in the open, too. In that respect, Eidolon has been an unqualified success.</p>
+
+<p><img src="/images/2014-11-12-eidolon-retrospective/success.jpg" alt="Success" /></p>
 ]]></content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[On Our Objective-C Code Standards]]></title>
-    <link href="http://artsy.github.io/blog/2012/08/14/on-objective-c-code-standards/"/>
-    <updated>2012-08-14T14:23:00-04:00</updated>
-    <id>http://artsy.github.io/blog/2012/08/14/on-objective-c-code-standards</id>
-    <content type="html"><![CDATA[<p>With the release of Xcode 4.4 I've taken a look back at our existing code standards and tried to come up with something that is cleaner and more elegant. Here are a few of the ideas I've been using to modernize the codebase.</p>
+    <title type="html"><![CDATA[Transparent Prerequisite Network Requests with Swift and ReactiveCocoa]]></title>
+    <link href="http://artsy.github.io/blog/2014/09/22/transparent-prerequisite-network-requests/"/>
+    <updated>2014-09-22T11:26:00-04:00</updated>
+    <id>http://artsy.github.io/blog/2014/09/22/transparent-prerequisite-network-requests</id>
+    <content type="html"><![CDATA[<p>Artsy's <a href="http://developers.artsy.net">API</a> requires something called an <a href="https://developers.artsy.net/docs/authentication">XApp
+token</a> in order to perform
+requests. The token comes back with an expiry date, after which the token will
+no longer work. A new token will have to be fetched.</p>
 
-<h3>Remove private method declarations and use class extensions to add ivars.</h3>
+<p><code>json
+{
+    "xapp_token": "SOME_TOKEN",
+    "expires_in":"2014-09-19T12:22:21.570Z"
+}
+</code></p>
 
-<p>First to get chopped by the deletion button are private method declarations. After Xcode 4.2 came out we took to using the class extension feature to add private method declarations at the top of implementation files. This was a nice way of keeping private methods out of the header files. Now that the compiler will check for pre-existing method signatures within the same object there's no need to define their interfaces.</p>
+<p>In our previous iOS apps, tragically written in Objective-C, we have a lot of
+code that looks like the following. <code>getXappTokenWithCompletion:</code> checks to
+make sure that there is a valid token. If there is, it invokes the completion
+block immediately. Otherwise, it fetches a token, sets it in a static variable,
+and then invokes the completion block.</p>
 
-<!--more-->
+<p><code>objc
+[ArtsyAPI getXappTokenWithCompletion:^(NSString *xappToken, NSDate *expirationDate) {
+    [ArtsyAPI getSomething:^(NSDictionary *results) {
+       // do something
+    } failure:^(NSError *error) {
+        // handle herror
+    }];
+}];
+</code></p>
+
+<p>That's kind of ugly. A better approach might be to embed the token-requesting
+logic within the <code>getSomething:</code> method. But that kind of sucks, since we'd have
+to reproduce that logic for <em>every</em> network-accessing method. If we have ten
+methods, that's ten times we need to duplicate that logic.</p>
+
+<p>With our <a href="https://github.com/artsy/eidolon">new app</a> (written in Swift), we're
+using a network abstraction layer we've created called <a href="https://github.com/AshFurrow/Moya">Moya</a>.
+Moya sits on top of <a href="https://github.com/Alamofire/Alamofire">Alamofire</a> and
+provides an abstraction for API endpoints. Instead of having ten different
+network-accessing methods, there is only <em>one</em> method to which you pass one of
+the ten different possible <code>enum</code> values. This means you have compile-time
+safety in your networking code, but that's not really what we're here to talk
+about.</p>
+
+<!-- more -->
 
 
-<p>Occasionally it's necessary for subclass to know about private methods defined by its superclass, so we use a shared category to let them know what they respond to. Like Apple, we also quit using <code>@private</code> in header files.</p>
+<p>Moya has this cool last-minute closure that it invokes to sign requests, so we
+can sign these requests like this.</p>
 
-<p>Ivars now should go in class extensions, and be prefixed by an underscore. Apple advises that you don't use method names with underscores but encourage underscored variable names. This also can free up method parameters from having ugly names such as anArtwork or aString.</p>
+<pre><code>var endpointsClosure = { (target: ArtsyAPI, method: Moya.Method, parameters: [String: AnyObject]) -&gt; Endpoint&lt;ArtsyAPI&gt; in
+        let endpoint: Endpoint&lt;ArtsyAPI&gt; = Endpoint&lt;ArtsyAPI&gt;(URL: url(target), sampleResponse: .Success(200, target.sampleData), method: method, parameters: parameters)
 
-<h3>Use object literals when possible.</h3>
+        // Sign all non-XApp token requests
+        switch target {
+        case .XApp:
+            return endpoint
+        default:
+            return endpoint.endpointByAddingHTTPHeaderFields(["X-Xapp-Token": /* global XApp token */])
+        }
+    }
+</code></pre>
 
-<p>Object literals are ways of adding syntacitcal sugar to the Objective-C language, they let you access keys and values easily on <code>NSDictionary</code>s and objects in <code>NSArray</code>s. There's no reason to not be using them if you're supporting iOS 4 and above. It's simple a matter of <code>_artworks[2]</code> vs <code>[_artworks objectAtIndex:2]</code>.</p>
+<p>So that's kind of cool.</p>
 
-<h3>Dot syntax is OK for non-properties.</h3>
+<p>Since there is only <em>one</em> method for accessing the API, we can easily inject
+the token-checking method there. Something like</p>
 
-<p>OK so, I admit it. I whined when properties came out. It was back in 2007 and the Objective-C was ranked 40th in the world, it's now ranked <a href="http://www.tiobe.com/index.php/paperinfo/tpci/Objective-C.html">3nd most popular programming language.</a> Within timeframe, my opinion on the subject of properties changed also.</p>
+<pre><code>public func XAppRequest(token: ArtsyAPI, completion: MoyaCompletion) {
+    if /* token is valid */ {
+        moyaProvider.sharedProvider.request(token, completion: completion)
+    } else {
+        moyaProvider.request(ArtsyAPI.XApp, completion: { (data, statusCode, error) -&gt; () in
+            /* store token somewhere */
+            moyaProvider.sharedProvider.request(token, completion: completion)
+        })
+    }
+}
+</code></pre>
 
-<p>Originally when properties came out they exclusively were given the right to use dot notation on objects. This makes sense as they were created to provide public access to ivars which normally you can only access internally using the dot notation. With Xcode 4.3, that also changed. Now, if a method doesn't have any arguments it can be called using dot notation. I'm in favour of using this. For me a good rule of thumb has been if a method returns something, dot notation is OK. For example, <code>_artworksArray.count</code> is fine whilst <code>_parsingOperation.stop</code> isn't.</p>
+<p>That's <em>better</em>, but it's still kind of ugly. We've got duplicated code in
+there, and we're just kind of abstracting away the callback mess; it still
+exists, we just don't see if as often.</p>
 
-<h3>Keep external code out of your project.</h3>
+<p>OK, so what alternative is there? Well, Moya supports a <a href="https://github.com/ReactiveCocoa/ReactiveCocoa">ReactiveCocoa</a>
+extension that uses <em>signals</em> instead of callback closures. Super-cool. So we
+can rewrite our <code>XAppRequest</code> function to be the following.</p>
 
-<p>External, or vendored code should be kept out of the main body of your code. You can use CocoaPods to keep all that code in check and up-to-date. CocoaPods is a project that aims to be what bundler does for ruby projects, or npm for node. It will deal with your dependancies whilst you can concentrate on your own code. It will create a seperate Xcode project that handles all you dependancies leaving your project only as your own code.</p>
+<pre><code>private func XAppTokenRequest() -&gt; RACSignal {
+    let newTokenSignal = moyaProvider.request(ArtsyAPI.XApp).filterSuccessfulStatusCodes().mapJSON().doNext({ (response) -&gt; Void in
+        /* store new token globally */
+    }).logError().ignoreValues()
 
-<h3>Use umbrella imports.</h3>
+    let validTokenSignal = RACSignal.`return`(/* does the token exist and is valid? */)
+    return RACSignal.`if`(validTokenSignal, then: RACSignal.empty(), `else`: newTokenSignal)
+}
 
-<p>To try and keep the amount of noise we have at the top of our implementation files we have started to reduce the number of <code>#import "ARModel.h"</code> lines we use. By creating a <code>Models.h</code> file and having that include all the models it means we can still have a look through the <code>#imports</code> at the top to get an idea of the connections between the objects as that will only show the important imports. These can optionally be moved into your precompiled header files.</p>
+public func XAppRequest(token: ArtsyAPI) -&gt; RACSignal {
+    return XAppTokenRequest().then({ () -&gt; RACSignal! in
+        return moyaProvider.request(token, method: method, parameters: parameters)
+    })
+}
+</code></pre>
 
-<h3>Keep your code clean.</h3>
+<p>Neato. So we have abstracted the "check if there is a valid token and get one if
+there isn't" into its own private method called <code>XAppTokenRequest</code>. If the token
+exists and is valid, then the function returns <code>RACSignal.empty()</code>, a signal
+which completes immediately. Otherwise, we perform a fetch, which completes
+when the XApp token request is finished.</p>
 
-<p>Whitespace can and does slowly accumulate at the line-endings of your code. You should make sure that the new preference for automatically trimming whitespace is turned on in the text editing section of Xcode's preferences.</p>
+<p>Then we just need to use <code>then</code> on <code>RACSignal</code> to create a new signal that is
+generated once the <code>XAppTokenRequest</code> signal completes. Since the <code>then</code> closure
+is only invoked once the <code>XAppTokenRequest</code> signal completes, the newly created
+request signal will be generated after the token is set, which is ideal.</p>
 
-<h3>IBOutlets should probably go in your class extensions.</h3>
+<p>All the code above is kind of simplified. That's OK, since it's just a proof of
+concept. If you want the full code, it's all available <a href="https://github.com/artsy/eidolon/blob/1804044dfa8b22d9f765a621a5dbde357440146c/Kiosk/App/ArtsyAPI.swift#L87-L112">on GitHub</a>
+and the conversation surrounding this change is in a <a href="https://github.com/artsy/eidolon/pull/29">merged pull request</a>.</p>
 
-<p>With modern versions of Xcode, it doesn't matter that your IBOutlets are defined in places other than in headers. As Objective-C developers, we've come a long way from having to repeatedly drag a .h from Xcode to Interface Builder, so maybe it's time to rethink the idea that our interface outlets should be publicly accessible. My opinion is that a controller's views are for the most part a private affair and that if you want to expose their functionality you do it through custom methods in the controller. There are some downsides to this, in that  initially you have to change to the implementation file when using hybrid view when connecting them.</p>
-
-<p>These decisions have come from internal discussions and from watching many WWDC sessions on the topic. We highly recommend watching the following <a href="https://developer.apple.com/wwdc/">WWDC sessions</a>.</p>
-
-<p>  <a href="https://developer.apple.com/videos/wwdc/2011/">WWDC 2011</a>: 105 Polishing Your App, 112 Writing Easy To Change Code and 322 - Objective-C Advancements in Depth.</p>
-
-<p>  <a href="https://developer.apple.com/videos/wwdc/2012/">WWDC 2012</a>: 405 Modern Objective-C and 413 Migrating to Modern Objective-C</p>
+<p>If you have run into this problem and have a different solution, we'd love to
+hear from you.</p>
 ]]></content>
   </entry>
   
