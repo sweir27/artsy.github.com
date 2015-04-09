@@ -9,7 +9,7 @@
   <meta name="author" content="Artsy">
 
   
-  <meta name="description" content="Whatever you have against monolithic architectures, at least they&#8217;re easy to test. And when those tests succeed, you can be reasonably &hellip;">
+  <meta name="description" content="I&#8217;m the kind of guy who thinks better tooling means better outcomes. But when good tooling isn&#8217;t available, it&#8217;s time to build it &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -79,6 +79,90 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+    <a href="/blog/2014/06/17/building-the-xcode-plugin-snapshots/">
+      <div class="date">
+
+
+
+
+  
+<time datetime="2014-06-17T10:50:00-04:00" pubdate>06/17/14</time></div>
+    
+    
+      <h1 class="entry-title">Building the Xcode Plugin Snapshots</h1>
+
+    
+    </a>
+    
+      <p class="meta">
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&#8217;m the kind of guy who thinks better tooling means better outcomes. But when good tooling isn&#8217;t available, it&#8217;s time to build it yourself. It&#8217;s this attitude that lead to my work on <a href="http://cocoadocs.org">CocoaDocs.org</a>, and then to <a href="http://cocoapods.org">CocoaPods.org</a> &amp; its documentation.</p>
+
+<p>We&#8217;ve been trying to apply this to testing, and in order to pull this off I&#8217;ve had to extend Xcode to show off the results of failing tests in a more visual way. To that end, I&#8217;ve extended Xcode to show the results of failing <a href="https://github.com/facebook/ios-snapshot-test-case">view tests</a> in a more visual way by building <a href="https://github.com/orta/snapshots">Snapshots for Xcode</a>.  Let&#8217;s go through the process of building an Xcode plugin so you can do this too. Screw stability.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/06/17/building-the-xcode-plugin-snapshots/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+    <a href="/blog/2014/06/11/testing-core-data-migrations/">
+      <div class="date">
+
+
+
+
+  
+<time datetime="2014-06-11T10:50:00-04:00" pubdate>06/11/14</time></div>
+    
+    
+      <h1 class="entry-title">Testing Core Data Migrations</h1>
+
+    
+    </a>
+    
+      <p class="meta">
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>The first time I released a patch release for <a href="http://orta.github.io/#folio-header-unit">Artsy Folio</a> it crashed instantly, on every install. Turns out I didn&#8217;t understand Core Data migrations, now a few years on I grok it better but I&#8217;ve still lived with the memories of that dark dark day. Because of this I&#8217;ve had an informal rule of testing migrations with all the old build of Folio <a href="http://artsy.github.io/blog/2013/03/29/musical-chairs/">using chairs</a> the day before submitting to the app store.</p>
+
+<p>This time round, I&#8217;ve made vast changes to the Core Data models but skipped the manual work. Here&#8217;s how:</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/06/11/testing-core-data-migrations/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -439,100 +523,6 @@ scientists</a> by Simon Parsons (CUNY), Juan A. Rodriguez-Aguilar (CSIC) and Mar
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-    <a href="/blog/2014/01/30/isolating-spurious-and-nondeterministic-tests/">
-      <div class="date">
-
-
-
-
-  
-<time datetime="2014-01-30T14:42:00-05:00" pubdate>01/30/14</time></div>
-    
-    
-      <h1 class="entry-title">Isolating Spurious and Nondeterministic Tests</h1>
-
-    
-    </a>
-    
-      <p class="meta">
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Testing is a critical part of our workflow at <a href="https://artsy.net">Artsy</a>. It gives us confidence to make regular, aggressive enhancements. But anyone who has worked with a large, complex test suite has struggled with occasional failures that are difficult to reproduce or fix.</p>
-
-<p>These failures might be due to slight timing differences or lack of proper isolation between tests. Integration tests are particularly thorny, since problems can originate not only in application code, but in the browser, testing tools (e.g., <a href="http://docs.seleniumhq.org/">Selenium</a>), database, network, or external APIs and dependencies.</p>
-
-<h2>The Quarantine</h2>
-
-<p>We&#8217;ve been <a href="http://artsy.github.io/blog/2012/05/15/how-to-organize-over-3000-rspec-specs-and-retry-test-failures/">automatically retrying failed tests</a>, with some success. However, these problems tend to get worse. (If you have 10 tests that each have a 1% chance of failing, roughly 1 in 10 builds will fail. If you have 50, 4 in 10 builds will fail.)</p>
-
-<p>Martin Fowler offers the most compelling thoughts on this topic in <a href="http://martinfowler.com/articles/nonDeterminism.html">Eradicating Non-Determinism in Tests</a>. (Read it, really.) He suggests quarantining problematic tests in a separate suite, so they don&#8217;t block the build pipeline.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/01/30/isolating-spurious-and-nondeterministic-tests/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-    <a href="/blog/2013/11/30/rendering-on-the-server-and-client-in-node-dot-js/">
-      <div class="date">
-
-
-
-
-  
-<time datetime="2013-11-30T22:38:00-05:00" pubdate>11/30/13</time></div>
-    
-    
-      <h1 class="entry-title">Rendering on the Server and Client in Node.js</h1>
-
-    
-    </a>
-    
-      <p class="meta">
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><img src="/images/2013-12-18-rendering-on-the-server-and-client-in-node-dot-js/isomorphic.png" alt="Diagram of Shared Server/Client Architecture" /></p>
-
-<p>At Artsy we&#8217;ve been building <a href="http://nodejs.org/">Node.js</a> applications that share code and rendering between the server and browser. We&#8217;ve seen many benefits from this &#8211; pages load faster, we can optimize SEO, developers are more productive, and JavaScript coding is just an overall better experience.</p>
-
-<p>Today we&#8217;re happy to announce <a href="http://ezeljs.com/">Ezel</a>, our open source boilerplate we use to bootstrap our Node projects and the <a href="https://github.com/artsy/benv">various</a> <a href="https://github.com/artsy/backbone-super-sync">node</a> <a href="https://github.com/artsy/sharify">modules</a> that built up to it.</p>
-
-<p>In his article, <a href="http://nerds.airbnb.com/isomorphic-JavaScript-future-web-apps/"><em>Isomorphic JavaScript: The Future of Web Apps</em></a>, Spike Brehm from AirBnB describes this growing trend well and we&#8217;re excited to be a part of it. In this article I&#8217;ll tell Artsy&#8217;s story of moving from a single monolithic application to modular <a href="http://backbonejs.org/">Backbone</a> apps that run in Node and the browser and consume our external API.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2013/11/30/rendering-on-the-server-and-client-in-node-dot-js/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/4/">&larr; Older</a>
@@ -565,19 +555,19 @@ scientists</a> by Simon Parsons (CUNY), Juan A. Rodriguez-Aguilar (CSIC) and Mar
       </li>
     
       <li class="post">
+        <a href="/blog/2015/04/03/artsy-engineering-compensation-framework/">Artsy's Engineering Compensation Framework</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/03/31/the-culture-of-openness-artsy-mobile/">The Culture of Openness in the Artsy Mobile Team</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/03/23/artsy-technology-stack-2015/">Artsy's Technology Stack, 2015</a>
       </li>
     
       <li class="post">
         <a href="/blog/2015/01/21/cocoapods-keys-and-CI/">CocoaPods-Keys and CI</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/01/04/cocoapods-and-frameworks/">CocoaPods and Frameworks</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/11/19/how-to-write-great-outage-post-mortems/">How to Write Great Outage Post-Mortems</a>
       </li>
     
   </ul>

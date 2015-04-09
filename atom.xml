@@ -4,7 +4,7 @@
   <title><![CDATA[Artsy Engineering]]></title>
   <link href="http://artsy.github.io/atom.xml" rel="self"/>
   <link href="http://artsy.github.io/"/>
-  <updated>2015-04-09T13:01:06-04:00</updated>
+  <updated>2015-04-09T13:08:05-04:00</updated>
   <id>http://artsy.github.io/</id>
   <author>
     <name><![CDATA[Artsy]]></name>
@@ -509,6 +509,123 @@
 <p>Converting our app to use a React-based front-end went surprisingly smoothly. We were able to incrementally change certain templates to React components, which made it easy to test as we went along. Additionally, our development time in adding new features since then has decreased dramatically. It is much easier to add new components or edit existing ones when there is a single source of truth and you don&#8217;t have to search through global event listeners.</p>
 
 <p>Choosing a front-end framework is non-trivial but incredibly important, and we are glad we found React. Because it does not require much overhead and it is possible to only use it on a portion of a page, React can be integrated into small or large projects. Although we deliberated for a long time over whether or not to use a framework, we never regretted moving to React and investing in the future of the app.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Artsy's Engineering Compensation Framework]]></title>
+    <link href="http://artsy.github.io/blog/2015/04/03/artsy-engineering-compensation-framework/"/>
+    <updated>2015-04-03T00:00:00-04:00</updated>
+    <id>http://artsy.github.io/blog/2015/04/03/artsy-engineering-compensation-framework</id>
+    <content type="html"><![CDATA[<p>Fair compensation is an important part of cultivating and growing engineers, and determining how much money someone is going to make is often more art than science, especially in young start-ups. We wanted this to be a collaborative process and not an adversarial one, and as our engineering team grew past 20 members it became important to think about compensation more systematically.</p>
+
+<p>In this post I will share our individual contributor engineering ladder and our performance evaluation and compensation process.</p>
+
+<!-- more -->
+
+
+<p>Performance evaluation at Artsy is composed of the <em>what</em>, i.e. what you achieve that contributes to your team’s goals and ultimately Artsy goals, and the <em>how</em>, i.e. how you act and how those actions  contribute to Artsy’s culture and values. The <em>what</em> part for an engineer is expressed in our individual contributor ladder, which describes typical growth from someone who has recently graduated, to an inspiring technologist. There&#8217;s nothing typical to engineering in our team - we have more art degrees than computer science ones, and I find all our junior engineers incredibly inspiring. This ladder is a benchmark, not a formula - knowing what&#8217;s typical helps team leads highlight the exceptional achievements and individuals to find themselves in a traditional growth path and figure out what their next step could be. It&#8217;s also important to note that our ladder recognizes that individual contributors do not need to become team leads to make more money - individual contributors are the most important people at Artsy and there&#8217;s no ceiling in their career here. We also are working on a company-wide system for team leads, but that&#8217;s a subject for another post.</p>
+
+<p>We have devised 5 levels, much inspired by the excellent <a href="http://dresscode.renttherunway.com/blog/ladder">Rent-the-Runway&#8217;s Engineering Ladder</a>. You&#8217;ll find it at the end of this article.</p>
+
+<p>Armed with this list a team lead can have a good 1:1 conversation with a team member about where they are in their career in terms of pure performance, and what areas need be paid attention to in order to grow into the next level. Leads can also compare engineers that don&#8217;t work on their teams using a consistent vocabulary.</p>
+
+<p>In parallel with working on this ladder, we did a lot of research regarding market compensation for Engineers. We routinely ask candidates questions about their pay and competitive offers, discuss this with  heads of engineering in other companies, use market data from large recruiting firms and pay attention to polls in the various technology organizations. We understand regional differences and have a good idea of the ranges that a company similar to Artsy pays individuals and constantly update our knowledge. If you run a team and would like to compare your numbers to ours, please e-mail <a href='mailto:db@artsy.net'>db@artsy.net</a>.</p>
+
+<p>A significant portion of your compensation comes in Artsy stock options. However, we do not assign dollar value to those or consider them to do compensation math, other than for the case when we offer you a range of possible salaries and a range of possible stock compensation. We often let you choose high equity and low cash, or low equity and high cash, which shifts down or up your target market value by the difference in dollars between your choice and fair market compensation. We determine the amount of stock options at the time of your joining and you may also receive subsequent grants with the goal of always providing you a fair amount of stock appropriate to your ladder at the moment of the grant.</p>
+
+<p>We review compensation every six months. And so, how do we determine your actual pay? We identify your ladder level, which yields your fair market value. Your lead then considers how you act and how those actions contribute to Artsy’s culture and values. This determines whether you are paid an amount that&#8217;s market high, or maybe even above market, creating a good margin to work with for exceptional achievements, strong progress or impact outside of your primary responsibilities.</p>
+
+<p>We test our framework when making new offers by asking candidates what their compensation expectations are. Some will give a number above their fair market value and we&#8217;ll offer them less. Some will give a number below their fair market value and we&#8217;ll offer them more. You read that right - people are paramount at Artsy - we do make offers above what a candidate may be asking for, based on our data and compensation framework. But don&#8217;t take our word for it, e-mail us your resume to <a href='jobs@artsy.net'>jobs@artsy.net</a>.</p>
+
+<h3>Individual Contributor Ladder</h3>
+
+<h4>Engineer 1</h4>
+
+<ul>
+<li>Broad knowledge of CS concepts.</li>
+<li>Can complete well-defined and sub-divided tasks.</li>
+<li>Focuses on learning tools and processes.</li>
+<li>Pushes code through the entire lifecycle from development to production for the first time.</li>
+<li>Develops individual contributor skills, including source control, editors or test-driven development.</li>
+</ul>
+
+
+<h4>Engineer 2</h4>
+
+<ul>
+<li>Consistently writes and delivers correct and clean quality code with guidance.</li>
+<li>Self-sufficient and makes steady progress on tasks.</li>
+<li>Knows when to ask for help and how to get unblocked.</li>
+<li>Makes steady, well-paced progress without the need for constant significant feedback from more senior engineers.</li>
+<li>Owns a small-to-medium feature from technical design through completion.</li>
+<li>Provides help and support outside of area under their responsibility.</li>
+</ul>
+
+
+<h4>Engineer 3</h4>
+
+<ul>
+<li>Owns a service or large technology component.</li>
+<li>Requires minimal direction or oversight, delivers quickly.</li>
+<li>Understands elements of the business that their work supports.</li>
+<li>Understands and makes well-reasoned design decisions and tradeoffs in their area.</li>
+<li>Works in other areas of the codebase with guidance from owners of that system.</li>
+<li>Persistent in the face of roadblocks, dispatches them efficiently, pulling in others as necessary.</li>
+<li>Has end-to-end responsibility on projects of increasing complexity and contributes to code shared across projects.</li>
+<li>Mentors junior engineers.</li>
+<li>Participates in the interviewing process of new team members.</li>
+<li>Demonstrates knowledge of industry trends, infrastructure and systems.</li>
+</ul>
+
+
+<h4>Engineer 4</h4>
+
+<ul>
+<li>Owns large scale and impact service or collection of services.</li>
+<li>Understands the Artsy business and makes decisions based on its direction.</li>
+<li>Sought out by other team members for technical guidance.</li>
+<li>Anticipates technical issues at the product level and makes architectural and design decisions to avoid them.</li>
+<li>Recognized as a prolific contributor to core and side projects.</li>
+<li>Multiplies the effectiveness of others by facilitating cross-team work.</li>
+<li>Has track record of creating sweeping improvements in stability, performance, and scalability across services.</li>
+<li>Consistently reduces the complexity of projects, services, and processes in order to get more done with less work.</li>
+<li>Has made an obvious positive impact on the entire company&#8217;s technical trajectory.</li>
+<li>Sets short to medium-term strategic technical direction.</li>
+<li>Communicates the awesomeness of Artsy technology externally via talks and blog posts.</li>
+</ul>
+
+
+<h4>Engineer 5</h4>
+
+<ul>
+<li>Inspires engineers and is seen as a role model and mentor to every technical member of the team.</li>
+<li>Plays a key role in developing multi-year technology strategy for complete and critical areas of the business.</li>
+<li>Has organization-wide impact on architecture and technology solutions.</li>
+<li>Anticipates broad technical change and ensures Artsy is always ahead of the curve.</li>
+<li>Consistently delivers large systems involving one or more teams&#8217; contribution.</li>
+<li>Primarily acts as a multiplier by building systems, authoring tools, or introducing policies or patterns.</li>
+<li>Quickly breaks down complex problems into potential solutions, knowns, and unknowns.</li>
+<li>Creates architecture that enables many potential futures without knowing exactly what the future is.</li>
+<li>Leads the conversations internally about the direction of major areas of the technology.</li>
+<li>Identifies technology strategic growth opportunities that enable Artsy to grow as a business.</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[The Culture of Openness in the Artsy Mobile Team]]></title>
+    <link href="http://artsy.github.io/blog/2015/03/31/the-culture-of-openness-artsy-mobile/"/>
+    <updated>2015-03-31T19:07:00-04:00</updated>
+    <id>http://artsy.github.io/blog/2015/03/31/the-culture-of-openness-artsy-mobile</id>
+    <content type="html"><![CDATA[<p>Recently, the Artsy Mobile team had the pleasure of working together on <a href="http://www.objc.io/issue-22/artsy.html">an article</a> for <a href="http://www.objc.io">objc.io</a>, an online publication dedicated to in-depth articles about iOS and OS X development. Each monthly issue consists of several articles centered around a theme—past issues include <a href="http://www.objc.io/issue-15/">Testing</a>, <a href="http://www.objc.io/issue-12/">Animations</a> and <a href="http://www.objc.io/issue-16/">Swift</a>. objc.io’s latest issue, <a href="http://www.objc.io/issue-22">iOS at Scale</a>, features articles by a handful of developers about how they approach iOS development at their respective companies. Our contribution to the issue is a collaboratively-written article by and about Artsy’s Mobile team from the angle of Artsy&#8217;s focus on the core value of openness that is foundational to how we (and the greater Artsy team) work.</p>
+
+<p>As our article puts it:</p>
+
+<blockquote><p>Our team intrinsically believes in the ideas of open source. Though our individual motivations vary — from a conviction in the power of education to a determination to help others see from giants’ shoulders — we all maintain the value of open source.</p></blockquote>
+
+<p>iOS at Artsy is characterized by a culture of open source stewardship. Although our team is small, our contributions to the Cocoa developer community are significant. We hope our article sheds some light on our development and testing practices while also providing a high-level look into our team’s philosophy. If you’d like to learn more, feel free to reach out to us at <a href="&#x6d;&#x61;&#105;&#x6c;&#116;&#111;&#x3a;&#x6d;&#x6f;&#x62;&#105;&#108;&#x65;&#x40;&#x61;&#x72;&#x74;&#x73;&#121;&#x2e;&#110;&#x65;&#116;">&#109;&#x6f;&#x62;&#x69;&#x6c;&#101;&#64;&#97;&#x72;&#116;&#115;&#121;&#46;&#110;&#x65;&#x74;</a> or <a href="https://twitter.com/artsyopensource">@ArtsyOpenSource</a>.</p>
 ]]></content>
   </entry>
   
@@ -2723,422 +2840,6 @@ ARAnalytics.</p>
 <p>I built three libraries, but one of them is unique. I modelled Artsy+UIFonts from <a href="http://kylefuller.co.uk">Kyle Fuller</a>&#8217;s <a href="https://github.com/kylef/OpenSans-pod">OpenSans-pod</a>, where the CocoaPod has the font resources and installing it moves them into your project. This is great for a free or open-source font, but would break commercial font licenses. For that reason, we don&#8217;t have the ability to open source that project. Thus Artsy Mobile&#8217;s first closed-source library.</p>
 
 <p>This is a great example of how you can build a private specs repo, whilst the public-private aspect is not applicable to most companies. I find it to be a nice halfway house between open source as default, and keeping something internal. For more info on setting up your own private specs repos, <a href="http://guides.cocoapods.org/making/private-cocoapods.html">check the guides</a>.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Building the Xcode Plugin Snapshots]]></title>
-    <link href="http://artsy.github.io/blog/2014/06/17/building-the-xcode-plugin-snapshots/"/>
-    <updated>2014-06-17T10:50:00-04:00</updated>
-    <id>http://artsy.github.io/blog/2014/06/17/building-the-xcode-plugin-snapshots</id>
-    <content type="html"><![CDATA[<p>I&#8217;m the kind of guy who thinks better tooling means better outcomes. But when good tooling isn&#8217;t available, it&#8217;s time to build it yourself. It&#8217;s this attitude that lead to my work on <a href="http://cocoadocs.org">CocoaDocs.org</a>, and then to <a href="http://cocoapods.org">CocoaPods.org</a> &amp; its documentation.</p>
-
-<p>We&#8217;ve been trying to apply this to testing, and in order to pull this off I&#8217;ve had to extend Xcode to show off the results of failing tests in a more visual way. To that end, I&#8217;ve extended Xcode to show the results of failing <a href="https://github.com/facebook/ios-snapshot-test-case">view tests</a> in a more visual way by building <a href="https://github.com/orta/snapshots">Snapshots for Xcode</a>.  Let&#8217;s go through the process of building an Xcode plugin so you can do this too. Screw stability.</p>
-
-<!-- more -->
-
-
-<h2>Getting started</h2>
-
-<p>Lets start of with some Xcode inception. The nicest way to start working on Xcode plugins is to install <a href="http://alcatraz.io">Alcatraz</a> the Xcode plugin package manager:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>curl -fsSL https://raw.github.com/supermarin/Alcatraz/master/Scripts/install.sh | sh</span></code></pre></td></tr></table></div></figure>
-
-
-<p>From Alcatraz you should have <a href="https://github.com/edwardaux/XcodeExplorer">XcodeExplorer</a> installed. This lets you dig through internal notifications and the Xcode view heriarchy for debugging. Then you&#8217;ll want <a href="http://delisa.me">Delisa Mason</a>&#8217;s <a href="https://github.com/kattrali/Xcode5-Plugin-Template">Xcode 5 Plugin</a> template which also comes from Alcatraz. Now you can create a new project and pick <em>&#8220;Xcode 5 Plugin&#8221;</em>. This will do a bunch of the boring work around getting set up on a project, though it misses one bit that to me is essential, setting the Scheme Target. Once setup go to the Scheme editor and make it open Xcode as the target.</p>
-
-<p><img src="http://artsy.github.io/images/2014-06-17-building-the-xcode-plugin-snapshots/scheme.png" alt="Go set you target dangit" /></p>
-
-<p>This means that when you do <code>cmd + r</code> on your project it will open a new instance of Xcode with your plugin installed, making the dev cycle for a plugin as simple as a normal OS X app. From here I can&#8217;t tell you how to build your plugin. It&#8217;s just normal development, however I can offer some general advice:</p>
-
-<ul>
-<li>When you see a class you don&#8217;t know, google it, chances are Luis Solano has you covered with <a href="https://github.com/luisobo/Xcode-RuntimeHeaders">Xcode-RuntimeHeaders</a>.</li>
-<li>Use id with fake class interfaces to get around having the headers for Xcode&#8217;s classes.</li>
-<li>Avoid 3rd party dependencies as much as possible as all plugin classes are in the same runtime.</li>
-<li>A lot of work is done in notifications, so it&#8217;s easy to hook in to state changes.</li>
-<li>Swizzle as little as possible</li>
-<li>Wrap code you&#8217;re not 100% on with <code>@try {} @catch {}</code> once it&#8217;s working to crash elegantly</li>
-<li>Look at the source code of other plugins</li>
-<li>Read <a href="https://github.com/kattrali/Xcode5-Plugin-Template#notes">the notes</a> on the Xcode5 Plugin Template</li>
-</ul>
-
-
-<h2>Releasing</h2>
-
-<p>Next up you want to get it on Alcatraz, this is just a pull request to the <a href="https://github.com/supermarin/alcatraz-packages">alcatraz-packages repo</a>, it&#8217;s like the old days of CocoaPods! Then you have a plugin, and people will always be using the master HEAD version of your plugin, so be wary around putting unstable code on that branch.</p>
-
-<p>It&#8217;s easy to forget that if you build apps you have all the tools you need to improve your workflow, one improvement that saves you an hour today could save thousands of human-hours once it&#8217;s out in the community.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Testing Core Data Migrations]]></title>
-    <link href="http://artsy.github.io/blog/2014/06/11/testing-core-data-migrations/"/>
-    <updated>2014-06-11T10:50:00-04:00</updated>
-    <id>http://artsy.github.io/blog/2014/06/11/testing-core-data-migrations</id>
-    <content type="html"><![CDATA[<p>The first time I released a patch release for <a href="http://orta.github.io/#folio-header-unit">Artsy Folio</a> it crashed instantly, on every install. Turns out I didn&#8217;t understand Core Data migrations, now a few years on I grok it better but I&#8217;ve still lived with the memories of that dark dark day. Because of this I&#8217;ve had an informal rule of testing migrations with all the old build of Folio <a href="http://artsy.github.io/blog/2013/03/29/musical-chairs/">using chairs</a> the day before submitting to the app store.</p>
-
-<p>This time round, I&#8217;ve made vast changes to the Core Data models but skipped the manual work. Here&#8217;s how:</p>
-
-<!-- more -->
-
-
-<p>Context: Folio is a big Core Data app, that now has hundreds of <a href="https://speakerdeck.com/orta/getting-eigen-out?slide=40">tests</a> that I&#8217;ve added in the past 6 month, tests that cover everything from <a href="https://speakerdeck.com/orta/getting-eigen-out?slide=40">the views</a> to simple model checks. It was originally built with a CoreDataManager singleton that contains a reference to a per-thread main managed object context. As I started to apply tests to the app I needed to start creating in-memory managed object contexts for <a href="http://www.bignerdranch.com/blog/dependency-injection-ios/">dependency injection</a>. Making my class (roughly) end up like this:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">@interface</span> <span class="nc">CoreDataManager</span> : <span class="nc">NSObject</span>
-</span><span class='line'><span class="k">+</span> <span class="p">(</span><span class="n">NSManagedObjectContext</span> <span class="o">*</span><span class="p">)</span><span class="nf">mainManagedObjectContext</span><span class="p">;</span>
-</span><span class='line'><span class="k">+</span> <span class="p">(</span><span class="n">NSManagedObjectContext</span> <span class="o">*</span><span class="p">)</span><span class="nf">stubbedManagedObjectContext</span><span class="p">;</span>
-</span><span class='line'><span class="k">@end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>With a simplified implementation of:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-<span class='line-number'>59</span>
-<span class='line-number'>60</span>
-<span class='line-number'>61</span>
-<span class='line-number'>62</span>
-<span class='line-number'>63</span>
-<span class='line-number'>64</span>
-<span class='line-number'>65</span>
-<span class='line-number'>66</span>
-<span class='line-number'>67</span>
-<span class='line-number'>68</span>
-<span class='line-number'>69</span>
-<span class='line-number'>70</span>
-<span class='line-number'>71</span>
-<span class='line-number'>72</span>
-<span class='line-number'>73</span>
-<span class='line-number'>74</span>
-<span class='line-number'>75</span>
-<span class='line-number'>76</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">static</span> <span class="kt">BOOL</span> <span class="n">ARRunningUnitTests</span> <span class="o">=</span> <span class="nb">NO</span><span class="p">;</span>
-</span><span class='line'><span class="k">static</span> <span class="n">NSManagedObjectModel</span> <span class="o">*</span><span class="n">managedObjectModel</span> <span class="o">=</span> <span class="nb">nil</span><span class="p">;</span>
-</span><span class='line'><span class="k">static</span> <span class="n">NSManagedObjectContext</span> <span class="o">*</span><span class="n">mainManagedObjectContext</span> <span class="o">=</span> <span class="nb">nil</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">@implementation</span> <span class="nc">CoreDataManager</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">+</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">initialize</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="n">self</span> <span class="o">==</span> <span class="p">[</span><span class="n">CoreDataManager</span> <span class="n">class</span><span class="p">])</span> <span class="p">{</span>
-</span><span class='line'>        <span class="n">NSString</span> <span class="o">*</span><span class="n">XCInjectBundle</span> <span class="o">=</span> <span class="p">[[[</span><span class="n">NSProcessInfo</span> <span class="n">processInfo</span><span class="p">]</span> <span class="n">environment</span><span class="p">]</span> <span class="n">objectForKey</span><span class="o">:</span><span class="s">@&quot;XCInjectBundle&quot;</span><span class="p">];</span>
-</span><span class='line'>        <span class="n">ARRunningUnitTests</span> <span class="o">=</span> <span class="p">[</span><span class="n">XCInjectBundle</span> <span class="n">hasSuffix</span><span class="o">:</span><span class="s">@&quot;.xctest&quot;</span><span class="p">];</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">+</span> <span class="p">(</span><span class="n">NSManagedObjectModel</span> <span class="o">*</span><span class="p">)</span><span class="nf">managedObjectModel</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="n">NSURL</span> <span class="o">*</span><span class="n">modelURL</span> <span class="o">=</span> <span class="p">[[</span><span class="n">NSBundle</span> <span class="n">mainBundle</span><span class="p">]</span> <span class="n">URLForResource</span><span class="o">:</span><span class="s">@&quot;ArtsyPartner&quot;</span> <span class="n">withExtension</span><span class="o">:</span><span class="s">@&quot;momd&quot;</span><span class="p">];</span>
-</span><span class='line'>    <span class="k">return</span> <span class="p">[[</span><span class="n">NSManagedObjectModel</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">initWithContentsOfURL</span><span class="o">:</span><span class="n">modelURL</span><span class="p">];</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">+</span> <span class="p">(</span><span class="n">NSPersistentStoreCoordinator</span> <span class="o">*</span><span class="p">)</span><span class="nf">persistentStoreCoordinator</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="n">persistentStoreCoordinator</span> <span class="o">!=</span> <span class="nb">nil</span><span class="p">)</span> <span class="k">return</span> <span class="n">persistentStoreCoordinator</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="n">NSURL</span> <span class="o">*</span><span class="n">storeURL</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSURL</span> <span class="n">fileURLWithPath</span><span class="o">:</span><span class="p">[</span><span class="n">ARFileUtils</span> <span class="n">coreDataStorePath</span><span class="p">]];</span>
-</span><span class='line'>    <span class="n">NSDictionary</span> <span class="o">*</span><span class="n">options</span> <span class="o">=</span> <span class="err">@</span><span class="p">{</span> <span class="n">NSMigratePersistentStoresAutomaticallyOption</span><span class="o">:</span> <span class="err">@</span><span class="p">(</span><span class="nb">YES</span><span class="p">),</span> <span class="n">NSInferMappingModelAutomaticallyOption</span><span class="o">:</span> <span class="err">@</span><span class="p">(</span><span class="nb">YES</span><span class="p">)};</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="n">NSError</span> <span class="o">*</span><span class="n">error</span> <span class="o">=</span> <span class="nb">nil</span><span class="p">;</span>
-</span><span class='line'>    <span class="n">NSManagedObjectModel</span> <span class="o">*</span><span class="n">model</span> <span class="o">=</span> <span class="p">[</span><span class="n">CoreDataManager</span> <span class="n">managedObjectModel</span><span class="p">];</span>
-</span><span class='line'>    <span class="n">persistentStoreCoordinator</span> <span class="o">=</span> <span class="p">[[</span><span class="n">NSPersistentStoreCoordinator</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">initWithManagedObjectModel</span><span class="o">:</span><span class="n">model</span><span class="p">];</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="p">[</span><span class="n">persistentStoreCoordinator</span> <span class="n">addPersistentStoreWithType</span><span class="o">:</span><span class="n">NSSQLiteStoreType</span> <span class="n">configuration</span><span class="o">:</span><span class="nb">nil</span> <span class="n">URL</span><span class="o">:</span><span class="n">storeURL</span> <span class="n">options</span><span class="o">:</span><span class="n">options</span> <span class="n">error</span><span class="o">:&amp;</span><span class="n">error</span><span class="p">];</span>
-</span><span class='line'>    <span class="k">return</span> <span class="n">persistentStoreCoordinator</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">+</span> <span class="p">(</span><span class="n">NSManagedObjectContext</span> <span class="o">*</span><span class="p">)</span><span class="nf">mainManagedObjectContext</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="n">ARRunningUnitTests</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>        <span class="k">@throw</span> <span class="p">[</span><span class="n">NSException</span> <span class="n">exceptionWithName</span><span class="o">:</span><span class="s">@&quot;ARCoreDataError&quot;</span> <span class="n">reason</span><span class="o">:</span><span class="s">@&quot;Nope - you should be using a stubbed context somewhere.&quot;</span> <span class="n">userInfo</span><span class="o">:</span><span class="nb">nil</span><span class="p">];</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="n">mainManagedObjectContext</span> <span class="o">==</span> <span class="nb">nil</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>        <span class="n">mainManagedObjectContext</span> <span class="o">=</span> <span class="p">[</span><span class="n">self</span> <span class="n">newManagedObjectContext</span><span class="p">];</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>    <span class="k">return</span> <span class="n">mainManagedObjectContext</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="k">+</span> <span class="p">(</span><span class="n">NSManagedObjectContext</span> <span class="o">*</span><span class="p">)</span><span class="nf">newManagedObjectContext</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="n">NSManagedObjectContext</span> <span class="o">*</span><span class="n">context</span> <span class="o">=</span> <span class="nb">nil</span><span class="p">;</span>
-</span><span class='line'>    <span class="n">NSURL</span> <span class="o">*</span><span class="n">storeURL</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSURL</span> <span class="n">fileURLWithPath</span><span class="o">:</span><span class="p">[</span><span class="n">ARFileUtils</span> <span class="n">coreDataStorePath</span><span class="p">]];</span>
-</span><span class='line'>    <span class="n">NSDictionary</span> <span class="o">*</span><span class="n">options</span> <span class="o">=</span> <span class="err">@</span><span class="p">{</span> <span class="n">NSMigratePersistentStoresAutomaticallyOption</span><span class="o">:</span> <span class="err">@</span><span class="p">(</span><span class="nb">YES</span><span class="p">),</span> <span class="n">NSInferMappingModelAutomaticallyOption</span><span class="o">:</span> <span class="err">@</span><span class="p">(</span><span class="nb">YES</span><span class="p">)</span> <span class="p">};</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="n">NSError</span> <span class="o">*</span><span class="n">error</span> <span class="o">=</span> <span class="nb">nil</span><span class="p">;</span>
-</span><span class='line'>    <span class="n">NSManagedObjectModel</span> <span class="o">*</span><span class="n">model</span> <span class="o">=</span> <span class="p">[</span><span class="n">CoreDataManager</span> <span class="n">managedObjectModel</span><span class="p">];</span>
-</span><span class='line'>    <span class="n">persistentStoreCoordinator</span> <span class="o">=</span> <span class="p">[[</span><span class="n">NSPersistentStoreCoordinator</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">initWithManagedObjectModel</span><span class="o">:</span><span class="n">model</span><span class="p">];</span>
-</span><span class='line'>    <span class="k">return</span> <span class="n">context</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">+</span> <span class="p">(</span><span class="n">NSManagedObjectContext</span> <span class="o">*</span><span class="p">)</span><span class="nf">stubbedManagedObjectContext</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="n">NSDictionary</span> <span class="o">*</span><span class="n">options</span> <span class="o">=</span> <span class="err">@</span><span class="p">{</span> <span class="n">NSMigratePersistentStoresAutomaticallyOption</span><span class="o">:</span> <span class="err">@</span><span class="p">(</span><span class="nb">YES</span><span class="p">),</span> <span class="n">NSInferMappingModelAutomaticallyOption</span><span class="o">:</span> <span class="err">@</span><span class="p">(</span><span class="nb">YES</span><span class="p">)</span> <span class="p">};</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="n">NSError</span> <span class="o">*</span><span class="n">error</span> <span class="o">=</span> <span class="nb">nil</span><span class="p">;</span>
-</span><span class='line'>    <span class="n">NSManagedObjectModel</span> <span class="o">*</span><span class="n">model</span> <span class="o">=</span> <span class="p">[</span><span class="n">CoreDataManager</span> <span class="n">managedObjectModel</span><span class="p">];</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="n">persistentStoreCoordinator</span> <span class="o">=</span> <span class="p">[[</span><span class="n">NSPersistentStoreCoordinator</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">initWithManagedObjectModel</span><span class="o">:</span><span class="n">model</span><span class="p">];</span>
-</span><span class='line'>    <span class="p">[</span><span class="n">persistentStoreCoordinator</span> <span class="n">addPersistentStoreWithType</span><span class="o">:</span><span class="n">NSInMemoryStoreType</span> <span class="n">configuration</span><span class="o">:</span><span class="nb">nil</span> <span class="n">URL</span><span class="o">:</span><span class="nb">nil</span> <span class="n">options</span><span class="o">:</span><span class="n">options</span> <span class="n">error</span><span class="o">:&amp;</span><span class="n">error</span><span class="p">];</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="n">NSManagedObjectContext</span> <span class="o">*</span><span class="n">context</span> <span class="o">=</span> <span class="p">[[</span><span class="n">NSManagedObjectContext</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
-</span><span class='line'>    <span class="n">context</span><span class="p">.</span><span class="n">persistentStoreCoordinator</span> <span class="o">=</span> <span class="n">persistentStoreCoordinator</span><span class="p">;</span>
-</span><span class='line'>    <span class="k">return</span> <span class="n">context</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">@end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>This meant it was very easy to quickly make tests that look like:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">it</span><span class="p">(</span><span class="s">@&quot;shows sync info when there are no CMS albums&quot;</span><span class="p">,</span> <span class="o">^</span><span class="p">{</span>
-</span><span class='line'>    <span class="n">NSManagedObjectContext</span> <span class="o">*</span><span class="n">context</span> <span class="o">=</span> <span class="p">[</span><span class="n">CoreDataManager</span> <span class="n">stubbedManagedObjectContext</span><span class="p">];</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="n">ARAddAlbumThatIsEditableInContext</span><span class="p">(</span><span class="nb">YES</span><span class="p">,</span> <span class="n">context</span><span class="p">);</span>
-</span><span class='line'>    <span class="n">ARAddAlbumThatIsEditableInContext</span><span class="p">(</span><span class="nb">NO</span><span class="p">,</span> <span class="n">context</span><span class="p">);</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="n">ARAddToAlbumViewController</span> <span class="o">*</span><span class="n">controller</span> <span class="o">=</span> <span class="p">[[</span><span class="n">ARAddToAlbumViewController</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">initWithManagedObjectContext</span><span class="o">:</span><span class="n">context</span><span class="p">];</span>
-</span><span class='line'>    <span class="n">controller</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">frame</span> <span class="o">=</span> <span class="p">(</span><span class="n">CGRect</span><span class="p">){</span> <span class="n">CGPointZero</span><span class="p">,</span> <span class="p">[</span><span class="n">controller</span> <span class="n">preferredContentSize</span><span class="p">]};</span>
-</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="n">controller</span><span class="p">.</span><span class="n">view</span><span class="p">).</span><span class="n">to</span><span class="p">.</span><span class="n">haveValidSnapshot</span><span class="p">();</span>
-</span><span class='line'><span class="p">});</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>This made it very cheap conceptually to make a new in-memory context and to be sure that the changes wouldn&#8217;t affect the development data store. However, once I had this framework in place it became a pretty simple jump to taking the existing sqlite files that I already had around in my <a href="http://artsy.github.io/blog/2013/03/29/musical-chairs/">chairs folder</a> and make to force a migration from that build to the latest managed object model. Here&#8217;s the test suite in full:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-<span class='line-number'>59</span>
-<span class='line-number'>60</span>
-<span class='line-number'>61</span>
-<span class='line-number'>62</span>
-<span class='line-number'>63</span>
-<span class='line-number'>64</span>
-<span class='line-number'>65</span>
-<span class='line-number'>66</span>
-<span class='line-number'>67</span>
-<span class='line-number'>68</span>
-<span class='line-number'>69</span>
-<span class='line-number'>70</span>
-<span class='line-number'>71</span>
-<span class='line-number'>72</span>
-<span class='line-number'>73</span>
-<span class='line-number'>74</span>
-<span class='line-number'>75</span>
-<span class='line-number'>76</span>
-<span class='line-number'>77</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="c1">//</span>
-</span><span class='line'><span class="c1">//  ARAppDataMigrations.m</span>
-</span><span class='line'><span class="c1">//  Artsy Folio</span>
-</span><span class='line'><span class="c1">//</span>
-</span><span class='line'><span class="c1">//  Created by Orta on 12/05/2014.</span>
-</span><span class='line'><span class="c1">//  Copyright (c) 2014 http://artsy.net. All rights reserved.</span>
-</span><span class='line'><span class="c1">//</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">NSManagedObjectContext</span> <span class="o">*</span><span class="nf">ARContextWithVersionString</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="n">string</span><span class="p">);</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">SpecBegin</span><span class="p">(</span><span class="n">ARAppDataMigrations</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">__block</span> <span class="n">NSManagedObjectContext</span> <span class="o">*</span><span class="n">context</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">it</span><span class="p">(</span><span class="s">@&quot;migrates from 1.3&quot;</span><span class="p">,</span> <span class="o">^</span><span class="p">{</span>
-</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="o">^</span><span class="p">{</span>
-</span><span class='line'>        <span class="n">context</span> <span class="o">=</span> <span class="n">ARContextWithVersionString</span><span class="p">(</span><span class="s">@&quot;1.3&quot;</span><span class="p">);</span>
-</span><span class='line'>    <span class="p">}).</span><span class="n">toNot</span><span class="p">.</span><span class="n">raise</span><span class="p">(</span><span class="nb">nil</span><span class="p">);</span>
-</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="n">context</span><span class="p">).</span><span class="n">to</span><span class="p">.</span><span class="n">beTruthy</span><span class="p">();</span>
-</span><span class='line'>    <span class="n">expect</span><span class="p">([</span><span class="n">Artwork</span> <span class="n">countInContext</span><span class="o">:</span><span class="n">context</span> <span class="n">error</span><span class="o">:</span><span class="nb">nil</span><span class="p">]).</span><span class="n">to</span><span class="p">.</span><span class="n">beGreaterThan</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-</span><span class='line'><span class="p">});</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">it</span><span class="p">(</span><span class="s">@&quot;migrates from  1.3.5&quot;</span><span class="p">,</span> <span class="o">^</span><span class="p">{</span>
-</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="o">^</span><span class="p">{</span>
-</span><span class='line'>        <span class="n">context</span> <span class="o">=</span> <span class="n">ARContextWithVersionString</span><span class="p">(</span><span class="s">@&quot;1.3.5&quot;</span><span class="p">);</span>
-</span><span class='line'>    <span class="p">}).</span><span class="n">toNot</span><span class="p">.</span><span class="n">raise</span><span class="p">(</span><span class="nb">nil</span><span class="p">);</span>
-</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="n">context</span><span class="p">).</span><span class="n">to</span><span class="p">.</span><span class="n">beTruthy</span><span class="p">();</span>
-</span><span class='line'>    <span class="n">expect</span><span class="p">([</span><span class="n">Artwork</span> <span class="n">countInContext</span><span class="o">:</span><span class="n">context</span> <span class="n">error</span><span class="o">:</span><span class="nb">nil</span><span class="p">]).</span><span class="n">to</span><span class="p">.</span><span class="n">beGreaterThan</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-</span><span class='line'><span class="p">});</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">it</span><span class="p">(</span><span class="s">@&quot;migrates from  1.4&quot;</span><span class="p">,</span> <span class="o">^</span><span class="p">{</span>
-</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="o">^</span><span class="p">{</span>
-</span><span class='line'>        <span class="n">context</span> <span class="o">=</span> <span class="n">ARContextWithVersionString</span><span class="p">(</span><span class="s">@&quot;1.4&quot;</span><span class="p">);</span>
-</span><span class='line'>    <span class="p">}).</span><span class="n">toNot</span><span class="p">.</span><span class="n">raise</span><span class="p">(</span><span class="nb">nil</span><span class="p">);</span>
-</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="n">context</span><span class="p">).</span><span class="n">to</span><span class="p">.</span><span class="n">beTruthy</span><span class="p">();</span>
-</span><span class='line'>    <span class="n">expect</span><span class="p">([</span><span class="n">Artwork</span> <span class="n">countInContext</span><span class="o">:</span><span class="n">context</span> <span class="n">error</span><span class="o">:</span><span class="nb">nil</span><span class="p">]).</span><span class="n">to</span><span class="p">.</span><span class="n">beGreaterThan</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-</span><span class='line'><span class="p">});</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">it</span><span class="p">(</span><span class="s">@&quot;migrates from  1.6&quot;</span><span class="p">,</span> <span class="o">^</span><span class="p">{</span>
-</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="o">^</span><span class="p">{</span>
-</span><span class='line'>        <span class="n">context</span> <span class="o">=</span> <span class="n">ARContextWithVersionString</span><span class="p">(</span><span class="s">@&quot;1.4&quot;</span><span class="p">);</span>
-</span><span class='line'>    <span class="p">}).</span><span class="n">toNot</span><span class="p">.</span><span class="n">raise</span><span class="p">(</span><span class="nb">nil</span><span class="p">);</span>
-</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="n">context</span><span class="p">).</span><span class="n">to</span><span class="p">.</span><span class="n">beTruthy</span><span class="p">();</span>
-</span><span class='line'>    <span class="n">expect</span><span class="p">([</span><span class="n">Artwork</span> <span class="n">countInContext</span><span class="o">:</span><span class="n">context</span> <span class="n">error</span><span class="o">:</span><span class="nb">nil</span><span class="p">]).</span><span class="n">to</span><span class="p">.</span><span class="n">beGreaterThan</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-</span><span class='line'><span class="p">});</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">SpecEnd</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">NSManagedObjectContext</span> <span class="o">*</span><span class="nf">ARContextWithVersionString</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="n">string</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="c1">// Allow it to migrate</span>
-</span><span class='line'>    <span class="n">NSDictionary</span> <span class="o">*</span><span class="n">options</span> <span class="o">=</span> <span class="err">@</span><span class="p">{</span>
-</span><span class='line'>        <span class="nl">NSMigratePersistentStoresAutomaticallyOption:</span> <span class="err">@</span><span class="nb">YES</span><span class="p">,</span>
-</span><span class='line'>        <span class="nl">NSInferMappingModelAutomaticallyOption:</span> <span class="nb">@YES</span>
-</span><span class='line'>    <span class="p">};</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="c1">// Open up the the _current_ managed object model</span>
-</span><span class='line'>    <span class="n">NSError</span> <span class="o">*</span><span class="n">error</span> <span class="o">=</span> <span class="nb">nil</span><span class="p">;</span>
-</span><span class='line'>    <span class="n">NSManagedObjectModel</span> <span class="o">*</span><span class="n">model</span> <span class="o">=</span> <span class="p">[</span><span class="n">CoreDataManager</span> <span class="n">managedObjectModel</span><span class="p">];</span>
-</span><span class='line'>    <span class="n">NSPersistentStoreCoordinator</span> <span class="o">*</span><span class="n">persistentStoreCoordinator</span> <span class="o">=</span> <span class="p">[[</span><span class="n">NSPersistentStoreCoordinator</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">initWithManagedObjectModel</span><span class="o">:</span><span class="n">model</span><span class="p">];</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="c1">// Get an older Core Data file from fixtures</span>
-</span><span class='line'>    <span class="n">NSString</span> <span class="o">*</span><span class="n">storeName</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSString</span> <span class="n">stringWithFormat</span><span class="o">:</span><span class="s">@&quot;ArtsyPartner_%@&quot;</span><span class="p">,</span> <span class="n">string</span><span class="p">];</span>
-</span><span class='line'>    <span class="n">NSURL</span> <span class="o">*</span><span class="n">storeURL</span> <span class="o">=</span> <span class="p">[[</span><span class="n">NSBundle</span> <span class="n">bundleForClass</span><span class="o">:</span><span class="n">ARAppDataMigrationsSpec</span><span class="p">.</span><span class="n">class</span><span class="p">]</span> <span class="n">URLForResource</span><span class="o">:</span><span class="n">storeName</span> <span class="n">withExtension</span><span class="o">:</span><span class="s">@&quot;sqlite&quot;</span><span class="p">];</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="c1">// Set the persistent store to be the fixture data</span>
-</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">[</span><span class="n">persistentStoreCoordinator</span> <span class="n">addPersistentStoreWithType</span><span class="o">:</span><span class="n">NSSQLiteStoreType</span> <span class="n">configuration</span><span class="o">:</span><span class="nb">nil</span> <span class="n">URL</span><span class="o">:</span><span class="n">storeURL</span> <span class="n">options</span><span class="o">:</span><span class="n">options</span> <span class="n">error</span><span class="o">:&amp;</span><span class="n">error</span><span class="p">])</span> <span class="p">{</span>
-</span><span class='line'>        <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;Error creating persistant store: %@&quot;</span><span class="p">,</span> <span class="n">error</span><span class="p">.</span><span class="n">localizedDescription</span><span class="p">);</span>
-</span><span class='line'>        <span class="k">@throw</span> <span class="s">@&quot;Bad store&quot;</span><span class="p">;</span>
-</span><span class='line'>        <span class="k">return</span> <span class="nb">nil</span><span class="p">;</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="c1">// Create a stubbed context, check give it the old data, and it will update itself</span>
-</span><span class='line'>    <span class="n">NSManagedObjectContext</span> <span class="o">*</span><span class="n">context</span> <span class="o">=</span> <span class="p">[[</span><span class="n">NSManagedObjectContext</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
-</span><span class='line'>    <span class="n">context</span><span class="p">.</span><span class="n">persistentStoreCoordinator</span> <span class="o">=</span> <span class="n">persistentStoreCoordinator</span><span class="p">;</span>
-</span><span class='line'>    <span class="k">return</span> <span class="n">context</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Nothing too surprising, but I think this is important that these tests are the slowest tests in the app, at a whopping 0.191 seconds. I&#8217;m very willing to trade a fraction of a second on every test run to know that I&#8217;m not breaking app migrations.</p>
 ]]></content>
   </entry>
   

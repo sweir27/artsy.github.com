@@ -9,9 +9,7 @@
   <meta name="author" content="Artsy">
 
   
-  <meta name="description" content="Artsy&#8217;s API requires something called an XApp
-token in order to perform
-requests. The token comes back with an expiry date, after which the &hellip;">
+  <meta name="description" content="Many established companies have bug bounty programs, including a recently publicized Twitter Bug Bounty. Some use services, such as HackerOne or &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -81,6 +79,92 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+    <a href="/blog/2014/09/24/launching-a-security-bug-bounty-program-at-artsy/">
+      <div class="date">
+
+
+
+
+  
+<time datetime="2014-09-24T12:21:00-04:00" pubdate>09/24/14</time></div>
+    
+    
+      <h1 class="entry-title">Launching a Security Bug Bounty Program at Artsy</h1>
+
+    
+    </a>
+    
+      <p class="meta">
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Many established companies have bug bounty programs, including a recently publicized <a href="http://www.forbes.com/sites/kashmirhill/2014/09/10/bug-bounty-programs">Twitter Bug Bounty</a>. Some use services, such as <a href="https://hackerone.com">HackerOne</a> or <a href="https://bugcrowd.com">BugCrowd</a>. In early September 2014 we quietly launched <a href="https://artsy.net/security">our own Security Bug Bounty</a>. Since then we have fixed 14 issues reported by 15 security researchers and paid $750 in bounty. In the process we have learned a ton and wanted to share some things that would have probably done a little bit differently, knowing what we know now.</p>
+
+<p>In this post I will focus on both technical and non-technical takeaways, and will provide an extensive list of vulnerabilities that should have been dealt with before launching our bug bounty.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/09/24/launching-a-security-bug-bounty-program-at-artsy/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+    <a href="/blog/2014/09/24/using-pattern-recognition-to-automatically-crop-framed-art/">
+      <div class="date">
+
+
+
+
+  
+<time datetime="2014-09-24T10:28:00-04:00" pubdate>09/24/14</time></div>
+    
+    
+      <h1 class="entry-title">Using Pattern Recognition to Automatically Crop Framed Art</h1>
+
+    
+    </a>
+    
+      <p class="meta">
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>Introduction</h2>
+
+<p>The <a href="https://artsy.net/imamuseum">Indianapolis Museum of Art</a> (IMA) recently shared thousands of high-resolution images from its permanent collection with Artsy, including 5,000 images that were in an un-cropped state. These images contain color swatches, frames, and diverse backgrounds, as shown below. The clutter in these images made them inappropriate to display to end users, and invited an approach to automatically crop the images. This post explores some fully automated techniques to locate the piece of art within each photo. If you&#8217;re eager to jump straight to the code that worked best, you&#8217;ll find the implementation of the &#8216;Rectangular Contour Search&#8217; section <a href="https://gist.github.com/ilyakava/b2dbca43991d6c668dbb">here</a>.</p>
+
+<p><img src="http://f.cl.ly/items/2C0e2X1G1R1i1z1Y0M1B/banner.png" alt="All of these images are open access. For reference, the accession numbers/names. 45-115.tif 45-9-v01.tif 54-4.tif 76-166-1-12b.tif 14-57.tif" /></p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/09/24/using-pattern-recognition-to-automatically-crop-framed-art/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -522,90 +606,6 @@ button handler is going to have to have similar code implemented.</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-    <a href="/blog/2014/06/17/building-the-xcode-plugin-snapshots/">
-      <div class="date">
-
-
-
-
-  
-<time datetime="2014-06-17T10:50:00-04:00" pubdate>06/17/14</time></div>
-    
-    
-      <h1 class="entry-title">Building the Xcode Plugin Snapshots</h1>
-
-    
-    </a>
-    
-      <p class="meta">
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I&#8217;m the kind of guy who thinks better tooling means better outcomes. But when good tooling isn&#8217;t available, it&#8217;s time to build it yourself. It&#8217;s this attitude that lead to my work on <a href="http://cocoadocs.org">CocoaDocs.org</a>, and then to <a href="http://cocoapods.org">CocoaPods.org</a> &amp; its documentation.</p>
-
-<p>We&#8217;ve been trying to apply this to testing, and in order to pull this off I&#8217;ve had to extend Xcode to show off the results of failing tests in a more visual way. To that end, I&#8217;ve extended Xcode to show the results of failing <a href="https://github.com/facebook/ios-snapshot-test-case">view tests</a> in a more visual way by building <a href="https://github.com/orta/snapshots">Snapshots for Xcode</a>.  Let&#8217;s go through the process of building an Xcode plugin so you can do this too. Screw stability.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/06/17/building-the-xcode-plugin-snapshots/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-    <a href="/blog/2014/06/11/testing-core-data-migrations/">
-      <div class="date">
-
-
-
-
-  
-<time datetime="2014-06-11T10:50:00-04:00" pubdate>06/11/14</time></div>
-    
-    
-      <h1 class="entry-title">Testing Core Data Migrations</h1>
-
-    
-    </a>
-    
-      <p class="meta">
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>The first time I released a patch release for <a href="http://orta.github.io/#folio-header-unit">Artsy Folio</a> it crashed instantly, on every install. Turns out I didn&#8217;t understand Core Data migrations, now a few years on I grok it better but I&#8217;ve still lived with the memories of that dark dark day. Because of this I&#8217;ve had an informal rule of testing migrations with all the old build of Folio <a href="http://artsy.github.io/blog/2013/03/29/musical-chairs/">using chairs</a> the day before submitting to the app store.</p>
-
-<p>This time round, I&#8217;ve made vast changes to the Core Data models but skipped the manual work. Here&#8217;s how:</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/06/11/testing-core-data-migrations/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -638,19 +638,19 @@ button handler is going to have to have similar code implemented.</p>
       </li>
     
       <li class="post">
+        <a href="/blog/2015/04/03/artsy-engineering-compensation-framework/">Artsy's Engineering Compensation Framework</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/03/31/the-culture-of-openness-artsy-mobile/">The Culture of Openness in the Artsy Mobile Team</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/03/23/artsy-technology-stack-2015/">Artsy's Technology Stack, 2015</a>
       </li>
     
       <li class="post">
         <a href="/blog/2015/01/21/cocoapods-keys-and-CI/">CocoaPods-Keys and CI</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/01/04/cocoapods-and-frameworks/">CocoaPods and Frameworks</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/11/19/how-to-write-great-outage-post-mortems/">How to Write Great Outage Post-Mortems</a>
       </li>
     
   </ul>
